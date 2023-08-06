@@ -1,0 +1,1074 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		93008974259D959600AB7DA5 /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93008973259D959600AB7DA5 /* BMJUA_otf.otf */; };
+		93008977259D95EB00AB7DA5 /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93008973259D959600AB7DA5 /* BMJUA_otf.otf */; };
+		9334883A2589A7A200CA3012 /* NoticeFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933488392589A7A200CA3012 /* NoticeFullscreenController.swift */; };
+		933488492589B69300CA3012 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933488482589B69300CA3012 /* UIView+Layout.swift */; };
+		933488542589FB3B00CA3012 /* TasteBackgroundDecoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933488532589FB3B00CA3012 /* TasteBackgroundDecoration.swift */; };
+		93348858258A2ABC00CA3012 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348857258A2ABC00CA3012 /* Const.swift */; };
+		9334885C258A329F00CA3012 /* CafeReviewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334885B258A329F00CA3012 /* CafeReviewListViewController.swift */; };
+		93348862258A352300CA3012 /* CafeListDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348861258A352300CA3012 /* CafeListDataLoader.swift */; };
+		93348865258A355900CA3012 /* CafeReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348864258A355900CA3012 /* CafeReview.swift */; };
+		9334886C258A3F7400CA3012 /* CafeReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334886B258A3F7400CA3012 /* CafeReviewCell.swift */; };
+		9334886F258AFBC200CA3012 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334886E258AFBC200CA3012 /* MoreViewController.swift */; };
+		9334887A258B3DB800CA3012 /* CSReviewDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348879258B3DB800CA3012 /* CSReviewDetailController.swift */; };
+		9334887F258B4E0900CA3012 /* CSReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334887E258B4E0900CA3012 /* CSReviewCell.swift */; };
+		93348886258B57A500CA3012 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348885258B57A500CA3012 /* Extensions.swift */; };
+		93348889258B5B5200CA3012 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348888258B5B5200CA3012 /* VerticalStackView.swift */; };
+		9334888C258B88AC00CA3012 /* CSPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334888B258B88AC00CA3012 /* CSPreviewCell.swift */; };
+		933488A0258C4C5C00CA3012 /* PreviewScreenshotsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334889F258C4C5C00CA3012 /* PreviewScreenshotsController.swift */; };
+		933488AA258C781000CA3012 /* GetAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933488A9258C781000CA3012 /* GetAddress.swift */; };
+		9334894C258E05A200CA3012 /* Model Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334894B258E05A200CA3012 /* Model Types.swift */; };
+		9334895E258F509700CA3012 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334895D258F509700CA3012 /* NetworkManagerTests.swift */; };
+		9334897425902CB200CA3012 /* MapDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334897325902CB200CA3012 /* MapDataLoader.swift */; };
+		9334898725907C1C00CA3012 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334898625907C1C00CA3012 /* MapCell.swift */; };
+		9334898B2590B56E00CA3012 /* MapListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334898A2590B56E00CA3012 /* MapListsViewController.swift */; };
+		933489942591891200CA3012 /* MapLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933489932591891200CA3012 /* MapLayoutManager.swift */; };
+		9334899A2592063300CA3012 /* CafeReviewLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933489992592063300CA3012 /* CafeReviewLayoutManager.swift */; };
+		933489AC25931DCD00CA3012 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 933489AB25931DCD00CA3012 /* GoogleService-Info.plist */; };
+		93348A3C2594A19100CA3012 /* ConvenienceStoreDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348A3B2594A19100CA3012 /* ConvenienceStoreDataLoader.swift */; };
+		93348A7125973CB100CA3012 /* CafeReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348A7025973CB100CA3012 /* CafeReviewDetailViewController.swift */; };
+		93348A7525973D9E00CA3012 /* CafePreviewScreenshotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348A7425973D9E00CA3012 /* CafePreviewScreenshotsViewController.swift */; };
+		93348A7925973F0100CA3012 /* CoffeeReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348A7825973F0100CA3012 /* CoffeeReviewCell.swift */; };
+		93348A822597489D00CA3012 /* CafePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348A812597489D00CA3012 /* CafePreviewCell.swift */; };
+		93348A8625974A4800CA3012 /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93348A8525974A4800CA3012 /* ScreenshotCell.swift */; };
+		933DB0E0257E4B5A00CB6FF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DB0DF257E4B5A00CB6FF8 /* AppDelegate.swift */; };
+		933DB0E2257E4B5A00CB6FF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DB0E1257E4B5A00CB6FF8 /* SceneDelegate.swift */; };
+		933DB0E4257E4B5A00CB6FF8 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DB0E3257E4B5A00CB6FF8 /* MapsViewController.swift */; };
+		933DB0E7257E4B5A00CB6FF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933DB0E5257E4B5A00CB6FF8 /* Main.storyboard */; };
+		933DB0E9257E4B5D00CB6FF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 933DB0E8257E4B5D00CB6FF8 /* Assets.xcassets */; };
+		933DB0EC257E4B5D00CB6FF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933DB0EA257E4B5D00CB6FF8 /* LaunchScreen.storyboard */; };
+		933DB115258064F200CB6FF8 /* ReviewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DB114258064F200CB6FF8 /* ReviewListViewController.swift */; };
+		933DB124258068D600CB6FF8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DB123258068D600CB6FF8 /* Theme.swift */; };
+		933DB19D258070A200CB6FF8 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933DB19B258070A200CB6FF8 /* Map.storyboard */; };
+		933DB1A12580711100CB6FF8 /* Review.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933DB1A02580711100CB6FF8 /* Review.storyboard */; };
+		93B867C8259C276300E1D9A6 /* WriteReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B867C7259C276300E1D9A6 /* WriteReviewsViewController.swift */; };
+		93B8682C259D680E00E1D9A6 /* ReviewListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B8682B259D680E00E1D9A6 /* ReviewListViewModel.swift */; };
+		93B86838259D8AB700E1D9A6 /* GmarketSansBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93B86837259D8AB700E1D9A6 /* GmarketSansBold.otf */; };
+		93E241B525871CD9003E7156 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93E241B425871CD9003E7156 /* More.storyboard */; };
+		93E241D42588539F003E7156 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241D32588539F003E7156 /* Notice.swift */; };
+		93E241D9258853B9003E7156 /* Cafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241D8258853B9003E7156 /* Cafe.swift */; };
+		93E241DC258853CA003E7156 /* Taste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241DB258853CA003E7156 /* Taste.swift */; };
+		93E241DF258853E5003E7156 /* ConvenienceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241DE258853E5003E7156 /* ConvenienceStore.swift */; };
+		93E241E225885AC5003E7156 /* ReviewDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241E125885AC5003E7156 /* ReviewDataLoader.swift */; };
+		93E241E725885B6B003E7156 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241E625885B6B003E7156 /* NetworkManager.swift */; };
+		93E241F025888D34003E7156 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241EF25888D34003E7156 /* NoticeCell.swift */; };
+		93E241F325889EDC003E7156 /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241F225889EDC003E7156 /* LayoutManager.swift */; };
+		93E241F72588A51F003E7156 /* CafeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241F62588A51F003E7156 /* CafeCell.swift */; };
+		93E241FA2588B165003E7156 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241F92588B165003E7156 /* SectionHeader.swift */; };
+		93E241FD2588B691003E7156 /* ConvenienceStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241FC2588B691003E7156 /* ConvenienceStoreCell.swift */; };
+		93E242002588C1AE003E7156 /* TasteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241FF2588C1AE003E7156 /* TasteCell.swift */; };
+		93E2AE82259AD219000A4A0E /* MapInfoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E2AE81259AD219000A4A0E /* MapInfoContainerView.swift */; };
+		E0729A8FBF4C51D531F76147 /* Pods_FindOfCoffeeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A82A2C303F45F492A5A2AB76 /* Pods_FindOfCoffeeApp.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		93348960258F509700CA3012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 933DB0D4257E4B5A00CB6FF8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 933DB0DB257E4B5A00CB6FF8;
+			remoteInfo = FindOfCoffeeApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4DB70C3F7115D72FF44BFAA8 /* Pods-FindOfCoffeeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindOfCoffeeApp.release.xcconfig"; path = "Target Support Files/Pods-FindOfCoffeeApp/Pods-FindOfCoffeeApp.release.xcconfig"; sourceTree = "<group>"; };
+		726CF447FCEA11BD8A836B1C /* Pods-FindOfCoffeeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindOfCoffeeApp.debug.xcconfig"; path = "Target Support Files/Pods-FindOfCoffeeApp/Pods-FindOfCoffeeApp.debug.xcconfig"; sourceTree = "<group>"; };
+		93008973259D959600AB7DA5 /* BMJUA_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMJUA_otf.otf; sourceTree = "<group>"; };
+		933488392589A7A200CA3012 /* NoticeFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeFullscreenController.swift; sourceTree = "<group>"; };
+		933488482589B69300CA3012 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		933488532589FB3B00CA3012 /* TasteBackgroundDecoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteBackgroundDecoration.swift; sourceTree = "<group>"; };
+		93348857258A2ABC00CA3012 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		9334885B258A329F00CA3012 /* CafeReviewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeReviewListViewController.swift; sourceTree = "<group>"; };
+		93348861258A352300CA3012 /* CafeListDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeListDataLoader.swift; sourceTree = "<group>"; };
+		93348864258A355900CA3012 /* CafeReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeReview.swift; sourceTree = "<group>"; };
+		9334886B258A3F7400CA3012 /* CafeReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeReviewCell.swift; sourceTree = "<group>"; };
+		9334886E258AFBC200CA3012 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		93348879258B3DB800CA3012 /* CSReviewDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSReviewDetailController.swift; sourceTree = "<group>"; };
+		9334887E258B4E0900CA3012 /* CSReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSReviewCell.swift; sourceTree = "<group>"; };
+		93348885258B57A500CA3012 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		93348888258B5B5200CA3012 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
+		9334888B258B88AC00CA3012 /* CSPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSPreviewCell.swift; sourceTree = "<group>"; };
+		9334889F258C4C5C00CA3012 /* PreviewScreenshotsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshotsController.swift; sourceTree = "<group>"; };
+		933488A9258C781000CA3012 /* GetAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAddress.swift; sourceTree = "<group>"; };
+		9334894B258E05A200CA3012 /* Model Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model Types.swift"; sourceTree = "<group>"; };
+		9334895B258F509700CA3012 /* FindOfCoffeeAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindOfCoffeeAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9334895D258F509700CA3012 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		9334895F258F509700CA3012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9334897325902CB200CA3012 /* MapDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataLoader.swift; sourceTree = "<group>"; };
+		9334898625907C1C00CA3012 /* MapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
+		9334898A2590B56E00CA3012 /* MapListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListsViewController.swift; sourceTree = "<group>"; };
+		933489932591891200CA3012 /* MapLayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLayoutManager.swift; sourceTree = "<group>"; };
+		933489992592063300CA3012 /* CafeReviewLayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeReviewLayoutManager.swift; sourceTree = "<group>"; };
+		933489AB25931DCD00CA3012 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		93348A3B2594A19100CA3012 /* ConvenienceStoreDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenienceStoreDataLoader.swift; sourceTree = "<group>"; };
+		93348A7025973CB100CA3012 /* CafeReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeReviewDetailViewController.swift; sourceTree = "<group>"; };
+		93348A7425973D9E00CA3012 /* CafePreviewScreenshotsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafePreviewScreenshotsViewController.swift; sourceTree = "<group>"; };
+		93348A7825973F0100CA3012 /* CoffeeReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeReviewCell.swift; sourceTree = "<group>"; };
+		93348A812597489D00CA3012 /* CafePreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafePreviewCell.swift; sourceTree = "<group>"; };
+		93348A8525974A4800CA3012 /* ScreenshotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
+		933DB0DC257E4B5A00CB6FF8 /* FindOfCoffeeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindOfCoffeeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		933DB0DF257E4B5A00CB6FF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		933DB0E1257E4B5A00CB6FF8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		933DB0E3257E4B5A00CB6FF8 /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
+		933DB0E6257E4B5A00CB6FF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		933DB0E8257E4B5D00CB6FF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		933DB0EB257E4B5D00CB6FF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		933DB0ED257E4B5D00CB6FF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		933DB114258064F200CB6FF8 /* ReviewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListViewController.swift; sourceTree = "<group>"; };
+		933DB123258068D600CB6FF8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		933DB19C258070A200CB6FF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = FindOfCoffeeApp/Storyboards/Base.lproj/Map.storyboard; sourceTree = "<group>"; };
+		933DB1A02580711100CB6FF8 /* Review.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Review.storyboard; sourceTree = "<group>"; };
+		93B867C7259C276300E1D9A6 /* WriteReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewsViewController.swift; sourceTree = "<group>"; };
+		93B8682B259D680E00E1D9A6 /* ReviewListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListViewModel.swift; sourceTree = "<group>"; };
+		93B86837259D8AB700E1D9A6 /* GmarketSansBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansBold.otf; sourceTree = "<group>"; };
+		93E241B425871CD9003E7156 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		93E241D32588539F003E7156 /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
+		93E241D8258853B9003E7156 /* Cafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafe.swift; sourceTree = "<group>"; };
+		93E241DB258853CA003E7156 /* Taste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Taste.swift; sourceTree = "<group>"; };
+		93E241DE258853E5003E7156 /* ConvenienceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenienceStore.swift; sourceTree = "<group>"; };
+		93E241E125885AC5003E7156 /* ReviewDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDataLoader.swift; sourceTree = "<group>"; };
+		93E241E625885B6B003E7156 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		93E241EF25888D34003E7156 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
+		93E241F225889EDC003E7156 /* LayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
+		93E241F62588A51F003E7156 /* CafeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeCell.swift; sourceTree = "<group>"; };
+		93E241F92588B165003E7156 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		93E241FC2588B691003E7156 /* ConvenienceStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenienceStoreCell.swift; sourceTree = "<group>"; };
+		93E241FF2588C1AE003E7156 /* TasteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteCell.swift; sourceTree = "<group>"; };
+		93E2AE81259AD219000A4A0E /* MapInfoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoContainerView.swift; sourceTree = "<group>"; };
+		A82A2C303F45F492A5A2AB76 /* Pods_FindOfCoffeeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindOfCoffeeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		93348958258F509700CA3012 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		933DB0D9257E4B5A00CB6FF8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0729A8FBF4C51D531F76147 /* Pods_FindOfCoffeeApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8D40F96EE9C0515540A25782 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A82A2C303F45F492A5A2AB76 /* Pods_FindOfCoffeeApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9334883C2589A7A500CA3012 /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				933488392589A7A200CA3012 /* NoticeFullscreenController.swift */,
+			);
+			path = Notice;
+			sourceTree = "<group>";
+		};
+		933488472589B67E00CA3012 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				93B86832259D89BA00E1D9A6 /* Font */,
+				933488482589B69300CA3012 /* UIView+Layout.swift */,
+				93348885258B57A500CA3012 /* Extensions.swift */,
+				93348888258B5B5200CA3012 /* VerticalStackView.swift */,
+				933488AC258C781300CA3012 /* Maps */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		9334885A258A327100CA3012 /* Cafe Lists */ = {
+			isa = PBXGroup;
+			children = (
+				9334885B258A329F00CA3012 /* CafeReviewListViewController.swift */,
+			);
+			path = "Cafe Lists";
+			sourceTree = "<group>";
+		};
+		9334885F258A34DC00CA3012 /* Reviews Tap */ = {
+			isa = PBXGroup;
+			children = (
+				93348A382594A16100CA3012 /* Data Loader */,
+				93E241D32588539F003E7156 /* Notice.swift */,
+				93E241D8258853B9003E7156 /* Cafe.swift */,
+				93E241DB258853CA003E7156 /* Taste.swift */,
+				93E241DE258853E5003E7156 /* ConvenienceStore.swift */,
+				93348860258A34F400CA3012 /* Cafe VC */,
+			);
+			path = "Reviews Tap";
+			sourceTree = "<group>";
+		};
+		93348860258A34F400CA3012 /* Cafe VC */ = {
+			isa = PBXGroup;
+			children = (
+				93348861258A352300CA3012 /* CafeListDataLoader.swift */,
+				93348864258A355900CA3012 /* CafeReview.swift */,
+			);
+			path = "Cafe VC";
+			sourceTree = "<group>";
+		};
+		93348868258A3F4500CA3012 /* Reviews Tap */ = {
+			isa = PBXGroup;
+			children = (
+				93E241F225889EDC003E7156 /* LayoutManager.swift */,
+				93E241EF25888D34003E7156 /* NoticeCell.swift */,
+				93E241F62588A51F003E7156 /* CafeCell.swift */,
+				93E241FF2588C1AE003E7156 /* TasteCell.swift */,
+				93E241FC2588B691003E7156 /* ConvenienceStoreCell.swift */,
+				9334886A258A3F5000CA3012 /* Cafe VC */,
+			);
+			path = "Reviews Tap";
+			sourceTree = "<group>";
+		};
+		9334886A258A3F5000CA3012 /* Cafe VC */ = {
+			isa = PBXGroup;
+			children = (
+				933489992592063300CA3012 /* CafeReviewLayoutManager.swift */,
+				9334886B258A3F7400CA3012 /* CafeReviewCell.swift */,
+				93348A7E25973F0500CA3012 /* Cafe Reviews */,
+				9334887D258B4DEB00CA3012 /* CS Reviews */,
+			);
+			path = "Cafe VC";
+			sourceTree = "<group>";
+		};
+		93348871258AFBC600CA3012 /* Mores */ = {
+			isa = PBXGroup;
+			children = (
+				9334886E258AFBC200CA3012 /* MoreViewController.swift */,
+			);
+			path = Mores;
+			sourceTree = "<group>";
+		};
+		93348878258B3D9800CA3012 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				93B867C6259C274400E1D9A6 /* Write Reviews */,
+				93E2AE7E259AB96C000A4A0E /* Taste Reviews */,
+				933488A4258C531100CA3012 /* Cafe Reviews */,
+				933488A2258C530900CA3012 /* CS Reviews */,
+				93348A8525974A4800CA3012 /* ScreenshotCell.swift */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		9334887D258B4DEB00CA3012 /* CS Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				9334887E258B4E0900CA3012 /* CSReviewCell.swift */,
+				9334888B258B88AC00CA3012 /* CSPreviewCell.swift */,
+			);
+			name = "CS Reviews";
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		933488A2258C530900CA3012 /* CS Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				93348879258B3DB800CA3012 /* CSReviewDetailController.swift */,
+				9334889F258C4C5C00CA3012 /* PreviewScreenshotsController.swift */,
+			);
+			path = "CS Reviews";
+			sourceTree = "<group>";
+		};
+		933488A4258C531100CA3012 /* Cafe Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				93348A7025973CB100CA3012 /* CafeReviewDetailViewController.swift */,
+				93348A7425973D9E00CA3012 /* CafePreviewScreenshotsViewController.swift */,
+			);
+			path = "Cafe Reviews";
+			sourceTree = "<group>";
+		};
+		933488AC258C781300CA3012 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				933488A9258C781000CA3012 /* GetAddress.swift */,
+			);
+			path = Maps;
+			sourceTree = "<group>";
+		};
+		93348949258E000400CA3012 /* Maps Tap */ = {
+			isa = PBXGroup;
+			children = (
+				9334897325902CB200CA3012 /* MapDataLoader.swift */,
+				9334894B258E05A200CA3012 /* Model Types.swift */,
+			);
+			path = "Maps Tap";
+			sourceTree = "<group>";
+		};
+		9334895C258F509700CA3012 /* FindOfCoffeeAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				9334895D258F509700CA3012 /* NetworkManagerTests.swift */,
+				9334895F258F509700CA3012 /* Info.plist */,
+			);
+			path = FindOfCoffeeAppTests;
+			sourceTree = "<group>";
+		};
+		9334898525907C0600CA3012 /* Maps Tap */ = {
+			isa = PBXGroup;
+			children = (
+				933489932591891200CA3012 /* MapLayoutManager.swift */,
+				9334898625907C1C00CA3012 /* MapCell.swift */,
+			);
+			path = "Maps Tap";
+			sourceTree = "<group>";
+		};
+		93348A382594A16100CA3012 /* Data Loader */ = {
+			isa = PBXGroup;
+			children = (
+				93E241E125885AC5003E7156 /* ReviewDataLoader.swift */,
+				93348A3B2594A19100CA3012 /* ConvenienceStoreDataLoader.swift */,
+			);
+			path = "Data Loader";
+			sourceTree = "<group>";
+		};
+		93348A7E25973F0500CA3012 /* Cafe Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				93348A7825973F0100CA3012 /* CoffeeReviewCell.swift */,
+				93348A812597489D00CA3012 /* CafePreviewCell.swift */,
+			);
+			path = "Cafe Reviews";
+			sourceTree = "<group>";
+		};
+		933DB0D3257E4B5A00CB6FF8 = {
+			isa = PBXGroup;
+			children = (
+				933DB0DE257E4B5A00CB6FF8 /* FindOfCoffeeApp */,
+				9334895C258F509700CA3012 /* FindOfCoffeeAppTests */,
+				933DB0DD257E4B5A00CB6FF8 /* Products */,
+				9A9C2EB3A43B5AF21B41D74E /* Pods */,
+				8D40F96EE9C0515540A25782 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		933DB0DD257E4B5A00CB6FF8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				933DB0DC257E4B5A00CB6FF8 /* FindOfCoffeeApp.app */,
+				9334895B258F509700CA3012 /* FindOfCoffeeAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		933DB0DE257E4B5A00CB6FF8 /* FindOfCoffeeApp */ = {
+			isa = PBXGroup;
+			children = (
+				933488472589B67E00CA3012 /* Helpers */,
+				933DB0F4257E4C6F00CB6FF8 /* Application Delegate */,
+				93E241E525885B51003E7156 /* API */,
+				93E241D125885153003E7156 /* Model */,
+				93E241EA25888AA4003E7156 /* Views */,
+				93B8682A259D67EF00E1D9A6 /* View Models */,
+				933DB0F7257E542E00CB6FF8 /* View Controllers */,
+				933DB0F5257E4C8600CB6FF8 /* Storyboards */,
+				933DB123258068D600CB6FF8 /* Theme.swift */,
+				933DB0E8257E4B5D00CB6FF8 /* Assets.xcassets */,
+				933DB0ED257E4B5D00CB6FF8 /* Info.plist */,
+				933489AB25931DCD00CA3012 /* GoogleService-Info.plist */,
+			);
+			path = FindOfCoffeeApp;
+			sourceTree = "<group>";
+		};
+		933DB0F4257E4C6F00CB6FF8 /* Application Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				933DB0DF257E4B5A00CB6FF8 /* AppDelegate.swift */,
+				933DB0E1257E4B5A00CB6FF8 /* SceneDelegate.swift */,
+			);
+			path = "Application Delegate";
+			sourceTree = "<group>";
+		};
+		933DB0F5257E4C8600CB6FF8 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				933DB0E5257E4B5A00CB6FF8 /* Main.storyboard */,
+				933DB0EA257E4B5D00CB6FF8 /* LaunchScreen.storyboard */,
+				933DB0FC257E54C300CB6FF8 /* Maps Storyboard */,
+				933DB1202580654900CB6FF8 /* Reviews Storyboard */,
+				93E241AE25871663003E7156 /* More Storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		933DB0F7257E542E00CB6FF8 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				933DB113258064A000CB6FF8 /* Maps */,
+				933DB118258064F700CB6FF8 /* Reviews */,
+				93348871258AFBC600CA3012 /* Mores */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		933DB0F8257E544800CB6FF8 /* Maps View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				933DB0E3257E4B5A00CB6FF8 /* MapsViewController.swift */,
+				9334898A2590B56E00CA3012 /* MapListsViewController.swift */,
+				93E2AE81259AD219000A4A0E /* MapInfoContainerView.swift */,
+			);
+			path = "Maps View Controllers";
+			sourceTree = "<group>";
+		};
+		933DB0FC257E54C300CB6FF8 /* Maps Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				933DB19B258070A200CB6FF8 /* Map.storyboard */,
+			);
+			path = "Maps Storyboard";
+			sourceTree = "<group>";
+		};
+		933DB113258064A000CB6FF8 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				933DB0F8257E544800CB6FF8 /* Maps View Controllers */,
+			);
+			path = Maps;
+			sourceTree = "<group>";
+		};
+		933DB118258064F700CB6FF8 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				933DB11B258064FE00CB6FF8 /* Review View Controller */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		933DB11B258064FE00CB6FF8 /* Review View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				933DB114258064F200CB6FF8 /* ReviewListViewController.swift */,
+				9334883C2589A7A500CA3012 /* Notice */,
+				9334885A258A327100CA3012 /* Cafe Lists */,
+				93348878258B3D9800CA3012 /* Reviews */,
+			);
+			path = "Review View Controller";
+			sourceTree = "<group>";
+		};
+		933DB1202580654900CB6FF8 /* Reviews Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				933DB1A02580711100CB6FF8 /* Review.storyboard */,
+			);
+			path = "Reviews Storyboard";
+			sourceTree = "<group>";
+		};
+		93B867C6259C274400E1D9A6 /* Write Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				93B867C7259C276300E1D9A6 /* WriteReviewsViewController.swift */,
+			);
+			path = "Write Reviews";
+			sourceTree = "<group>";
+		};
+		93B8682A259D67EF00E1D9A6 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				93B8682F259D681200E1D9A6 /* Reviews */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		93B8682F259D681200E1D9A6 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				93B8682B259D680E00E1D9A6 /* ReviewListViewModel.swift */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		93B86832259D89BA00E1D9A6 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				93B86837259D8AB700E1D9A6 /* GmarketSansBold.otf */,
+				93008973259D959600AB7DA5 /* BMJUA_otf.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		93E241AE25871663003E7156 /* More Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				93E241B425871CD9003E7156 /* More.storyboard */,
+			);
+			path = "More Storyboard";
+			sourceTree = "<group>";
+		};
+		93E241D125885153003E7156 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				93E241D6258853A4003E7156 /* Reviews */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		93E241D6258853A4003E7156 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				93348949258E000400CA3012 /* Maps Tap */,
+				9334885F258A34DC00CA3012 /* Reviews Tap */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		93E241E525885B51003E7156 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				93E241E625885B6B003E7156 /* NetworkManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		93E241EA25888AA4003E7156 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				93E241EB25888AB5003E7156 /* Reviews Collection */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		93E241EB25888AB5003E7156 /* Reviews Collection */ = {
+			isa = PBXGroup;
+			children = (
+				93E241EC25888AC5003E7156 /* Cells */,
+				93E241ED25888ACA003E7156 /* Custom Views */,
+			);
+			path = "Reviews Collection";
+			sourceTree = "<group>";
+		};
+		93E241EC25888AC5003E7156 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9334898525907C0600CA3012 /* Maps Tap */,
+				93348868258A3F4500CA3012 /* Reviews Tap */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		93E241ED25888ACA003E7156 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				93E241F92588B165003E7156 /* SectionHeader.swift */,
+				933488532589FB3B00CA3012 /* TasteBackgroundDecoration.swift */,
+				93348857258A2ABC00CA3012 /* Const.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		93E2AE7E259AB96C000A4A0E /* Taste Reviews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Taste Reviews";
+			sourceTree = "<group>";
+		};
+		9A9C2EB3A43B5AF21B41D74E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				726CF447FCEA11BD8A836B1C /* Pods-FindOfCoffeeApp.debug.xcconfig */,
+				4DB70C3F7115D72FF44BFAA8 /* Pods-FindOfCoffeeApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9334895A258F509700CA3012 /* FindOfCoffeeAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93348962258F509700CA3012 /* Build configuration list for PBXNativeTarget "FindOfCoffeeAppTests" */;
+			buildPhases = (
+				93348957258F509700CA3012 /* Sources */,
+				93348958258F509700CA3012 /* Frameworks */,
+				93348959258F509700CA3012 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				93348961258F509700CA3012 /* PBXTargetDependency */,
+			);
+			name = FindOfCoffeeAppTests;
+			productName = FindOfCoffeeAppTests;
+			productReference = 9334895B258F509700CA3012 /* FindOfCoffeeAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		933DB0DB257E4B5A00CB6FF8 /* FindOfCoffeeApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 933DB0F0257E4B5D00CB6FF8 /* Build configuration list for PBXNativeTarget "FindOfCoffeeApp" */;
+			buildPhases = (
+				DD0F40C042F15B44C93E3E32 /* [CP] Check Pods Manifest.lock */,
+				933DB0D8257E4B5A00CB6FF8 /* Sources */,
+				933DB0D9257E4B5A00CB6FF8 /* Frameworks */,
+				933DB0DA257E4B5A00CB6FF8 /* Resources */,
+				A9ABD89A33BB9143FB30E9A5 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FindOfCoffeeApp;
+			productName = FindOfCoffeeApp;
+			productReference = 933DB0DC257E4B5A00CB6FF8 /* FindOfCoffeeApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		933DB0D4257E4B5A00CB6FF8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					9334895A258F509700CA3012 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 933DB0DB257E4B5A00CB6FF8;
+					};
+					933DB0DB257E4B5A00CB6FF8 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 933DB0D7257E4B5A00CB6FF8 /* Build configuration list for PBXProject "FindOfCoffeeApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 933DB0D3257E4B5A00CB6FF8;
+			productRefGroup = 933DB0DD257E4B5A00CB6FF8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				933DB0DB257E4B5A00CB6FF8 /* FindOfCoffeeApp */,
+				9334895A258F509700CA3012 /* FindOfCoffeeAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		93348959258F509700CA3012 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93008977259D95EB00AB7DA5 /* BMJUA_otf.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		933DB0DA257E4B5A00CB6FF8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				933489AC25931DCD00CA3012 /* GoogleService-Info.plist in Resources */,
+				933DB0EC257E4B5D00CB6FF8 /* LaunchScreen.storyboard in Resources */,
+				93E241B525871CD9003E7156 /* More.storyboard in Resources */,
+				93B86838259D8AB700E1D9A6 /* GmarketSansBold.otf in Resources */,
+				933DB1A12580711100CB6FF8 /* Review.storyboard in Resources */,
+				933DB0E9257E4B5D00CB6FF8 /* Assets.xcassets in Resources */,
+				933DB0E7257E4B5A00CB6FF8 /* Main.storyboard in Resources */,
+				93008974259D959600AB7DA5 /* BMJUA_otf.otf in Resources */,
+				933DB19D258070A200CB6FF8 /* Map.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A9ABD89A33BB9143FB30E9A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FindOfCoffeeApp/Pods-FindOfCoffeeApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FindOfCoffeeApp/Pods-FindOfCoffeeApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FindOfCoffeeApp/Pods-FindOfCoffeeApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD0F40C042F15B44C93E3E32 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FindOfCoffeeApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		93348957258F509700CA3012 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9334895E258F509700CA3012 /* NetworkManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		933DB0D8257E4B5A00CB6FF8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				933DB0E4257E4B5A00CB6FF8 /* MapsViewController.swift in Sources */,
+				9334886F258AFBC200CA3012 /* MoreViewController.swift in Sources */,
+				933489942591891200CA3012 /* MapLayoutManager.swift in Sources */,
+				9334898725907C1C00CA3012 /* MapCell.swift in Sources */,
+				93E241DF258853E5003E7156 /* ConvenienceStore.swift in Sources */,
+				9334899A2592063300CA3012 /* CafeReviewLayoutManager.swift in Sources */,
+				93E241FA2588B165003E7156 /* SectionHeader.swift in Sources */,
+				933488A0258C4C5C00CA3012 /* PreviewScreenshotsController.swift in Sources */,
+				933488542589FB3B00CA3012 /* TasteBackgroundDecoration.swift in Sources */,
+				93E241F72588A51F003E7156 /* CafeCell.swift in Sources */,
+				933488492589B69300CA3012 /* UIView+Layout.swift in Sources */,
+				93348886258B57A500CA3012 /* Extensions.swift in Sources */,
+				933DB0E0257E4B5A00CB6FF8 /* AppDelegate.swift in Sources */,
+				93E2AE82259AD219000A4A0E /* MapInfoContainerView.swift in Sources */,
+				93E242002588C1AE003E7156 /* TasteCell.swift in Sources */,
+				9334888C258B88AC00CA3012 /* CSPreviewCell.swift in Sources */,
+				93B867C8259C276300E1D9A6 /* WriteReviewsViewController.swift in Sources */,
+				933DB124258068D600CB6FF8 /* Theme.swift in Sources */,
+				9334898B2590B56E00CA3012 /* MapListsViewController.swift in Sources */,
+				93E241D42588539F003E7156 /* Notice.swift in Sources */,
+				9334897425902CB200CA3012 /* MapDataLoader.swift in Sources */,
+				93348862258A352300CA3012 /* CafeListDataLoader.swift in Sources */,
+				93348A3C2594A19100CA3012 /* ConvenienceStoreDataLoader.swift in Sources */,
+				93348A822597489D00CA3012 /* CafePreviewCell.swift in Sources */,
+				933DB115258064F200CB6FF8 /* ReviewListViewController.swift in Sources */,
+				9334885C258A329F00CA3012 /* CafeReviewListViewController.swift in Sources */,
+				93E241E225885AC5003E7156 /* ReviewDataLoader.swift in Sources */,
+				93348A7525973D9E00CA3012 /* CafePreviewScreenshotsViewController.swift in Sources */,
+				9334883A2589A7A200CA3012 /* NoticeFullscreenController.swift in Sources */,
+				933DB0E2257E4B5A00CB6FF8 /* SceneDelegate.swift in Sources */,
+				93B8682C259D680E00E1D9A6 /* ReviewListViewModel.swift in Sources */,
+				93348A7925973F0100CA3012 /* CoffeeReviewCell.swift in Sources */,
+				93E241E725885B6B003E7156 /* NetworkManager.swift in Sources */,
+				93348889258B5B5200CA3012 /* VerticalStackView.swift in Sources */,
+				93E241F025888D34003E7156 /* NoticeCell.swift in Sources */,
+				93348A7125973CB100CA3012 /* CafeReviewDetailViewController.swift in Sources */,
+				93E241D9258853B9003E7156 /* Cafe.swift in Sources */,
+				9334886C258A3F7400CA3012 /* CafeReviewCell.swift in Sources */,
+				9334887F258B4E0900CA3012 /* CSReviewCell.swift in Sources */,
+				9334894C258E05A200CA3012 /* Model Types.swift in Sources */,
+				93E241DC258853CA003E7156 /* Taste.swift in Sources */,
+				93348A8625974A4800CA3012 /* ScreenshotCell.swift in Sources */,
+				93348865258A355900CA3012 /* CafeReview.swift in Sources */,
+				93E241F325889EDC003E7156 /* LayoutManager.swift in Sources */,
+				933488AA258C781000CA3012 /* GetAddress.swift in Sources */,
+				93E241FD2588B691003E7156 /* ConvenienceStoreCell.swift in Sources */,
+				9334887A258B3DB800CA3012 /* CSReviewDetailController.swift in Sources */,
+				93348858258A2ABC00CA3012 /* Const.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		93348961258F509700CA3012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 933DB0DB257E4B5A00CB6FF8 /* FindOfCoffeeApp */;
+			targetProxy = 93348960258F509700CA3012 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		933DB0E5257E4B5A00CB6FF8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				933DB0E6257E4B5A00CB6FF8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		933DB0EA257E4B5D00CB6FF8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				933DB0EB257E4B5D00CB6FF8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		933DB19B258070A200CB6FF8 /* Map.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				933DB19C258070A200CB6FF8 /* Base */,
+			);
+			name = Map.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		93348963258F509700CA3012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8G43M5CX79;
+				INFOPLIST_FILE = FindOfCoffeeAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zombietux.FindOfCoffeeAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FindOfCoffeeApp.app/FindOfCoffeeApp";
+			};
+			name = Debug;
+		};
+		93348964258F509700CA3012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8G43M5CX79;
+				INFOPLIST_FILE = FindOfCoffeeAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zombietux.FindOfCoffeeAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FindOfCoffeeApp.app/FindOfCoffeeApp";
+			};
+			name = Release;
+		};
+		933DB0EE257E4B5D00CB6FF8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		933DB0EF257E4B5D00CB6FF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		933DB0F1257E4B5D00CB6FF8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 726CF447FCEA11BD8A836B1C /* Pods-FindOfCoffeeApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 8G43M5CX79;
+				INFOPLIST_FILE = FindOfCoffeeApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zombietux.FindOfCoffeeApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		933DB0F2257E4B5D00CB6FF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DB70C3F7115D72FF44BFAA8 /* Pods-FindOfCoffeeApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 8G43M5CX79;
+				INFOPLIST_FILE = FindOfCoffeeApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zombietux.FindOfCoffeeApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		93348962258F509700CA3012 /* Build configuration list for PBXNativeTarget "FindOfCoffeeAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93348963258F509700CA3012 /* Debug */,
+				93348964258F509700CA3012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		933DB0D7257E4B5A00CB6FF8 /* Build configuration list for PBXProject "FindOfCoffeeApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				933DB0EE257E4B5D00CB6FF8 /* Debug */,
+				933DB0EF257E4B5D00CB6FF8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		933DB0F0257E4B5D00CB6FF8 /* Build configuration list for PBXNativeTarget "FindOfCoffeeApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				933DB0F1257E4B5D00CB6FF8 /* Debug */,
+				933DB0F2257E4B5D00CB6FF8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 933DB0D4257E4B5A00CB6FF8 /* Project object */;
+}

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yC3-rQ-RFK">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Maps View Controller-->
+        <scene sceneID="CB4-QA-Png">
+            <objects>
+                <viewController storyboardIdentifier="MapsViewController" id="RQL-il-JOH" customClass="MapsViewController" customModule="FindOfCoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n7n-eq-VBa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fnv-eM-cB3">
+                                <rect key="frame" x="10" y="718" width="394" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="9h6-Ta-czc"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="3Cx-hX-Gg2" kind="embed" id="jtb-Eg-C3W"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UO8-bI-QzC">
+                                <rect key="frame" x="0.0" y="-14" width="414" height="144"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="144" id="Bao-yS-FNg"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="5YG-Jc-0Lu" kind="embed" id="J48-PH-SSY"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dFV-Eu-tWE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dFV-Eu-tWE" firstAttribute="trailing" secondItem="Fnv-eM-cB3" secondAttribute="trailing" constant="10" id="0ny-FI-DpJ"/>
+                            <constraint firstItem="Fnv-eM-cB3" firstAttribute="leading" secondItem="dFV-Eu-tWE" secondAttribute="leading" constant="10" id="3fh-oA-2LK"/>
+                            <constraint firstItem="UO8-bI-QzC" firstAttribute="top" secondItem="n7n-eq-VBa" secondAttribute="top" constant="-14" id="BLb-B1-85O"/>
+                            <constraint firstItem="UO8-bI-QzC" firstAttribute="leading" secondItem="dFV-Eu-tWE" secondAttribute="leading" id="IJb-ir-CXK"/>
+                            <constraint firstItem="UO8-bI-QzC" firstAttribute="trailing" secondItem="dFV-Eu-tWE" secondAttribute="trailing" id="RmA-9j-KGk"/>
+                            <constraint firstItem="dFV-Eu-tWE" firstAttribute="bottom" secondItem="Fnv-eM-cB3" secondAttribute="bottom" constant="14" id="x5i-Xt-t3z"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="7AZ-kK-ihj"/>
+                    <connections>
+                        <outlet property="containerView" destination="Fnv-eM-cB3" id="N9p-pg-cXW"/>
+                        <outlet property="userMapInfoView" destination="UO8-bI-QzC" id="1FB-iK-ds4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fhp-ot-u1A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1281.1594202898552" y="60.9375"/>
+        </scene>
+        <!--주변-->
+        <scene sceneID="y0H-70-rfk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="yC3-rQ-RFK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="주변" image="map" id="3C8-00-8uM"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="H2v-K3-IA1">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RQL-il-JOH" kind="relationship" relationship="rootViewController" id="cF9-mh-9yk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uZQ-7J-k5I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="371.01449275362324" y="60.9375"/>
+        </scene>
+        <!--Map Lists View Controller-->
+        <scene sceneID="4rN-hU-ZUG">
+            <objects>
+                <viewController storyboardIdentifier="MapListsViewController" id="3Cx-hX-Gg2" customClass="MapListsViewController" customModule="FindOfCoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bzR-HX-U5O">
+                        <rect key="frame" x="0.0" y="0.0" width="394" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="aq4-qf-HvS"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mbl-iw-nS2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2119" y="294"/>
+        </scene>
+        <!--Map Info Container View-->
+        <scene sceneID="XLO-RZ-CkL">
+            <objects>
+                <viewController storyboardIdentifier="MapInfoContainerView" id="5YG-Jc-0Lu" customClass="MapInfoContainerView" customModule="FindOfCoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ApX-1W-Afc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="144"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PgM-oj-28f">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="144"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Z2R-FO-yF1">
+                                        <rect key="frame" x="14" y="65" width="169.5" height="65"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재위치" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chv-Rq-Rx6">
+                                                <rect key="frame" x="0.0" y="0.0" width="69.5" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" systemColor="systemBlueColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="T9i-VG-gNH">
+                                                <rect key="frame" x="0.0" y="28" width="169.5" height="37"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 주소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mca-IW-xl3">
+                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="반경 1km안에 있는 카페에요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ct2-hp-78S">
+                                                        <rect key="frame" x="0.0" y="19" width="169.5" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Z2R-FO-yF1" firstAttribute="leading" secondItem="PgM-oj-28f" secondAttribute="leading" constant="14" id="0g2-0g-BVQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Z2R-FO-yF1" secondAttribute="bottom" constant="14" id="LXZ-g5-S9z"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="z25-hM-qOf"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="PgM-oj-28f" firstAttribute="leading" secondItem="ApX-1W-Afc" secondAttribute="leading" id="C2p-iL-end"/>
+                            <constraint firstAttribute="trailing" secondItem="PgM-oj-28f" secondAttribute="trailing" id="L7C-Cb-23s"/>
+                            <constraint firstItem="PgM-oj-28f" firstAttribute="top" secondItem="ApX-1W-Afc" secondAttribute="top" id="QpQ-5e-iWm"/>
+                            <constraint firstAttribute="bottom" secondItem="PgM-oj-28f" secondAttribute="bottom" id="bbW-4B-y5Z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addressLabel" destination="Mca-IW-xl3" id="Nhp-wS-pfM"/>
+                        <outlet property="kmInfoLabel" destination="ct2-hp-78S" id="x47-Er-dgu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="okC-9H-s0g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1286" y="-356"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="map" width="23" height="23"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
