@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DBE67772A8075F8004DFBD8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67762A8075F8004DFBD8 /* FirebaseFirestore */; };
+		2DBE67792A8075F8004DFBD8 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67782A8075F8004DFBD8 /* FirebaseFirestoreSwift */; };
+		2DBE677B2A8075F8004DFBD8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE677A2A8075F8004DFBD8 /* FirebaseStorage */; };
+		2DBE677E2A8076C4004DFBD8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE677D2A8076C4004DFBD8 /* Kingfisher */; };
+		2DBE67812A807709004DFBD8 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67802A807709004DFBD8 /* JGProgressHUD */; };
+		2DBE67842A8078AF004DFBD8 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67832A8078AF004DFBD8 /* NMapsMap */; };
 		93008974259D959600AB7DA5 /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93008973259D959600AB7DA5 /* BMJUA_otf.otf */; };
 		93008977259D95EB00AB7DA5 /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93008973259D959600AB7DA5 /* BMJUA_otf.otf */; };
 		9334883A2589A7A200CA3012 /* NoticeFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933488392589A7A200CA3012 /* NoticeFullscreenController.swift */; };
@@ -66,7 +72,6 @@
 		93E241FD2588B691003E7156 /* ConvenienceStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241FC2588B691003E7156 /* ConvenienceStoreCell.swift */; };
 		93E242002588C1AE003E7156 /* TasteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E241FF2588C1AE003E7156 /* TasteCell.swift */; };
 		93E2AE82259AD219000A4A0E /* MapInfoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E2AE81259AD219000A4A0E /* MapInfoContainerView.swift */; };
-		E0729A8FBF4C51D531F76147 /* Pods_FindOfCoffeeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A82A2C303F45F492A5A2AB76 /* Pods_FindOfCoffeeApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,8 +85,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4DB70C3F7115D72FF44BFAA8 /* Pods-FindOfCoffeeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindOfCoffeeApp.release.xcconfig"; path = "Target Support Files/Pods-FindOfCoffeeApp/Pods-FindOfCoffeeApp.release.xcconfig"; sourceTree = "<group>"; };
-		726CF447FCEA11BD8A836B1C /* Pods-FindOfCoffeeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindOfCoffeeApp.debug.xcconfig"; path = "Target Support Files/Pods-FindOfCoffeeApp/Pods-FindOfCoffeeApp.debug.xcconfig"; sourceTree = "<group>"; };
 		93008973259D959600AB7DA5 /* BMJUA_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMJUA_otf.otf; sourceTree = "<group>"; };
 		933488392589A7A200CA3012 /* NoticeFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeFullscreenController.swift; sourceTree = "<group>"; };
 		933488482589B69300CA3012 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
@@ -144,7 +147,6 @@
 		93E241FC2588B691003E7156 /* ConvenienceStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenienceStoreCell.swift; sourceTree = "<group>"; };
 		93E241FF2588C1AE003E7156 /* TasteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteCell.swift; sourceTree = "<group>"; };
 		93E2AE81259AD219000A4A0E /* MapInfoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoContainerView.swift; sourceTree = "<group>"; };
-		A82A2C303F45F492A5A2AB76 /* Pods_FindOfCoffeeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindOfCoffeeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,21 +161,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0729A8FBF4C51D531F76147 /* Pods_FindOfCoffeeApp.framework in Frameworks */,
+				2DBE677E2A8076C4004DFBD8 /* Kingfisher in Frameworks */,
+				2DBE67842A8078AF004DFBD8 /* NMapsMap in Frameworks */,
+				2DBE67772A8075F8004DFBD8 /* FirebaseFirestore in Frameworks */,
+				2DBE67792A8075F8004DFBD8 /* FirebaseFirestoreSwift in Frameworks */,
+				2DBE677B2A8075F8004DFBD8 /* FirebaseStorage in Frameworks */,
+				2DBE67812A807709004DFBD8 /* JGProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8D40F96EE9C0515540A25782 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A82A2C303F45F492A5A2AB76 /* Pods_FindOfCoffeeApp.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		9334883C2589A7A500CA3012 /* Notice */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,8 +354,6 @@
 				933DB0DE257E4B5A00CB6FF8 /* FindOfCoffeeApp */,
 				9334895C258F509700CA3012 /* FindOfCoffeeAppTests */,
 				933DB0DD257E4B5A00CB6FF8 /* Products */,
-				9A9C2EB3A43B5AF21B41D74E /* Pods */,
-				8D40F96EE9C0515540A25782 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -581,15 +578,6 @@
 			path = "Taste Reviews";
 			sourceTree = "<group>";
 		};
-		9A9C2EB3A43B5AF21B41D74E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				726CF447FCEA11BD8A836B1C /* Pods-FindOfCoffeeApp.debug.xcconfig */,
-				4DB70C3F7115D72FF44BFAA8 /* Pods-FindOfCoffeeApp.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -615,17 +603,23 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 933DB0F0257E4B5D00CB6FF8 /* Build configuration list for PBXNativeTarget "FindOfCoffeeApp" */;
 			buildPhases = (
-				DD0F40C042F15B44C93E3E32 /* [CP] Check Pods Manifest.lock */,
 				933DB0D8257E4B5A00CB6FF8 /* Sources */,
 				933DB0D9257E4B5A00CB6FF8 /* Frameworks */,
 				933DB0DA257E4B5A00CB6FF8 /* Resources */,
-				A9ABD89A33BB9143FB30E9A5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = FindOfCoffeeApp;
+			packageProductDependencies = (
+				2DBE67762A8075F8004DFBD8 /* FirebaseFirestore */,
+				2DBE67782A8075F8004DFBD8 /* FirebaseFirestoreSwift */,
+				2DBE677A2A8075F8004DFBD8 /* FirebaseStorage */,
+				2DBE677D2A8076C4004DFBD8 /* Kingfisher */,
+				2DBE67802A807709004DFBD8 /* JGProgressHUD */,
+				2DBE67832A8078AF004DFBD8 /* NMapsMap */,
+			);
 			productName = FindOfCoffeeApp;
 			productReference = 933DB0DC257E4B5A00CB6FF8 /* FindOfCoffeeApp.app */;
 			productType = "com.apple.product-type.application";
@@ -657,6 +651,12 @@
 				Base,
 			);
 			mainGroup = 933DB0D3257E4B5A00CB6FF8;
+			packageReferences = (
+				2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2DBE677C2A8076C4004DFBD8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				2DBE677F2A807709004DFBD8 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				2DBE67822A8078AF004DFBD8 /* XCRemoteSwiftPackageReference "NMapsMap-SwiftPM" */,
+			);
 			productRefGroup = 933DB0DD257E4B5A00CB6FF8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -693,48 +693,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A9ABD89A33BB9143FB30E9A5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FindOfCoffeeApp/Pods-FindOfCoffeeApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FindOfCoffeeApp/Pods-FindOfCoffeeApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FindOfCoffeeApp/Pods-FindOfCoffeeApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DD0F40C042F15B44C93E3E32 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FindOfCoffeeApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		93348957258F509700CA3012 /* Sources */ = {
@@ -929,7 +887,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -984,7 +942,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -996,7 +954,6 @@
 		};
 		933DB0F1257E4B5D00CB6FF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 726CF447FCEA11BD8A836B1C /* Pods-FindOfCoffeeApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1004,7 +961,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8G43M5CX79;
 				INFOPLIST_FILE = FindOfCoffeeApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1018,7 +975,6 @@
 		};
 		933DB0F2257E4B5D00CB6FF8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4DB70C3F7115D72FF44BFAA8 /* Pods-FindOfCoffeeApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1026,7 +982,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8G43M5CX79;
 				INFOPLIST_FILE = FindOfCoffeeApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1069,6 +1025,74 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		2DBE677C2A8076C4004DFBD8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		2DBE677F2A807709004DFBD8 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		2DBE67822A8078AF004DFBD8 /* XCRemoteSwiftPackageReference "NMapsMap-SwiftPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stleamist/NMapsMap-SwiftPM.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2DBE67762A8075F8004DFBD8 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		2DBE67782A8075F8004DFBD8 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		2DBE677A2A8075F8004DFBD8 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		2DBE677D2A8076C4004DFBD8 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DBE677C2A8076C4004DFBD8 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		2DBE67802A807709004DFBD8 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DBE677F2A807709004DFBD8 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+		2DBE67832A8078AF004DFBD8 /* NMapsMap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DBE67822A8078AF004DFBD8 /* XCRemoteSwiftPackageReference "NMapsMap-SwiftPM" */;
+			productName = NMapsMap;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 933DB0D4257E4B5A00CB6FF8 /* Project object */;
 }

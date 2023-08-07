@@ -51,9 +51,10 @@ class MapsViewController: UIViewController {
                 
                 let marker = NMFMarker()
                 marker.position = NMGLatLng(lat: coord.lat, lng: coord.lng)
-                
-                let image = NMFOverlayImage(image: UIImage(named: cafeInfo.key.2)!)
-                marker.iconImage = image
+            
+                guard let image = UIImage(named: cafeInfo.key.2) else { return }
+                let overlayImage = NMFOverlayImage(image: image)
+                marker.iconImage = overlayImage
                 marker.width = 58
                 marker.height = 65
                 

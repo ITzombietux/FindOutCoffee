@@ -8,6 +8,8 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseStorage
+import FirebaseCore
 
 class ConvenienceStoreDataLoader {
     private let db = Firestore.firestore()
