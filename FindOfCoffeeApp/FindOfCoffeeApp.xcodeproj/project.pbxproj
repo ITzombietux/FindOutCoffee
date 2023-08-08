@@ -85,6 +85,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3302998C2A8289B100647BEA /* FindOutCoffeePackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FindOutCoffeePackage; path = ../../FindOutCoffeePackage; sourceTree = "<group>"; };
 		93008973259D959600AB7DA5 /* BMJUA_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMJUA_otf.otf; sourceTree = "<group>"; };
 		933488392589A7A200CA3012 /* NoticeFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeFullscreenController.swift; sourceTree = "<group>"; };
 		933488482589B69300CA3012 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
@@ -369,6 +370,7 @@
 		933DB0DE257E4B5A00CB6FF8 /* FindOfCoffeeApp */ = {
 			isa = PBXGroup;
 			children = (
+				3302998C2A8289B100647BEA /* FindOutCoffeePackage */,
 				933488472589B67E00CA3012 /* Helpers */,
 				933DB0F4257E4C6F00CB6FF8 /* Application Delegate */,
 				93E241E525885B51003E7156 /* API */,
@@ -961,7 +963,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8G43M5CX79;
 				INFOPLIST_FILE = FindOfCoffeeApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -982,7 +984,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8G43M5CX79;
 				INFOPLIST_FILE = FindOfCoffeeApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
