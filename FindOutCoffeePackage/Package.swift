@@ -21,9 +21,14 @@ let package = Package(
             name: "ReviewFeature",
             targets: ["ReviewFeature"]
         ),
+        .library(
+            name: "KakaoLoginDependency",
+            targets: ["KakaoLoginDependency"]
+        ),
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", branch: "main")
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "1.0.0"),
+        .package(url: "https://github.com/kakao/kakao-ios-sdk", exact: "2.16.0")
     ],
     targets: [
         .target(
@@ -33,13 +38,20 @@ let package = Package(
         .target(
             name: "LoginFeature",
             dependencies: [
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+                .product(name: "KakaoSDKUser", package: "kakao-ios-sdk")
             ]
         ),
         .target(
             name: "ReviewFeature",
             dependencies: [
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ]
+        ),
+        .target(
+            name: "KakaoLoginDependency",
+            dependencies: [
+                .product(name: "KakaoSDKCommon", package: "kakao-ios-sdk")
             ]
         ),
         .testTarget(
