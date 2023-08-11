@@ -21,9 +21,14 @@ let package = Package(
             name: "ReviewFeature",
             targets: ["ReviewFeature"]
         ),
+        .library(
+            name: "FirebaseDependency",
+            targets: ["FirebaseDependency"]
+        ),
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", branch: "main")
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", branch: "main"),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", exact: "9.0.0")
     ],
     targets: [
         .target(
@@ -33,6 +38,7 @@ let package = Package(
         .target(
             name: "LoginFeature",
             dependencies: [
+                "FirebaseDependency",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
@@ -40,6 +46,13 @@ let package = Package(
             name: "ReviewFeature",
             dependencies: [
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ]
+        ),
+        .target(
+            name: "FirebaseDependency",
+            dependencies: [
+                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseFirestoreSwift", package: "firebase-ios-sdk"),
             ]
         ),
         .testTarget(

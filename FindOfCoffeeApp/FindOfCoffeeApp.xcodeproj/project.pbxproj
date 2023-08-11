@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2DBE67772A8075F8004DFBD8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67762A8075F8004DFBD8 /* FirebaseFirestore */; };
-		2DBE67792A8075F8004DFBD8 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67782A8075F8004DFBD8 /* FirebaseFirestoreSwift */; };
-		2DBE677B2A8075F8004DFBD8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE677A2A8075F8004DFBD8 /* FirebaseStorage */; };
+		2D0FD0662A861B80009A3334 /* LoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2D0FD0652A861B80009A3334 /* LoginFeature */; };
+		2D0FD0682A861B80009A3334 /* ReviewFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2D0FD0672A861B80009A3334 /* ReviewFeature */; };
+		2D0FD06A2A861B80009A3334 /* UserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 2D0FD0692A861B80009A3334 /* UserDefaults */; };
+		2D0FD06C2A862157009A3334 /* FirebaseDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 2D0FD06B2A862157009A3334 /* FirebaseDependency */; };
+		2D8C33BA2A83A2D200ACA44E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C33B92A83A2D200ACA44E /* MainTabBarController.swift */; };
 		2DBE677E2A8076C4004DFBD8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE677D2A8076C4004DFBD8 /* Kingfisher */; };
 		2DBE67812A807709004DFBD8 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67802A807709004DFBD8 /* JGProgressHUD */; };
 		2DBE67842A8078AF004DFBD8 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67832A8078AF004DFBD8 /* NMapsMap */; };
-		330299912A829D7A00647BEA /* LoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 330299902A829D7A00647BEA /* LoginFeature */; };
-		330299932A829D7A00647BEA /* ReviewFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 330299922A829D7A00647BEA /* ReviewFeature */; };
-		330299952A829D7B00647BEA /* UserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 330299942A829D7B00647BEA /* UserDefaults */; };
 		93008974259D959600AB7DA5 /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93008973259D959600AB7DA5 /* BMJUA_otf.otf */; };
 		93008977259D95EB00AB7DA5 /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93008973259D959600AB7DA5 /* BMJUA_otf.otf */; };
 		9334883A2589A7A200CA3012 /* NoticeFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933488392589A7A200CA3012 /* NoticeFullscreenController.swift */; };
@@ -88,6 +87,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D8C33B92A83A2D200ACA44E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3302998C2A8289B100647BEA /* FindOutCoffeePackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FindOutCoffeePackage; path = ../../FindOutCoffeePackage; sourceTree = "<group>"; };
 		93008973259D959600AB7DA5 /* BMJUA_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMJUA_otf.otf; sourceTree = "<group>"; };
 		933488392589A7A200CA3012 /* NoticeFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeFullscreenController.swift; sourceTree = "<group>"; };
@@ -165,14 +165,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				330299912A829D7A00647BEA /* LoginFeature in Frameworks */,
-				330299952A829D7B00647BEA /* UserDefaults in Frameworks */,
+				2D0FD06C2A862157009A3334 /* FirebaseDependency in Frameworks */,
 				2DBE677E2A8076C4004DFBD8 /* Kingfisher in Frameworks */,
+				2D0FD06A2A861B80009A3334 /* UserDefaults in Frameworks */,
+				2D0FD0662A861B80009A3334 /* LoginFeature in Frameworks */,
+				2D0FD0682A861B80009A3334 /* ReviewFeature in Frameworks */,
 				2DBE67842A8078AF004DFBD8 /* NMapsMap in Frameworks */,
-				330299932A829D7A00647BEA /* ReviewFeature in Frameworks */,
-				2DBE67772A8075F8004DFBD8 /* FirebaseFirestore in Frameworks */,
-				2DBE67792A8075F8004DFBD8 /* FirebaseFirestoreSwift in Frameworks */,
-				2DBE677B2A8075F8004DFBD8 /* FirebaseStorage in Frameworks */,
 				2DBE67812A807709004DFBD8 /* JGProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,6 +178,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D8C33B82A83A2AA00ACA44E /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2D8C33B92A83A2D200ACA44E /* MainTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		3302998F2A829D7A00647BEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,7 +395,7 @@
 				933DB0F4257E4C6F00CB6FF8 /* Application Delegate */,
 				93E241E525885B51003E7156 /* API */,
 				93E241D125885153003E7156 /* Model */,
-				93E241EA25888AA4003E7156 /* Views */,
+				93E241EA25888AA4003E7156 /* Views And Navigation */,
 				93B8682A259D67EF00E1D9A6 /* View Models */,
 				933DB0F7257E542E00CB6FF8 /* View Controllers */,
 				933DB0F5257E4C8600CB6FF8 /* Storyboards */,
@@ -425,6 +431,7 @@
 		933DB0F7257E542E00CB6FF8 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2D8C33B82A83A2AA00ACA44E /* TabBar */,
 				933DB113258064A000CB6FF8 /* Maps */,
 				933DB118258064F700CB6FF8 /* Reviews */,
 				93348871258AFBC600CA3012 /* Mores */,
@@ -551,12 +558,12 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		93E241EA25888AA4003E7156 /* Views */ = {
+		93E241EA25888AA4003E7156 /* Views And Navigation */ = {
 			isa = PBXGroup;
 			children = (
 				93E241EB25888AB5003E7156 /* Reviews Collection */,
 			);
-			path = Views;
+			path = "Views And Navigation";
 			sourceTree = "<group>";
 		};
 		93E241EB25888AB5003E7156 /* Reviews Collection */ = {
@@ -629,15 +636,13 @@
 			);
 			name = FindOfCoffeeApp;
 			packageProductDependencies = (
-				2DBE67762A8075F8004DFBD8 /* FirebaseFirestore */,
-				2DBE67782A8075F8004DFBD8 /* FirebaseFirestoreSwift */,
-				2DBE677A2A8075F8004DFBD8 /* FirebaseStorage */,
 				2DBE677D2A8076C4004DFBD8 /* Kingfisher */,
 				2DBE67802A807709004DFBD8 /* JGProgressHUD */,
 				2DBE67832A8078AF004DFBD8 /* NMapsMap */,
-				330299902A829D7A00647BEA /* LoginFeature */,
-				330299922A829D7A00647BEA /* ReviewFeature */,
-				330299942A829D7B00647BEA /* UserDefaults */,
+				2D0FD0652A861B80009A3334 /* LoginFeature */,
+				2D0FD0672A861B80009A3334 /* ReviewFeature */,
+				2D0FD0692A861B80009A3334 /* UserDefaults */,
+				2D0FD06B2A862157009A3334 /* FirebaseDependency */,
 			);
 			productName = FindOfCoffeeApp;
 			productReference = 933DB0DC257E4B5A00CB6FF8 /* FindOfCoffeeApp.app */;
@@ -671,7 +676,6 @@
 			);
 			mainGroup = 933DB0D3257E4B5A00CB6FF8;
 			packageReferences = (
-				2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2DBE677C2A8076C4004DFBD8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				2DBE677F2A807709004DFBD8 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				2DBE67822A8078AF004DFBD8 /* XCRemoteSwiftPackageReference "NMapsMap-SwiftPM" */,
@@ -762,6 +766,7 @@
 				93348889258B5B5200CA3012 /* VerticalStackView.swift in Sources */,
 				93E241F025888D34003E7156 /* NoticeCell.swift in Sources */,
 				93348A7125973CB100CA3012 /* CafeReviewDetailViewController.swift in Sources */,
+				2D8C33BA2A83A2D200ACA44E /* MainTabBarController.swift in Sources */,
 				93E241D9258853B9003E7156 /* Cafe.swift in Sources */,
 				9334886C258A3F7400CA3012 /* CafeReviewCell.swift in Sources */,
 				9334887F258B4E0900CA3012 /* CSReviewCell.swift in Sources */,
@@ -1046,14 +1051,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 		2DBE677C2A8076C4004DFBD8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1081,20 +1078,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2DBE67762A8075F8004DFBD8 /* FirebaseFirestore */ = {
+		2D0FD0652A861B80009A3334 /* LoginFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
+			productName = LoginFeature;
 		};
-		2DBE67782A8075F8004DFBD8 /* FirebaseFirestoreSwift */ = {
+		2D0FD0672A861B80009A3334 /* ReviewFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
+			productName = ReviewFeature;
 		};
-		2DBE677A2A8075F8004DFBD8 /* FirebaseStorage */ = {
+		2D0FD0692A861B80009A3334 /* UserDefaults */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
+			productName = UserDefaults;
+		};
+		2D0FD06B2A862157009A3334 /* FirebaseDependency */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseDependency;
 		};
 		2DBE677D2A8076C4004DFBD8 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1110,18 +1108,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2DBE67822A8078AF004DFBD8 /* XCRemoteSwiftPackageReference "NMapsMap-SwiftPM" */;
 			productName = NMapsMap;
-		};
-		330299902A829D7A00647BEA /* LoginFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LoginFeature;
-		};
-		330299922A829D7A00647BEA /* ReviewFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ReviewFeature;
-		};
-		330299942A829D7B00647BEA /* UserDefaults */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = UserDefaults;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
