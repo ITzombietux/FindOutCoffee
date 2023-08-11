@@ -7,7 +7,7 @@
 
 import AuthenticationServices
 
-final class AppleLoginDelegate: NSObject, ASAuthorizationControllerDelegate {
+final class AppleLoginHelper: NSObject, ASAuthorizationControllerDelegate {
     private let provider = ASAuthorizationAppleIDProvider()
     let didCompleteWithAuthorization: (String) -> ()
     let didCompleteWithError: (Error) -> ()
