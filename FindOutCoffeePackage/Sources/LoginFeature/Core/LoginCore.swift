@@ -13,7 +13,7 @@ public struct Login: Reducer {
     }
     
     public enum Action {
-        case apple
+        case apple(AppleLoginHelper.AuthorizationResult)
         case kakao
         case loginResponse(TaskResult<User>)
     }
@@ -24,14 +24,21 @@ public struct Login: Reducer {
     
     public func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
-        case .apple:
-            return .run { send in
-                do {
-                    let user = try await authenticationClient.login(.apple)
-                    await send(.loginResponse(.success(user)))
-                } catch {
-                    await send(.loginResponse(.failure(error)))
+        case let .apple(result):
+            switch result {
+            case let .success(authorization):
+                return .run { send in
+                    do {
+                        let user = try await authenticationClient.login(.apple(authorization))
+                        print("apple success", user)
+                        await send(.loginResponse(.success(user)))
+                    } catch {
+                        await send(.loginResponse(.failure(error)))
+                    }
                 }
+                
+            case let .failure(error):
+                return .none
             }
             
         case .kakao:
