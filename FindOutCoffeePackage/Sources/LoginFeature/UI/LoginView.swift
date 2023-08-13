@@ -19,8 +19,8 @@ public struct LoginView: View {
     public var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack(spacing: 20) {
-                Button("애플 로그인") {
-                    viewStore.send(.apple)
+                AppleLoginButton { result in
+                    
                 }
                 
                 Button("카카오톡 로그인") {
