@@ -7,7 +7,7 @@
 
 extension AuthenticationClient {
     enum SNSLoginType {
-        case apple
+        case apple(AppleLoginHelper.Authorization)
         case kakao
     }
 }
