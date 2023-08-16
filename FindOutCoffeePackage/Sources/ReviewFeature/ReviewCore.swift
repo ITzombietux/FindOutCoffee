@@ -10,10 +10,12 @@ import ComposableArchitecture
 struct Review: Reducer {
     enum Step: Int, Equatable {
         case store = 1
-        case drink = 2
-        case options = 3
-        case price = 4
-        case writing = 5
+        case brand = 2
+        case category = 3
+        case drink = 4
+        case options = 5
+        case price = 6
+        case writing = 7
     }
     
     struct State: Equatable {
@@ -28,6 +30,7 @@ struct Review: Reducer {
     
     enum Action {
         case nextButtonTapped
+        case saveReview
         case content(ReviewContent.Action)
     }
     
@@ -37,19 +40,13 @@ struct Review: Reducer {
         Reduce { state, action in
             switch action {
             case .nextButtonTapped:
-                switch state.step {
-                case .store:
-                    state.step = .drink
-                case .drink:
-                    state.step = .options
-                case .options:
-                    state.step = .price
-                case .price:
-                    state.step = .writing
-                case .writing:
-                    // TODO: 서버 통신
-                    break
-                }
+                guard state.step != .writing else { return .none }
+                guard let nextStep = Step(rawValue: state.step.rawValue + 1) else { return .none }
+                state.step = nextStep
+                return .none
+                
+            case .saveReview:
+                // TODO: 서버 통신
                 return .none
                 
             case .content:
