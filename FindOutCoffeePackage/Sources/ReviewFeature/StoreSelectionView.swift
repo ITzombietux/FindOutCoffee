@@ -22,47 +22,19 @@ extension ReviewContentView {
                 Text("이 음료 어디서 샀어요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                Button {
+                SelectionCell(
+                    title: "🏪 \(ReviewContent.Store.convenienceStore.description)",
+                    isSelected: selection == .convenienceStore
+                ) {
                     action(.convenienceStore)
-                } label: {
-                    ZStack(alignment: .leading) {
-                        if selection == .convenienceStore {
-                            RoundedRectangle(cornerRadius: 8)
-                                .foregroundColor(.blue)
-                        } else {
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke()
-                                .foregroundColor(.gray)
-                        }
-                        
-                        Text("🏪 \(ReviewContent.Store.convenienceStore.description)")
-                            .font(.system(size: 20, weight: .medium))
-                            .foregroundColor(selection == .convenienceStore ? .white : .black)
-                            .padding(.leading, 10)
-                    }
                 }
-                .frame(height: 40)
                 
-                Button {
+                SelectionCell(
+                    title: "☕️ \(ReviewContent.Store.cafe.description)",
+                    isSelected: selection == .cafe
+                ) {
                     action(.cafe)
-                } label: {
-                    ZStack(alignment: .leading) {
-                        if selection == .cafe {
-                            RoundedRectangle(cornerRadius: 8)
-                                .foregroundColor(.blue)
-                        } else {
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke()
-                                .foregroundColor(.gray)
-                        }
-                        
-                        Text("☕️ \(ReviewContent.Store.cafe.description)")
-                            .font(.system(size: 20, weight: .medium))
-                            .foregroundColor(selection == .cafe ? .white : .black)
-                            .padding(.leading, 10)
-                    }
                 }
-                .frame(height: 40)
             }
         }
     }
