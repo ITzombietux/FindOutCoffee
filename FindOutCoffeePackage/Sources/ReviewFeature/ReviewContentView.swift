@@ -28,13 +28,31 @@ struct ReviewContentView: View {
                 }
             }
             
+        case .brand:
+            WithViewStore(self.store, observe: { $0 }) { viewStore in
+                BrandSelectionView(brands: viewStore.state.brands ?? [], selection: viewStore.state.brand) { brand in
+                    viewStore.send(.selectBrand(brand))
+                }
+            }
+            
+        case .category:
+            WithViewStore(self.store, observe: { $0 }) { viewStore in
+                CategorySelectionView(categories: viewStore.state.categories ?? [], selection: viewStore.state.category) { category in
+                    viewStore.send(.selectCategory(category))
+                }
+            }
+            
         case .drink:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                DrinkSelectionView(store: viewStore.state.store?.description ?? "")
+                DrinkSelectionView(store: viewStore.state.store?.description ?? "", drinks: viewStore.state.drinks ?? [], selection: viewStore.state.drink) { drink in
+                    viewStore.send(.selectDrink(drink))
+                }
             }
             
         case .options:
-            OptionSelectionView()
+            WithViewStore(self.store, observe:  { $0 }) { viewStore in
+                OptionSelectionView(iceOrHot: viewStore.state.$iceOrHot)
+            }
             
         case .price:
             PriceSelectionView()
