@@ -19,18 +19,14 @@ extension DependencyValues {
 public struct UserDefaultsClient {
     public var boolForKey: @Sendable (String) -> Bool
     public var remove: @Sendable (String) async -> Void
-    public var setBool: @Sendable (Bool, String) async -> Void
+    public var setIdentifier: @Sendable (String, String) async -> Void
     
     public var isLoggedIn: Bool {
         self.boolForKey(isLoggedInKey)
     }
     
     public func setLoggedInKey(_ identifier: String) async {
-        await self.setBool(bool, isLoggedInKey)
-    }
-    
-    public var isLoggedIn: Bool {
-        self.boolForKey(isLoggedInKey)
+        await self.setIdentifier(identifier, isLoggedInKey)
     }
 }
 

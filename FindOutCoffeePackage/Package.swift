@@ -10,8 +10,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "UserDefaults",
-            targets: ["UserDefaults"]
+            name: "UserDefaultsDependency",
+            targets: ["UserDefaultsDependency"]
         ),
         .library(
             name: "LoginFeature",
@@ -32,8 +32,10 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "UserDefaults",
-            dependencies: []
+            name: "UserDefaultsDependency",
+            dependencies: [
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ]
         ),
         .target(
             name: "LoginFeature",

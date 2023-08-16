@@ -16,7 +16,7 @@ extension UserDefaultsClient: DependencyKey {
         return Self(
             boolForKey: { defaults().bool(forKey: $0) },
             remove: { defaults().removeObject(forKey: $0) },
-            setBool: { defaults().set($0, forKey: $1) }
+            setIdentifier: { defaults().set($0, forKey: $1) }
         )
     }()
 }

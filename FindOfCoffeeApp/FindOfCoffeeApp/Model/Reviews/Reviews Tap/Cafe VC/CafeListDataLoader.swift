@@ -47,9 +47,11 @@ class CafeListDataLoader {
             
             self.getCafeReviewsImage(forder: data["id"] as! String) { imgs in
                 dispatchGroup.leave()
-                let cafeReview = CafeReview(id: data["id"] as! String, nickname: data["nickname"] as! String, title: data["title"] as! String, price: data["price"] as! Int, taste: data["taste"] as! String, size: data["size"] as! String, isHot: data["isHot"] as! String, text: data["text"] as! String, address: data["address"] as! String, date: data["date"] as! String, thumbnail: imgs)
-
-                cafeReviews.append(cafeReview)
+                let cafeReview = CafeReview(id: data["id"] as! String, nickname: data["nickname"] as! String, title: data["title"] as! String, price: data["price"] as! Int, taste: data["taste"] as! String, size: data["size"] as! String, isHot: data["isHot"] as! String, text: data["text"] as! String, address: data["address"] as! String, date: data["date"] as! String, feeling: data["feeling"] as! String, isRecommend: data["isRecommend"] as! Bool, isPublic: data["isPublic"] as! Bool, thumbnail: imgs)
+                
+                if cafeReview.isPublic {
+                    cafeReviews.append(cafeReview)
+                }
             }
         }
         

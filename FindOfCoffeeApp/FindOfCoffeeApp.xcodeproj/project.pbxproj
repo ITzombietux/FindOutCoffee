@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DA8C3582A8CA5C3008A20BC /* UserDefaultsDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 2DA8C3572A8CA5C3008A20BC /* UserDefaultsDependency */; };
 		2DBE67772A8075F8004DFBD8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67762A8075F8004DFBD8 /* FirebaseFirestore */; };
 		2DBE67792A8075F8004DFBD8 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67782A8075F8004DFBD8 /* FirebaseFirestoreSwift */; };
 		2DBE677B2A8075F8004DFBD8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE677A2A8075F8004DFBD8 /* FirebaseStorage */; };
@@ -15,7 +16,6 @@
 		2DBE67842A8078AF004DFBD8 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67832A8078AF004DFBD8 /* NMapsMap */; };
 		330299912A829D7A00647BEA /* LoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 330299902A829D7A00647BEA /* LoginFeature */; };
 		330299932A829D7A00647BEA /* ReviewFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 330299922A829D7A00647BEA /* ReviewFeature */; };
-		330299952A829D7B00647BEA /* UserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 330299942A829D7B00647BEA /* UserDefaults */; };
 		33B10C6B2A86A45C00C135DB /* KakaoLoginDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 33B10C6A2A86A45C00C135DB /* KakaoLoginDependency */; };
 		93008974259D959600AB7DA5 /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93008973259D959600AB7DA5 /* BMJUA_otf.otf */; };
 		93008977259D95EB00AB7DA5 /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93008973259D959600AB7DA5 /* BMJUA_otf.otf */; };
@@ -167,7 +167,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				330299912A829D7A00647BEA /* LoginFeature in Frameworks */,
-				330299952A829D7B00647BEA /* UserDefaults in Frameworks */,
 				2DBE677E2A8076C4004DFBD8 /* Kingfisher in Frameworks */,
 				33B10C6B2A86A45C00C135DB /* KakaoLoginDependency in Frameworks */,
 				2DBE67842A8078AF004DFBD8 /* NMapsMap in Frameworks */,
@@ -175,6 +174,7 @@
 				2DBE67772A8075F8004DFBD8 /* FirebaseFirestore in Frameworks */,
 				2DBE67792A8075F8004DFBD8 /* FirebaseFirestoreSwift in Frameworks */,
 				2DBE677B2A8075F8004DFBD8 /* FirebaseStorage in Frameworks */,
+				2DA8C3582A8CA5C3008A20BC /* UserDefaultsDependency in Frameworks */,
 				2DBE67812A807709004DFBD8 /* JGProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,8 +639,8 @@
 				2DBE67832A8078AF004DFBD8 /* NMapsMap */,
 				330299902A829D7A00647BEA /* LoginFeature */,
 				330299922A829D7A00647BEA /* ReviewFeature */,
-				330299942A829D7B00647BEA /* UserDefaults */,
 				33B10C6A2A86A45C00C135DB /* KakaoLoginDependency */,
+				2DA8C3572A8CA5C3008A20BC /* UserDefaultsDependency */,
 			);
 			productName = FindOfCoffeeApp;
 			productReference = 933DB0DC257E4B5A00CB6FF8 /* FindOfCoffeeApp.app */;
@@ -1084,6 +1084,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2DA8C3572A8CA5C3008A20BC /* UserDefaultsDependency */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UserDefaultsDependency;
+		};
 		2DBE67762A8075F8004DFBD8 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -1121,10 +1125,6 @@
 		330299922A829D7A00647BEA /* ReviewFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ReviewFeature;
-		};
-		330299942A829D7B00647BEA /* UserDefaults */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = UserDefaults;
 		};
 		33B10C6A2A86A45C00C135DB /* KakaoLoginDependency */ = {
 			isa = XCSwiftPackageProductDependency;
