@@ -11,14 +11,12 @@ extension ReviewContentView {
     struct DrinkSelectionView: View {
         private let store: String
         private let drinks: [String]
-        private let selection: String?
-        private let action: (String) -> Void
+        @Binding var selection: String?
         
-        init(store: String, drinks: [String], selection: String?, action: @escaping (String) -> Void) {
+        init(store: String, drinks: [String], selection: Binding<String?>) {
             self.store = store
             self.drinks = drinks
-            self.selection = selection
-            self.action = action
+            self._selection = selection
         }
         
         var body: some View {
@@ -28,7 +26,7 @@ extension ReviewContentView {
                 
                 ForEach(self.drinks, id: \.self) { drink in
                     SelectionCell(title: drink, isSelected: drink == selection) {
-                        action(drink)
+                        self.selection = drink
                     }
                 }
             }
@@ -41,9 +39,7 @@ struct DrinkSelectionView_Previews: PreviewProvider {
         ReviewContentView.DrinkSelectionView(
             store: ReviewContent.Store.convenienceStore.description,
             drinks: ["아메리카노", "카페라떼", "바닐라라떼"],
-            selection: nil
-        ) { drink in
-                
-        }
+            selection: .constant(nil)
+        )
     }
 }

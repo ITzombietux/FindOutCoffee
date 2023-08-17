@@ -10,13 +10,11 @@ import SwiftUI
 extension ReviewContentView {
     struct BrandSelectionView: View {
         private let brands: [String]
-        private let selection: String?
-        private let action: (String) -> Void
+        @Binding var selection: String?
         
-        init(brands: [String], selection: String?, action: @escaping (String) -> Void) {
+        init(brands: [String], selection: Binding<String?>) {
             self.brands = brands
-            self.selection = selection
-            self.action = action
+            self._selection = selection
         }
         
         var body: some View {
@@ -29,7 +27,7 @@ extension ReviewContentView {
                         title: brand,
                         isSelected: selection == brand
                     ) {
-                        action(brand)
+                        self.selection = brand
                     }
                 }
             }
@@ -40,8 +38,6 @@ extension ReviewContentView {
 struct BrandSelectionView_Previews: PreviewProvider {
     static var previews: some View {
         ReviewContentView.BrandSelectionView(
-            brands: ["스타벅스", "투썸플레이스", "이디야", "할리스"], selection: nil) { brand in
-                
-            }
+            brands: ["스타벅스", "투썸플레이스", "이디야", "할리스"], selection: .constant(nil))
     }
 }

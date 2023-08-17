@@ -10,13 +10,11 @@ import SwiftUI
 extension ReviewContentView {
     struct CategorySelectionView: View {
         private let categories: [String]
-        private let selection: String?
-        private let action: (String) -> Void
+        @Binding var selection: String?
         
-        init(categories: [String], selection: String?, action: @escaping (String) -> Void) {
+        init(categories: [String], selection: Binding<String?>) {
             self.categories = categories
-            self.selection = selection
-            self.action = action
+            self._selection = selection
         }
         
         var body: some View {
@@ -26,7 +24,7 @@ extension ReviewContentView {
                 
                 ForEach(self.categories, id: \.self) { category in
                     SelectionCell(title: category, isSelected: category == selection) {
-                        action(category)
+                        self.selection = category
                     }
                 }
             }
@@ -38,8 +36,6 @@ struct CategorySelectionView_Previews: PreviewProvider {
     static var previews: some View {
         ReviewContentView.CategorySelectionView(
             categories: ["에스프레소", "콜드브루", "티바나", "요거트", "주스&에이드", "기타"],
-            selection: nil) { category in
-                
-            }
+            selection: .constant(nil))
     }
 }
