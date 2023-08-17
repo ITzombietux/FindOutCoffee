@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import UserDefaultsDependency
 
 public struct Login: Reducer {
     public struct State: Equatable {
@@ -16,14 +17,16 @@ public struct Login: Reducer {
         case apple(AppleLoginHelper.AuthorizationResult)
         case kakao
         case loginResponse(TaskResult<User>)
+        case saveUser(TaskResult<LoginApiEntity>)
     }
     
     @Dependency(\.authenticationClient) var authenticationClient
     @Dependency(\.loginClient) var loginClient
+    @Dependency(\.userDefaults) var userDefaultsClient
     
     public init() {}
     
-    public func reduce(into state: inout State, action: Action) -> Effect<Action> {
+    public func reduce(into state: inout State, action: Action) async -> Effect<Action> {
         switch action {
         case let .apple(result):
             switch result {
@@ -54,10 +57,28 @@ public struct Login: Reducer {
             
         case let .loginResponse(.success(user)):
             print("user", user)
-            return .none
+            return .run { [identifier = user.id, profileImageURL = user.profileImageURL, nickname = user.nickname] send in
+                await send(
+                    .saveUser(
+                        await TaskResult {
+                            try await self.loginClient.login(
+                                .init(identifier: identifier, name: nickname, imageURL: profileImageURL ?? "")
+                            )
+                        }
+                    )
+                )
+            }
             
         case let .loginResponse(.failure(error)):
             print("error", error)
+            return .none
+            
+        case let .saveUser(.success(response)):
+            await userDefaultsClient.setIdentifier(response.identifier, isLoggedInKey)
+            return .none
+            
+        case let .saveUser(.failure(error)):
+            print(error)
             return .none
         }
     }
