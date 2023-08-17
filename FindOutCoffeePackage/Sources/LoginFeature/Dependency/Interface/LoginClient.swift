@@ -15,6 +15,17 @@ public struct LoginApiEntity: Sendable {
     public var imageURL: String
 }
 
+public enum FirebaseLoginError: Equatable, LocalizedError, Sendable {
+  case failureSave
+
+  public var errorDescription: String? {
+    switch self {
+    case .failureSave:
+      return "저장에 실패했습니다."
+    }
+  }
+}
+
 public struct LoginClient {
     public var login: @Sendable (LoginApiEntity) async throws -> LoginApiEntity
     

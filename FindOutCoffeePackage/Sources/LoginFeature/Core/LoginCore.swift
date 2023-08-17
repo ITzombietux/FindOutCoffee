@@ -10,6 +10,8 @@ import UserDefaultsDependency
 
 public struct Login: Reducer {
     public struct State: Equatable {
+        public var isLoggedIn: Bool = false
+        
         public init() {}
     }
     
@@ -23,10 +25,11 @@ public struct Login: Reducer {
     @Dependency(\.authenticationClient) var authenticationClient
     @Dependency(\.loginClient) var loginClient
     @Dependency(\.userDefaults) var userDefaultsClient
+    @Dependency(\.dismiss) var dismiss
     
     public init() {}
     
-    public func reduce(into state: inout State, action: Action) async -> Effect<Action> {
+    public func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
         case let .apple(result):
             switch result {
@@ -74,8 +77,11 @@ public struct Login: Reducer {
             return .none
             
         case let .saveUser(.success(response)):
-            await userDefaultsClient.setIdentifier(response.identifier, isLoggedInKey)
-            return .none
+            state.isLoggedIn = true
+            print("@@@@", state.isLoggedIn)
+            return .run { _ in
+                await self.userDefaultsClient.setIdentifier(response.identifier, isLoggedInKey)
+            }
             
         case let .saveUser(.failure(error)):
             print(error)

@@ -13,17 +13,11 @@ import FirebaseFirestoreSwift
 extension LoginClient: DependencyKey {
     public static var liveValue = Self { request in
         let db = Firestore.firestore()
-        db.collection("User").document(request.identifier).setData(
+        db.collection("Users").document(request.identifier).setData(
             ["nickname" : request.name,
              "imageURL" : request.imageURL
             ]
-        ) { error in
-            if error == nil {
-                
-            } else {
-                
-            }
-        }
+        )
         
         return LoginApiEntity(identifier: request.identifier,
                               name: request.name,

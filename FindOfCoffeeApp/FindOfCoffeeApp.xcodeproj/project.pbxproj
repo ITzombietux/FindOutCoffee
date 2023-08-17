@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2DA8C3582A8CA5C3008A20BC /* UserDefaultsDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 2DA8C3572A8CA5C3008A20BC /* UserDefaultsDependency */; };
 		2DA8C35A2A8D93BD008A20BC /* FirebaseDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 2DA8C3592A8D93BD008A20BC /* FirebaseDependency */; };
+		2DA8C35D2A8DE30E008A20BC /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8C35C2A8DE30E008A20BC /* MainTabBarController.swift */; };
 		2DBE677E2A8076C4004DFBD8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE677D2A8076C4004DFBD8 /* Kingfisher */; };
 		2DBE67812A807709004DFBD8 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67802A807709004DFBD8 /* JGProgressHUD */; };
 		2DBE67842A8078AF004DFBD8 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67832A8078AF004DFBD8 /* NMapsMap */; };
@@ -87,6 +88,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2DA8C35C2A8DE30E008A20BC /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3302998C2A8289B100647BEA /* FindOutCoffeePackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FindOutCoffeePackage; path = ../../FindOutCoffeePackage; sourceTree = "<group>"; };
 		93008973259D959600AB7DA5 /* BMJUA_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMJUA_otf.otf; sourceTree = "<group>"; };
 		933488392589A7A200CA3012 /* NoticeFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeFullscreenController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DA8C35B2A8DE2F6008A20BC /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8C35C2A8DE30E008A20BC /* MainTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		3302998F2A829D7A00647BEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,6 +433,7 @@
 		933DB0F7257E542E00CB6FF8 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2DA8C35B2A8DE2F6008A20BC /* TabBar */,
 				933DB113258064A000CB6FF8 /* Maps */,
 				933DB118258064F700CB6FF8 /* Reviews */,
 				93348871258AFBC600CA3012 /* Mores */,
@@ -732,6 +743,7 @@
 				933488A0258C4C5C00CA3012 /* PreviewScreenshotsController.swift in Sources */,
 				933488542589FB3B00CA3012 /* TasteBackgroundDecoration.swift in Sources */,
 				93E241F72588A51F003E7156 /* CafeCell.swift in Sources */,
+				2DA8C35D2A8DE30E008A20BC /* MainTabBarController.swift in Sources */,
 				933488492589B69300CA3012 /* UIView+Layout.swift in Sources */,
 				93348886258B57A500CA3012 /* Extensions.swift in Sources */,
 				933DB0E0257E4B5A00CB6FF8 /* AppDelegate.swift in Sources */,

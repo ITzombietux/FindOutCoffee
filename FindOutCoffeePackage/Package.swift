@@ -54,6 +54,7 @@ let package = Package(
             name: "ReviewFeature",
             dependencies: [
                 "FirebaseDependency",
+                "UserDefaultsDependency",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),

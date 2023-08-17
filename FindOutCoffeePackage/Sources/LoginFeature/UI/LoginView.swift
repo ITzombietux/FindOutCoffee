@@ -6,10 +6,12 @@
 //
 
 import ComposableArchitecture
+import UserDefaultsDependency
 
 import SwiftUI
 
 public struct LoginView: View {
+    @Environment(\.dismiss) private var dismiss
     private let store: StoreOf<Login>
     
     public init(store: StoreOf<Login> = Store(initialState: Login.State(), reducer: { Login() })) {
@@ -25,6 +27,12 @@ public struct LoginView: View {
                 
                 Button("카카오톡 로그인") {
                     viewStore.send(.kakao)
+                }
+            }
+            .onChange(of: viewStore.isLoggedIn) { newValue in
+                if newValue {
+                    print("@@@@@@", newValue)
+                    self.dismiss()
                 }
             }
         }
