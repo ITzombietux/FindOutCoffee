@@ -10,8 +10,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "UserDefaults",
-            targets: ["UserDefaults"]
+            name: "UserDefaultsDependency",
+            targets: ["UserDefaultsDependency"]
         ),
         .library(
             name: "LoginFeature",
@@ -21,25 +21,54 @@ let package = Package(
             name: "ReviewFeature",
             targets: ["ReviewFeature"]
         ),
+        .library(
+            name: "KakaoLoginDependency",
+            targets: ["KakaoLoginDependency"]
+        ),
+        .library(
+            name: "FirebaseDependency",
+            targets: ["FirebaseDependency"]
+        )
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", branch: "main")
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "1.0.0"),
+        .package(url: "https://github.com/kakao/kakao-ios-sdk", exact: "2.16.0"),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", exact: "9.0.0")
     ],
     targets: [
         .target(
-            name: "UserDefaults",
-            dependencies: []
-        ),
-        .target(
-            name: "LoginFeature",
+            name: "UserDefaultsDependency",
             dependencies: [
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
         .target(
+            name: "LoginFeature",
+            dependencies: [
+                "FirebaseDependency",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+                .product(name: "KakaoSDKUser", package: "kakao-ios-sdk")
+            ]
+        ),
+        .target(
             name: "ReviewFeature",
             dependencies: [
+                "FirebaseDependency",
+                "UserDefaultsDependency",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ]
+        ),
+        .target(
+            name: "KakaoLoginDependency",
+            dependencies: [
+                .product(name: "KakaoSDKCommon", package: "kakao-ios-sdk")
+            ]
+        ),
+        .target(
+            name: "FirebaseDependency",
+            dependencies: [
+                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseFirestoreSwift", package: "firebase-ios-sdk"),
             ]
         ),
         .testTarget(

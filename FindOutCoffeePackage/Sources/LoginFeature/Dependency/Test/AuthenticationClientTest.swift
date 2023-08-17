@@ -7,8 +7,8 @@
 
 import XCTestDynamicOverlay
 
-extension LoginClient {
+extension AuthenticationClient {
     public static var testValue = Self(
-        apple: unimplemented("LoginClient.apple")
+        login: unimplemented("AuthenticationClient.login")
     )
 }

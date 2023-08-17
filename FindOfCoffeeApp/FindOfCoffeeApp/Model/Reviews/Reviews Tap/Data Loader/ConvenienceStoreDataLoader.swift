@@ -6,9 +6,9 @@
 //
 
 import Foundation
+import FirebaseStorage
 import Firebase
 import FirebaseFirestoreSwift
-import FirebaseStorage
 import FirebaseCore
 
 class ConvenienceStoreDataLoader {
@@ -48,9 +48,11 @@ class ConvenienceStoreDataLoader {
             
             self.getConvienienceStoresImage(forder: data["id"] as! String) { imgs in
                 dispatchGroup.leave()
-                let convienienceStore = ConvenienceStore(id: data["id"] as! String, nickname: data["nickname"] as! String, title: data["title"] as! String, price: data["price"] as! Int, taste: data["taste"] as! String, size: data["size"] as! String, isHot: data["isHot"] as! String, text: data["text"] as! String, address: data["address"] as! String, date: data["date"] as! String, thumbnail: imgs)
+                let convienienceStore = ConvenienceStore(id: data["id"] as! String, nickname: data["nickname"] as! String, title: data["title"] as! String, price: data["price"] as! Int, taste: data["taste"] as! String, size: data["size"] as! String, isHot: data["isHot"] as! String, text: data["text"] as! String, address: data["address"] as! String, date: data["date"] as! String, feeling: data["feeling"] as! String, isRecommend: data["isRecommend"] as! Bool, isPublic: data["isPublic"] as! Bool, thumbnail: imgs)
                 
-                convienienceStores.append(convienienceStore)
+                if convienienceStore.isPublic {
+                    convienienceStores.append(convienienceStore)
+                }
             }
         }
         

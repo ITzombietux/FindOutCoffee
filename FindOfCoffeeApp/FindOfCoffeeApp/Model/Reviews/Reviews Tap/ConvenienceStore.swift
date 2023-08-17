@@ -18,9 +18,12 @@ struct ConvenienceStore: Codable, Hashable, Equatable {
     var text: String
     var address: String
     var date: String
+    let feeling: String
+    let isRecommend: Bool
+    let isPublic: Bool
     var thumbnail: [String]
     
-    init(id: String, nickname: String, title: String, price: Int, taste: String, size: String, isHot: String, text: String, address: String, date: String, thumbnail: [String]) {
+    init(id: String, nickname: String, title: String, price: Int, taste: String, size: String, isHot: String, text: String, address: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool, thumbnail: [String]) {
         self.id = id
         self.nickname = nickname
         self.title = title
@@ -31,6 +34,9 @@ struct ConvenienceStore: Codable, Hashable, Equatable {
         self.text = text
         self.address = address
         self.date = date
+        self.feeling = feeling
+        self.isRecommend = isRecommend
+        self.isPublic = isPublic
         self.thumbnail = thumbnail
     }
 }
