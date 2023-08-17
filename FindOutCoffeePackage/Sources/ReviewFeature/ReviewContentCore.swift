@@ -19,9 +19,20 @@ struct ReviewContent: Reducer {
         var drink: String?
         var iceOrHot: IceOrHot?
         var price: String?
+        var text: String
         
-        init(store: Store? = nil) {
+        init(brands: [String]? = nil, categories: [String]? = nil, drinks: [String]? = nil, prices: [String]? = nil, store: Store? = nil, brand: String? = nil, category: String? = nil, drink: String? = nil, iceOrHot: IceOrHot? = nil, price: String? = nil, text: String = "") {
+            self.brands = brands
+            self.categories = categories
+            self.drinks = drinks
+            self.prices = prices
             self.store = store
+            self.brand = brand
+            self.category = category
+            self.drink = drink
+            self.iceOrHot = iceOrHot
+            self.price = price
+            self.text = text
         }
     }
     
@@ -36,6 +47,7 @@ struct ReviewContent: Reducer {
         case selectDrink(String)
         case selectIceOrHot(IceOrHot)
         case selectPrice(String)
+        case editText(String)
     }
     
     init() {}
@@ -80,6 +92,10 @@ struct ReviewContent: Reducer {
             
         case let .selectPrice(price):
             state.price = price
+            return .none
+            
+        case let .editText(text):
+            state.text = text
             return .none
         }
     }

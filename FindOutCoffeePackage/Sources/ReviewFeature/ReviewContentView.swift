@@ -52,7 +52,9 @@ struct ReviewContentView: View {
             }
             
         case .writing:
-            WritingView()
+            WithViewStore(self.store, observe: { $0 }) { viewStore in
+                WritingView(text: viewStore.binding(get: \.text, send: { .editText($0) }))
+            }
         }
     }
 }
