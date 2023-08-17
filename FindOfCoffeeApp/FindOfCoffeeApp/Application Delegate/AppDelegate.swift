@@ -6,7 +6,9 @@
 //
 
 import UIKit
+import FirebaseCore
 import Firebase
+import FirebaseFirestoreSwift
 import KakaoSDKAuth
 import KakaoSDKCommon
 

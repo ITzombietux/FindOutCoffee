@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import FirebaseStorage
 import Firebase
 import FirebaseFirestoreSwift
-import FirebaseStorage
+import FirebaseCore
 
 class CafeListDataLoader {
     private let db = Firestore.firestore()

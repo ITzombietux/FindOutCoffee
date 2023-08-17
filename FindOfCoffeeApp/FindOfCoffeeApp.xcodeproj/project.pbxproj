@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2DA8C3582A8CA5C3008A20BC /* UserDefaultsDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 2DA8C3572A8CA5C3008A20BC /* UserDefaultsDependency */; };
-		2DBE67772A8075F8004DFBD8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67762A8075F8004DFBD8 /* FirebaseFirestore */; };
-		2DBE67792A8075F8004DFBD8 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67782A8075F8004DFBD8 /* FirebaseFirestoreSwift */; };
-		2DBE677B2A8075F8004DFBD8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE677A2A8075F8004DFBD8 /* FirebaseStorage */; };
+		2DA8C35A2A8D93BD008A20BC /* FirebaseDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 2DA8C3592A8D93BD008A20BC /* FirebaseDependency */; };
 		2DBE677E2A8076C4004DFBD8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE677D2A8076C4004DFBD8 /* Kingfisher */; };
 		2DBE67812A807709004DFBD8 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67802A807709004DFBD8 /* JGProgressHUD */; };
 		2DBE67842A8078AF004DFBD8 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67832A8078AF004DFBD8 /* NMapsMap */; };
@@ -168,12 +166,10 @@
 			files = (
 				330299912A829D7A00647BEA /* LoginFeature in Frameworks */,
 				2DBE677E2A8076C4004DFBD8 /* Kingfisher in Frameworks */,
+				2DA8C35A2A8D93BD008A20BC /* FirebaseDependency in Frameworks */,
 				33B10C6B2A86A45C00C135DB /* KakaoLoginDependency in Frameworks */,
 				2DBE67842A8078AF004DFBD8 /* NMapsMap in Frameworks */,
 				330299932A829D7A00647BEA /* ReviewFeature in Frameworks */,
-				2DBE67772A8075F8004DFBD8 /* FirebaseFirestore in Frameworks */,
-				2DBE67792A8075F8004DFBD8 /* FirebaseFirestoreSwift in Frameworks */,
-				2DBE677B2A8075F8004DFBD8 /* FirebaseStorage in Frameworks */,
 				2DA8C3582A8CA5C3008A20BC /* UserDefaultsDependency in Frameworks */,
 				2DBE67812A807709004DFBD8 /* JGProgressHUD in Frameworks */,
 			);
@@ -631,9 +627,6 @@
 			);
 			name = FindOfCoffeeApp;
 			packageProductDependencies = (
-				2DBE67762A8075F8004DFBD8 /* FirebaseFirestore */,
-				2DBE67782A8075F8004DFBD8 /* FirebaseFirestoreSwift */,
-				2DBE677A2A8075F8004DFBD8 /* FirebaseStorage */,
 				2DBE677D2A8076C4004DFBD8 /* Kingfisher */,
 				2DBE67802A807709004DFBD8 /* JGProgressHUD */,
 				2DBE67832A8078AF004DFBD8 /* NMapsMap */,
@@ -641,6 +634,7 @@
 				330299922A829D7A00647BEA /* ReviewFeature */,
 				33B10C6A2A86A45C00C135DB /* KakaoLoginDependency */,
 				2DA8C3572A8CA5C3008A20BC /* UserDefaultsDependency */,
+				2DA8C3592A8D93BD008A20BC /* FirebaseDependency */,
 			);
 			productName = FindOfCoffeeApp;
 			productReference = 933DB0DC257E4B5A00CB6FF8 /* FindOfCoffeeApp.app */;
@@ -674,7 +668,6 @@
 			);
 			mainGroup = 933DB0D3257E4B5A00CB6FF8;
 			packageReferences = (
-				2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2DBE677C2A8076C4004DFBD8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				2DBE677F2A807709004DFBD8 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				2DBE67822A8078AF004DFBD8 /* XCRemoteSwiftPackageReference "NMapsMap-SwiftPM" */,
@@ -1049,14 +1042,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 		2DBE677C2A8076C4004DFBD8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1088,20 +1073,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = UserDefaultsDependency;
 		};
-		2DBE67762A8075F8004DFBD8 /* FirebaseFirestore */ = {
+		2DA8C3592A8D93BD008A20BC /* FirebaseDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		2DBE67782A8075F8004DFBD8 /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
-		};
-		2DBE677A2A8075F8004DFBD8 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2DBE67752A8075F8004DFBD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
+			productName = FirebaseDependency;
 		};
 		2DBE677D2A8076C4004DFBD8 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

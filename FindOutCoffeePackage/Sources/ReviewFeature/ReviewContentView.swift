@@ -50,9 +50,10 @@ struct ReviewContentView: View {
             }
             
         case .options:
-            WithViewStore(self.store, observe:  { $0 }) { viewStore in
-                OptionSelectionView(iceOrHot: viewStore.state.$iceOrHot)
-            }
+//            WithViewStore(self.store, observe:  { $0 }) { viewStore in
+//                OptionSelectionView(iceOrHot: viewStore.state.$iceOrHot)
+//            }
+            EmptyView()
             
         case .price:
             PriceSelectionView()

@@ -25,10 +25,15 @@ let package = Package(
             name: "KakaoLoginDependency",
             targets: ["KakaoLoginDependency"]
         ),
+        .library(
+            name: "FirebaseDependency",
+            targets: ["FirebaseDependency"]
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "1.0.0"),
-        .package(url: "https://github.com/kakao/kakao-ios-sdk", exact: "2.16.0")
+        .package(url: "https://github.com/kakao/kakao-ios-sdk", exact: "2.16.0"),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", exact: "9.0.0")
     ],
     targets: [
         .target(
@@ -40,6 +45,7 @@ let package = Package(
         .target(
             name: "LoginFeature",
             dependencies: [
+                "FirebaseDependency",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
                 .product(name: "KakaoSDKUser", package: "kakao-ios-sdk")
             ]
@@ -47,6 +53,7 @@ let package = Package(
         .target(
             name: "ReviewFeature",
             dependencies: [
+                "FirebaseDependency",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
@@ -54,6 +61,13 @@ let package = Package(
             name: "KakaoLoginDependency",
             dependencies: [
                 .product(name: "KakaoSDKCommon", package: "kakao-ios-sdk")
+            ]
+        ),
+        .target(
+            name: "FirebaseDependency",
+            dependencies: [
+                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseFirestoreSwift", package: "firebase-ios-sdk"),
             ]
         ),
         .testTarget(
