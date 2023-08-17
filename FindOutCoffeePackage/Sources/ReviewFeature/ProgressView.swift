@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ProgressView: View {
-    private let totalStep: Int = 5
+    private let totalStep: Int
     private let currentStep: Int
     
-    init(currentStep: Int) {
+    init(totalStep: Int, currentStep: Int) {
+        self.totalStep = totalStep
         self.currentStep = currentStep
     }
     
@@ -39,6 +40,6 @@ struct ProgressView: View {
 
 struct ProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressView(currentStep: 3)
+        ProgressView(totalStep: 7, currentStep: 3)
     }
 }

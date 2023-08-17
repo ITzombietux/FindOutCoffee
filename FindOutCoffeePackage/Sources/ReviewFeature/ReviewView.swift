@@ -20,16 +20,16 @@ struct ReviewView: View {
         VStack {
             navigationBar()
             
-            WithViewStore(self.store, observe: \.step) { viewStore in
-                ProgressView(currentStep: viewStore.state.rawValue)
+            WithViewStore(self.store, observe: { $0 }) { viewStore in
+                ProgressView(totalStep: viewStore.state.steps.count, currentStep: viewStore.state.currentStep + 1)
                 
-                ReviewContentView(store: self.store.scope(state: \.content, action: Review.Action.content))
+                ReviewContentView(step: viewStore.state.steps[viewStore.state.currentStep], store: self.store.scope(state: \.content, action: Review.Action.content))
             }
             
             Spacer()
             
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                ReviewButton(step: viewStore.state.step) {
+                ReviewButton(step: viewStore.state.steps[viewStore.state.currentStep]) {
                     viewStore.send(.nextButtonTapped)
                 }
             }
