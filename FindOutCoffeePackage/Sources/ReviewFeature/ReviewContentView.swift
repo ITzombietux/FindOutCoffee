@@ -23,39 +23,33 @@ struct ReviewContentView: View {
         switch step {
         case .store:
             WithViewStore(self.store, observe: \.store) { viewStore in
-                StoreSelectionView(selection: viewStore.state) { store in
-                    viewStore.send(.selectStore(store))
-                }
+                StoreSelectionView(selection: viewStore.binding(get: \.optional, send: { .selectStore($0 ?? .cafe) }))
             }
             
         case .brand:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                BrandSelectionView(brands: viewStore.state.brands ?? [], selection: viewStore.state.brand) { brand in
-                    viewStore.send(.selectBrand(brand))
-                }
+                BrandSelectionView(brands: viewStore.state.brands ?? [], selection: viewStore.binding(get: \.brand, send: { .selectBrand($0 ?? "") }))
             }
             
         case .category:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                CategorySelectionView(categories: viewStore.state.categories ?? [], selection: viewStore.state.category) { category in
-                    viewStore.send(.selectCategory(category))
-                }
+                CategorySelectionView(categories: viewStore.state.categories ?? [], selection: viewStore.binding(get: \.category, send: { .selectCategory($0 ?? "") }))
             }
             
         case .drink:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                DrinkSelectionView(store: viewStore.state.store?.description ?? "", drinks: viewStore.state.drinks ?? [], selection: viewStore.state.drink) { drink in
-                    viewStore.send(.selectDrink(drink))
-                }
+                DrinkSelectionView(store: viewStore.state.store?.description ?? "", drinks: viewStore.state.drinks ?? [], selection: viewStore.binding(get: \.drink, send: { .selectDrink($0 ?? "")   }))
             }
             
         case .options:
             WithViewStore(self.store, observe:  { $0 }) { viewStore in
-                OptionSelectionView(iceOrHot: viewStore.state.$iceOrHot)
+                OptionSelectionView(iceOrHot: viewStore.binding(get: \.iceOrHot, send: { .selectIceOrHot($0 ?? .ice) }))
             }
             
         case .price:
-            PriceSelectionView()
+            WithViewStore(self.store, observe: { $0 }) { viewStore in
+                PriceSelectionView(prices: viewStore.state.prices ?? [], selection: viewStore.binding(get: \.price, send: { .selectPrice($0 ?? "") }))
+            }
             
         case .writing:
             WritingView()

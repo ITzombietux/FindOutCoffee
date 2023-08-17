@@ -12,27 +12,30 @@ struct ReviewContent: Reducer {
         var brands: [String]?
         var categories: [String]?
         var drinks: [String]?
+        var prices: [String]?
         var store: Store?
         var brand: String?
         var category: String?
         var drink: String?
-        @BindingState var iceOrHot: IceOrHot?
+        var iceOrHot: IceOrHot?
+        var price: String?
         
         init(store: Store? = nil) {
             self.store = store
         }
     }
     
-    enum Action: BindableAction {
+    enum Action {
         case loadBrands
         case loadCategories
         case loadDrinks
+        case loadPrices
         case selectStore(Store)
         case selectBrand(String)
         case selectCategory(String)
         case selectDrink(String)
         case selectIceOrHot(IceOrHot)
-        case binding(BindingAction<State>)
+        case selectPrice(String)
     }
     
     init() {}
@@ -49,6 +52,10 @@ struct ReviewContent: Reducer {
             
         case .loadDrinks:
             state.drinks = ["아메리카노", "카페라떼", "바닐라라떼", "헤이즐넛라떼"]
+            return .none
+            
+        case .loadPrices:
+            state.prices = ["너무 비싸요", "비싸지만 맛있어요"]
             return .none
             
         case let .selectStore(store):
@@ -71,7 +78,8 @@ struct ReviewContent: Reducer {
             state.iceOrHot = iceOrHot
             return .none
             
-        case .binding:
+        case let .selectPrice(price):
+            state.price = price
             return .none
         }
     }
