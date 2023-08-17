@@ -15,7 +15,7 @@ public struct LoginApiEntity: Sendable {
     public var imageURL: String
 }
 
-public struct ApiClient {
+public struct loginClient {
     public var login: @Sendable (LoginApiEntity) async throws -> LoginApiEntity
     
     public init(
@@ -24,14 +24,14 @@ public struct ApiClient {
         }
 }
 
-extension ApiClient: TestDependencyKey {
+extension loginClient: TestDependencyKey {
     public static let testValue = Self(
         login: unimplemented("\(Self.self).login")
     )
 }
 
 extension DependencyValues {
-    var apiClient: ApiClient {
+    var loginClient: ApiClient {
         get { self[ApiClient.self] }
         set { self[ApiClient.self] = newValue }
     }

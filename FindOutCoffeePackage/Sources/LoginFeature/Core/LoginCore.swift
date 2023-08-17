@@ -19,6 +19,7 @@ public struct Login: Reducer {
     }
     
     @Dependency(\.authenticationClient) var authenticationClient
+    @Dependency(\.loginClient) var loginClient
     
     public init() {}
     

@@ -10,7 +10,7 @@ import Firebase
 import FirebaseStorage
 import FirebaseFirestoreSwift
 
-extension ApiClient: DependencyKey {
+extension loginClient: DependencyKey {
     public static var liveValue = Self { request in
         let db = Firestore.firestore()
         db.collection("User").document(request.identifier).setData(
