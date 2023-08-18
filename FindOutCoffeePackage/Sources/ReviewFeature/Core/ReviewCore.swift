@@ -7,45 +7,32 @@
 
 import ComposableArchitecture
 
-struct Review: Reducer {
-    enum Step: Equatable {
-        case store
-        case brand
-        case category
-        case drink
-        case options
-        case price
-        case writing
+public struct Review: Reducer {
+    public struct State: Equatable {
+        public var steps: [Step]
+        public var currentStep: Int
+        public var content: ReviewContent.State
         
-        static let convenienceStoreSteps: [Self] = [.store, .drink, .options, .price, .writing]
-        static let cafeSteps: [Self] = [.store, .brand, .category, .drink, .options, .price, .writing]
-    }
-    
-    struct State: Equatable {
-        var steps: [Step]
-        var currentStep: Int
-        var content: ReviewContent.State
-        
-        init(steps: [Step] = Step.cafeSteps, currentStep: Int = 0, content: ReviewContent.State = ReviewContent.State()) {
+        public init(steps: [Step] = Step.cafeSteps, currentStep: Int = 0, content: ReviewContent.State = ReviewContent.State()) {
             self.steps = steps
             self.currentStep = currentStep
             self.content = content
         }
     }
     
-    enum Action {
+    public enum Action {
         case nextButtonTapped
         case saveReview
         case content(ReviewContent.Action)
     }
     
-    init() {}
+    public init() {}
     
-    var body: some Reducer<State, Action> {
+    public var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .nextButtonTapped:
-                if state.steps[state.currentStep] != .writing {
+                if state.steps[state.currentStep] == .writing {
                     // TODO: saveReview
                     return .none
                 }

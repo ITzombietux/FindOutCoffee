@@ -9,14 +9,14 @@ import ComposableArchitecture
 
 import SwiftUI
 
-struct ReviewView: View {
+public struct ReviewView: View {
     private let store: StoreOf<Review>
     
-    init(store: StoreOf<Review>) {
+    public init(store: StoreOf<Review> = Store(initialState: Review.State(), reducer: { Review() })) {
         self.store = store
     }
     
-    var body: some View {
+    public var body: some View {
         VStack {
             navigationBar()
             
