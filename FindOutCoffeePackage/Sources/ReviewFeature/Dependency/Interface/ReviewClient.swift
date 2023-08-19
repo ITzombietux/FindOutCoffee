@@ -52,23 +52,39 @@ public struct SubmitResponse: Codable {
     
 }
 
+public struct CafeNamesResponse {
+    var names: [String]
+}
+
+public struct CafeMenusReponse {
+    var names: [String]
+}
+
 public struct ReviewClient {
     public var submit: @Sendable (SubmitRequest) async throws -> SubmitResponse
     public var uploadImages: @Sendable (SubmitRequest) async throws -> SubmitResponse
+    public var cafeNames: @Sendable () async throws -> CafeNamesResponse
+    public var cafeMenus: @Sendable (String) async throws -> CafeMenusReponse
     
     public init(
         submit: @escaping @Sendable (SubmitRequest) async throws -> SubmitResponse,
-        uploadImages: @escaping @Sendable (SubmitRequest) async throws -> SubmitResponse
+        uploadImages: @escaping @Sendable (SubmitRequest) async throws -> SubmitResponse,
+        cafeNames: @escaping @Sendable () async throws -> CafeNamesResponse,
+        cafeMenus: @escaping @Sendable (String) async throws -> CafeMenusReponse
     ) {
         self.submit = submit
         self.uploadImages = uploadImages
+        self.cafeNames = cafeNames
+        self.cafeMenus = cafeMenus
     }
 }
 
 extension ReviewClient: TestDependencyKey {
     public static let testValue = Self(
         submit: unimplemented("\(Self.self).submit"),
-        uploadImages: unimplemented("\(Self.self).uploadImages")
+        uploadImages: unimplemented("\(Self.self).uploadImages"),
+        cafeNames: unimplemented("\(Self.self).cafeNames"),
+        cafeMenus: unimplemented("\(Self.self).cafeMenus")
     )
 }
 

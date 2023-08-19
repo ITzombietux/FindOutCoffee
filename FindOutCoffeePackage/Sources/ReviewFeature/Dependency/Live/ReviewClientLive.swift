@@ -68,6 +68,31 @@ extension ReviewClient: DependencyKey {
             }
             
             return SubmitResponse()
+        },
+        cafeNames: {
+            let db = Firestore.firestore()
+            var response = CafeNamesResponse(names: [])
+            
+            db.collectionGroup("CafeList").getDocuments { (querySnapshot, error) in
+                querySnapshot?.documents.forEach { document in
+                    response.names.append(document.documentID)
+                }
+            }
+            
+            return response
+        },
+        cafeMenus: { cafeName in
+            let db = Firestore.firestore()
+            var response = CafeMenusReponse(names: [])
+            
+            db.collectionGroup("CafeList").getDocuments { (querySnapshot, error) in
+                querySnapshot?.documents.forEach { document in
+                    let menus = document.data()[cafeName] as! [String]
+                    response.names = menus
+                }
+            }
+            
+            return response
         }
     )
 }

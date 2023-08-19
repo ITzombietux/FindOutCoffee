@@ -50,14 +50,32 @@ public struct ReviewContent: Reducer {
         case selectIceOrHot(IceOrHot)
         case selectPrice(String)
         case editText(String)
+        case loadBrandsResponse(TaskResult<CafeNamesResponse>)
+        case loadDrinksResponse(TaskResult<CafeMenusReponse>)
     }
+    
+    @Dependency(\.reviewClient) var reviewClient
     
     public init() {}
     
     public func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
         case .loadBrands:
-            state.brands = ["스타벅스", "투썸플레이스", "이디야", "할리스"]
+            return .run { send in
+                await send(
+                    .loadBrandsResponse(
+                        await TaskResult {
+                            try await self.reviewClient.cafeNames()
+                        }
+                    )
+                )
+            }
+            
+        case .loadBrandsResponse(.success(let response)):
+            state.brands = response.names
+            return .none
+            
+        case .loadBrandsResponse(.failure(let error)):
             return .none
             
         case .loadCategories:
@@ -65,7 +83,22 @@ public struct ReviewContent: Reducer {
             return .none
             
         case .loadDrinks:
-            state.drinks = ["아메리카노", "카페라떼", "바닐라라떼", "헤이즐넛라떼"]
+            guard let brand = state.brand else { return .none }
+            return .run { send in
+                await send(
+                    .loadDrinksResponse(
+                        await TaskResult {
+                            try await self.reviewClient.cafeMenus(brand)
+                        }
+                    )
+                )
+            }
+            
+        case .loadDrinksResponse(.success(let response)):
+            state.drinks = response.names
+            return .none
+            
+        case .loadDrinksResponse(.failure(let error)):
             return .none
             
         case .loadPrices:
