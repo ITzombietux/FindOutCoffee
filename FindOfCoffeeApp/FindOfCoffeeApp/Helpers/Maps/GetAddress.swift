@@ -31,7 +31,7 @@ struct GetAddress {
                                         
                                         if pm.count > 0 {
                                             let pm = placemarks![0]
-                                            print(pm.country)
+                                            print("######",pm.country)
                                             print(pm.administrativeArea) //
                                             print(pm.locality) //
                                             print(pm.location)

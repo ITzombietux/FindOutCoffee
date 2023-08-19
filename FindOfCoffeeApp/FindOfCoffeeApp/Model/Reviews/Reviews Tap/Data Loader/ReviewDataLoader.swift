@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import FirebaseStorage
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseCore
 
 class ReviewDataLoader {
     private let db = Firestore.firestore()

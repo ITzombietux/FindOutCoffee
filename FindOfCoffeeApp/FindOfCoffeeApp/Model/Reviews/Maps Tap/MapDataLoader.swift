@@ -7,8 +7,7 @@
 
 import UIKit
 import NMapsMap
-import Firebase
-import FirebaseFirestoreSwift
+import FirebaseDependency
 
 class MapDataLoader {
     

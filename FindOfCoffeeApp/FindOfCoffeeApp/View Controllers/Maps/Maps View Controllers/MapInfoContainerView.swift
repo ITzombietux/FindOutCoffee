@@ -20,20 +20,11 @@ class MapInfoContainerView: UIViewController {
 
         view.backgroundColor = UIColor.systemGray5.withAlphaComponent(0.85)
         
-        let pdblLatitude = String(getCurrentAddress().1)
-        let withLongitude = String(getCurrentAddress().0)
-        getAddressFromLatLon(pdblLatitude: pdblLatitude, withLongitude: withLongitude)
-    }
-    
-    private func getCurrentAddress() -> (Double, Double) {
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.startUpdatingLocation()
         locationManager.pausesLocationUpdatesAutomatically = false
-        
-        let longitude = Double(locationManager.location?.coordinate.longitude ?? 0.0)
-        let latitude = Double(locationManager.location?.coordinate.latitude ?? 0.0)
-        
-        return (longitude, latitude)
+        locationManager.delegate = self
     }
     
     private func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
@@ -56,9 +47,19 @@ class MapInfoContainerView: UIViewController {
                                         
                                         if pm.count > 0 {
                                             let pm = placemarks![0]
-                                            
                                             self.addressLabel.text = "\(pm.administrativeArea ?? "") \(pm.locality ?? "") \(pm.subLocality ?? "")"
                                         }
                                     })
+    }
+}
+
+extension MapInfoContainerView: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let coordinate = locations.last?.coordinate {
+            getAddressFromLatLon(pdblLatitude: coordinate.latitude.description,
+                                 withLongitude: coordinate.longitude.description)
+        }
+        
+        locationManager.stopUpdatingLocation()
     }
 }

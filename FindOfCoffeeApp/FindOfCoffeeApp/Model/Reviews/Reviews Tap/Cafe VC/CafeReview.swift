@@ -18,5 +18,8 @@ struct CafeReview: Codable, Hashable, Equatable {
     let text: String
     let address: String
     var date: String
+    let feeling: String
+    let isRecommend: Bool
+    let isPublic: Bool
     let thumbnail: [String]
 }

@@ -5,6 +5,8 @@
 //  Created by zombietux on 2020/12/09.
 //
 
+import ReviewFeature
+import SwiftUI
 import UIKit
 import Kingfisher
 
@@ -79,14 +81,11 @@ class ReviewListViewController: UIViewController {
         showImage(true)
     }
         
-    @objc func writeReview(tapGestureRecognizer: UITapGestureRecognizer) {
-        let storyboard = UIStoryboard(name: "Review", bundle: .main)
-        let writeReviewsVC = storyboard.instantiateViewController(identifier: "WriteReviewsViewController")
-        
-        if let writeReviewsVC = writeReviewsVC as? WriteReviewsViewController {
-            writeReviewsVC.modalPresentationStyle = .fullScreen
-            navigationController?.pushViewController(writeReviewsVC, animated: true)
-        }
+    @objc func writeReview(tapGestureRecognizer: UITapGestureRecognizer) {        
+        let reviewView = ReviewView()
+        let hostingController = UIHostingController(rootView: reviewView)
+        hostingController.modalPresentationStyle = .fullScreen
+        self.present(hostingController, animated: true)
     }
     
     private func configureCollectionView() {
