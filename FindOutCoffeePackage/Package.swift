@@ -54,8 +54,7 @@ let package = Package(
             name: "LoginFeature",
             dependencies: [
                 "AuthorizationDependency",
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
-                .product(name: "KakaoSDKUser", package: "kakao-ios-sdk")
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
         .target(
@@ -91,7 +90,8 @@ let package = Package(
             name: "AuthorizationDependency",
             dependencies: [
                 "FirebaseDependency",
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+                .product(name: "KakaoSDKUser", package: "kakao-ios-sdk")
             ]
         ),
         .testTarget(
