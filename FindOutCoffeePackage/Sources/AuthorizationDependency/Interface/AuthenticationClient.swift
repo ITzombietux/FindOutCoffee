@@ -7,12 +7,12 @@
 
 import Dependencies
 
-struct AuthenticationClient {
-    var login: @Sendable (SNSLoginType) async throws -> User
+public struct AuthenticationClient {
+    public var login: @Sendable (SNSLoginType) async throws -> User
 }
 
 extension DependencyValues {
-    var authenticationClient: AuthenticationClient {
+    public var authenticationClient: AuthenticationClient {
         get { self[AuthenticationClient.self] }
         set { self[AuthenticationClient.self] = newValue }
     }

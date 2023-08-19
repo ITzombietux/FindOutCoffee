@@ -18,7 +18,7 @@ final public class AppleLoginHelper {
         self.appleIDCredential = appleIDCredential
     }
     
-    func loadUserInfomation() -> User? {
+    public func loadUserInfomation() -> User? {
         guard let nickname = appleIDCredential.fullName?.nickname else { return nil }
         return User(id: appleIDCredential.user, profileImageURL: nil, nickname: nickname)
     }

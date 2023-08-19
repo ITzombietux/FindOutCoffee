@@ -32,6 +32,10 @@ let package = Package(
         .library(
             name: "MyFeature",
             targets: ["MyFeature"]
+        ),
+        .library(
+            name: "AuthorizationDependency",
+            targets: ["AuthorizationDependency"]
         )
     ],
     dependencies: [
@@ -49,7 +53,7 @@ let package = Package(
         .target(
             name: "LoginFeature",
             dependencies: [
-                "FirebaseDependency",
+                "AuthorizationDependency",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
                 .product(name: "KakaoSDKUser", package: "kakao-ios-sdk")
             ]
@@ -79,6 +83,14 @@ let package = Package(
             name: "MyFeature",
             dependencies: [
                 "KakaoLoginDependency",
+                "AuthorizationDependency",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ]
+        ),
+        .target(
+            name: "AuthorizationDependency",
+            dependencies: [
+                "FirebaseDependency",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),

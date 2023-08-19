@@ -6,6 +6,7 @@
 //
 
 import AuthenticationServices
+import AuthorizationDependency
 import SwiftUI
 
 public struct AppleLoginButton: View {
