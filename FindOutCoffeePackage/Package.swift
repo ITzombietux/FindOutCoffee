@@ -28,6 +28,10 @@ let package = Package(
         .library(
             name: "FirebaseDependency",
             targets: ["FirebaseDependency"]
+        ),
+        .library(
+            name: "MyFeature",
+            targets: ["MyFeature"]
         )
     ],
     dependencies: [
@@ -69,6 +73,13 @@ let package = Package(
             dependencies: [
                 .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
                 .product(name: "FirebaseFirestoreSwift", package: "firebase-ios-sdk"),
+            ]
+        ),
+        .target(
+            name: "MyFeature",
+            dependencies: [
+                "KakaoLoginDependency",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
         .testTarget(
