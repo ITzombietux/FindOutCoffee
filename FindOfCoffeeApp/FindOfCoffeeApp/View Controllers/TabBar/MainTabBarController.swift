@@ -20,15 +20,14 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let isLoggedIn = UserDefaults.standard.bool(forKey: isLoggedInKey)
+        guard let isLoggedInKey = UserDefaults.standard.string(forKey: isLoggedInKey) else { return }
+        guard isLoggedInKey.count == 0 else { return }
         
-        if !isLoggedIn {
-            let loginViewController = LoginViewController(rootView: LoginView())
-            
-            self.addChild(loginViewController)
-            self.view.addSubview(loginViewController.view)
-            loginViewController.didMove(toParent: self)
-            loginViewController.view.frame = .init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        }
+        let loginViewController = LoginViewController(rootView: LoginView())
+        
+        self.addChild(loginViewController)
+        self.view.addSubview(loginViewController.view)
+        loginViewController.didMove(toParent: self)
+        loginViewController.view.frame = .init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     }
 }

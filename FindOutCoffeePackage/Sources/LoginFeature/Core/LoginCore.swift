@@ -4,6 +4,7 @@
 //
 //  Created by 김혜지 on 2023/08/08.
 //
+import Foundation
 
 import ComposableArchitecture
 import UserDefaultsDependency
@@ -78,9 +79,9 @@ public struct Login: Reducer {
             
         case let .saveUser(.success(response)):
             state.isLoggedIn = true
-            print("@@@@", state.isLoggedIn)
+            
             return .run { _ in
-                await self.userDefaultsClient.setIdentifier(response.identifier, isLoggedInKey)
+                UserDefaults.standard.setValue(response.identifier, forKey: "isLoggedInKey")
             }
             
         case let .saveUser(.failure(error)):
