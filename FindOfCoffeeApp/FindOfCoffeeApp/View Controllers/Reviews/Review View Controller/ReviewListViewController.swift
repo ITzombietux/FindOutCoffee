@@ -39,7 +39,7 @@ class ReviewListViewController: UIViewController {
         static let sectionHeader = "supplementary-section-header"
     }
 
-    private var loadingIndicator: UIActivityIndicatorView!
+    private var loadingIndicator = UIActivityIndicatorView()
     
     var viewModel: ReviewListViewModel!
     private var dataLoader = ReviewDataLoader()
@@ -64,6 +64,7 @@ class ReviewListViewController: UIViewController {
         
         setupWriteButton()
         configureCollectionView()
+        configureLoadingIndicator()
         fetchData()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(writeReview))
@@ -86,6 +87,13 @@ class ReviewListViewController: UIViewController {
         let hostingController = UIHostingController(rootView: reviewView)
         hostingController.modalPresentationStyle = .fullScreen
         self.present(hostingController, animated: true)
+    }
+    
+    private func configureLoadingIndicator() {
+        loadingIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        loadingIndicator.center = self.view.center
+        loadingIndicator.style = .large
+        self.view.addSubview(self.loadingIndicator)
     }
     
     private func configureCollectionView() {
@@ -177,9 +185,11 @@ class ReviewListViewController: UIViewController {
         snapshot.appendItems(grouping.tastes.map { DataItem.taste($0) }, toSection: .taste)
         snapshot.appendItems(grouping.convenienceStores.map { DataItem.convenienceStore($0) }, toSection: .convenienceStore)
         datasource.apply(snapshot)
+        self.loadingIndicator.stopAnimating()
     }
     
     private func fetchData() {
+        self.loadingIndicator.startAnimating()
         self.fetchDataLoader()
     }
     
