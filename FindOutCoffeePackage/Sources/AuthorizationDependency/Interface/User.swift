@@ -6,11 +6,11 @@
 //
 
 public struct User {
-    let id: String
-    let profileImageURL: String?
-    let nickname: String
+    public let id: String
+    public let profileImageURL: String?
+    public let nickname: String
     
-    init?(
+    public init?(
         id: String?,
         profileImageURL: String?,
         nickname: String?

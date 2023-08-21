@@ -8,6 +8,7 @@ import Foundation
 
 import ComposableArchitecture
 import UserDefaultsDependency
+import AuthorizationDependency
 
 public struct Login: Reducer {
     public struct State: Equatable {

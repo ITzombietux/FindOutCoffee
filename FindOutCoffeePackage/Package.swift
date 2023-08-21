@@ -28,6 +28,18 @@ let package = Package(
         .library(
             name: "FirebaseDependency",
             targets: ["FirebaseDependency"]
+        ),
+        .library(
+            name: "MyFeature",
+            targets: ["MyFeature"]
+        ),
+        .library(
+            name: "AuthorizationDependency",
+            targets: ["AuthorizationDependency"]
+        ),
+        .library(
+            name: "DesignSystem",
+            targets: ["DesignSystem"]
         )
     ],
     dependencies: [
@@ -45,9 +57,9 @@ let package = Package(
         .target(
             name: "LoginFeature",
             dependencies: [
-                "FirebaseDependency",
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
-                .product(name: "KakaoSDKUser", package: "kakao-ios-sdk")
+                "AuthorizationDependency",
+                "UserDefaultsDependency",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
         .target(
@@ -70,6 +82,28 @@ let package = Package(
                 .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
                 .product(name: "FirebaseFirestoreSwift", package: "firebase-ios-sdk"),
             ]
+        ),
+        .target(
+            name: "MyFeature",
+            dependencies: [
+                "KakaoLoginDependency",
+                "AuthorizationDependency",
+                "DesignSystem",
+                "UserDefaultsDependency",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ]
+        ),
+        .target(
+            name: "AuthorizationDependency",
+            dependencies: [
+                "FirebaseDependency",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+                .product(name: "KakaoSDKUser", package: "kakao-ios-sdk")
+            ]
+        ),
+        .target(
+            name: "DesignSystem",
+            dependencies: []
         ),
         .testTarget(
             name: "FindOutCoffeePackageTests",

@@ -11,10 +11,10 @@ import XCTestDynamicOverlay
 
 public struct SubmitRequest: Codable, Identifiable {
     public var id = UUID()
+    var userIdentifier: String
     var coffee: Coffee
     var imageDatas: [Data]
     var selectedTitle: String
-    var selectedStore: String?
 }
 
 public struct Coffee: Codable {
@@ -65,18 +65,6 @@ public struct ReviewClient {
     public var uploadImages: @Sendable (SubmitRequest) async throws -> SubmitResponse
     public var cafeNames: @Sendable () async throws -> CafeNamesResponse
     public var cafeMenus: @Sendable (String) async throws -> CafeMenusReponse
-    
-    public init(
-        submit: @escaping @Sendable (SubmitRequest) async throws -> SubmitResponse,
-        uploadImages: @escaping @Sendable (SubmitRequest) async throws -> SubmitResponse,
-        cafeNames: @escaping @Sendable () async throws -> CafeNamesResponse,
-        cafeMenus: @escaping @Sendable (String) async throws -> CafeMenusReponse
-    ) {
-        self.submit = submit
-        self.uploadImages = uploadImages
-        self.cafeNames = cafeNames
-        self.cafeMenus = cafeMenus
-    }
 }
 
 extension ReviewClient: TestDependencyKey {

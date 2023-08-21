@@ -8,10 +8,10 @@
 import KakaoSDKAuth
 import KakaoSDKUser
 
-struct KakaoLoginHelper {
-    typealias UserCompletion = (User?, Error?) -> Void
+public struct KakaoLoginHelper {
+    public typealias UserCompletion = (User?, Error?) -> Void
     
-    static func login(completion: @escaping UserCompletion) {
+    public static func login(completion: @escaping UserCompletion) {
         if AuthApi.hasToken() {
             UserApi.shared.accessTokenInfo { _, error in
                 if error != nil {

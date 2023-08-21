@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8PG-2k-Zy6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8PG-2k-Zy6">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,17 +15,42 @@
                     <tabBarItem key="tabBarItem" title="더보기" image="more" id="bZ1-dw-cyY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="AyM-1j-7LP">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="WDG-xJ-jEJ" kind="relationship" relationship="rootViewController" id="6eA-7o-Tt3"/>
+                        <segue destination="sVY-q0-vCo" kind="relationship" relationship="rootViewController" id="XKI-ga-DsT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZD-iY-54b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="431.8840579710145" y="314.73214285714283"/>
+        </scene>
+        <!--My View Controller-->
+        <scene sceneID="23P-9c-luG">
+            <objects>
+                <viewController storyboardIdentifier="More" id="sVY-q0-vCo" customClass="MyViewController" customModule="FindOfCoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <containerView key="view" opaque="NO" contentMode="scaleToFill" id="QMw-Gi-SMd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <connections>
+                            <segue destination="uwI-r6-hGZ" kind="embed" destinationCreationSelector="embededMyView:" id="hDC-1L-wAY"/>
+                        </connections>
+                    </containerView>
+                    <navigationItem key="navigationItem" id="I96-fy-LKo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aYy-7G-hjT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1339" y="315"/>
+        </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="BJ4-Zh-pBP">
+            <objects>
+                <hostingController storyboardIdentifier="MyViewController" id="uwI-r6-hGZ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oja-7w-qAf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2223" y="315"/>
         </scene>
         <!--더보기-->
         <scene sceneID="Fbg-BL-1Zc">
@@ -35,7 +61,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="zEb-Yg-FO6">
-                            <rect key="frame" x="0.0" y="242.5" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="286.5" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
@@ -43,7 +69,7 @@
                             <tableViewSection headerTitle="앱 정보" id="m7I-gd-Ib4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="tZV-eM-cfO">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tZV-eM-cfO" id="SAM-9p-MPL">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -63,7 +89,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Po1-jF-rCD">
-                                        <rect key="frame" x="0.0" y="71.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="93.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Po1-jF-rCD" id="5fg-5L-OCe">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -87,7 +113,7 @@
                             <tableViewSection headerTitle="문의" id="cq1-8W-5xI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="8fe-bR-TFo">
-                                        <rect key="frame" x="0.0" y="171" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="215" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8fe-bR-TFo" id="Wwm-Ak-Pkv">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -118,7 +144,21 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jy3-yx-JMQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1387" y="315"/>
+            <point key="canvasLocation" x="1380" y="-433"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="idh-nJ-2UO">
+            <objects>
+                <viewController id="LV1-AW-djA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cru-TW-lOU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GW5-aO-kW4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-235" y="269"/>
         </scene>
     </scenes>
     <resources>
