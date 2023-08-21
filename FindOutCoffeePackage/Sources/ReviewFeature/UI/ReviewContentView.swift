@@ -50,7 +50,19 @@ struct ReviewContentView: View {
             
         case .price:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                PriceSelectionView(prices: viewStore.state.prices ?? [], selection: viewStore.binding(get: \.price, send: { .selectPrice($0 ?? "") }))
+                PriceSelectionView(
+                    priceFeelings: viewStore.prices ?? [],
+                    selectedFeeling:
+                        viewStore.binding(
+                            get: \.price,
+                            send: { .selectPrice($0 ?? "") }
+                        ),
+                    isRecommend:
+                        viewStore.binding(
+                            get: \.isRecommend,
+                            send: { .selectRecommendation($0 ?? false) }
+                        )
+                )
             }
             
         case .writing:

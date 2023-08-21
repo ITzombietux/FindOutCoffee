@@ -21,11 +21,10 @@ public struct ReviewContent: Reducer {
         public var drink: String?
         public var iceOrHot: IceOrHot?
         public var price: String?
+        public var isRecommend: Bool?
         public var photo: [Data]?
-        public var text: String
         public var text: String?
         
-        public init(brands: [String]? = nil, categories: [String]? = nil, drinks: [String]? = nil, prices: [String]? = nil, store: Store? = nil, brand: String? = nil, category: String? = nil, drink: String? = nil, iceOrHot: IceOrHot? = nil, price: String? = nil, photo: [Data]? = nil, text: String = "") {
         public init(brands: [String]? = nil, categories: [String]? = nil, drinks: [String]? = nil, prices: [String]? = nil, store: Store? = nil, brand: String? = nil, category: String? = nil, drink: String? = nil, iceOrHot: IceOrHot? = nil, price: String? = nil, isRecommend: Bool? = nil, photo: [Data]? = nil, text: String? = nil) {
             self.brands = brands
             self.categories = categories
@@ -37,6 +36,7 @@ public struct ReviewContent: Reducer {
             self.drink = drink
             self.iceOrHot = iceOrHot
             self.price = price
+            self.isRecommend = isRecommend
             self.photo = photo
             self.text = text
         }
@@ -55,6 +55,7 @@ public struct ReviewContent: Reducer {
         case selectDrink(String)
         case selectIceOrHot(IceOrHot)
         case selectPrice(String)
+        case selectRecommendation(Bool)
         case selectPhoto([Data])
         case editText(String)
         case loadBrandsResponse(TaskResult<CafeNamesResponse>)
@@ -149,6 +150,10 @@ public struct ReviewContent: Reducer {
             
         case let .selectPrice(price):
             state.price = price
+            return .none
+            
+        case let .selectRecommendation(isRecommend):
+            state.isRecommend = isRecommend
             return .none
             
         case let .selectPhoto(photo):
