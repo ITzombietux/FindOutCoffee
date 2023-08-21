@@ -36,6 +36,10 @@ let package = Package(
         .library(
             name: "AuthorizationDependency",
             targets: ["AuthorizationDependency"]
+        ),
+        .library(
+            name: "DesignSystem",
+            targets: ["DesignSystem"]
         )
     ],
     dependencies: [
@@ -83,6 +87,7 @@ let package = Package(
             dependencies: [
                 "KakaoLoginDependency",
                 "AuthorizationDependency",
+                "DesignSystem",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
@@ -93,6 +98,10 @@ let package = Package(
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
                 .product(name: "KakaoSDKUser", package: "kakao-ios-sdk")
             ]
+        ),
+        .target(
+            name: "DesignSystem",
+            dependencies: []
         ),
         .testTarget(
             name: "FindOutCoffeePackageTests",

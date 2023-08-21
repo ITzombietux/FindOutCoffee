@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import DesignSystem
+
 struct LogoutView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
@@ -22,7 +24,7 @@ struct LogoutView: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical, 14)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .background(Color(red: 0.169, green: 0.565, blue: 0.851))
+                .background(Color.mainColor)
                 .cornerRadius(8)
             }
             
