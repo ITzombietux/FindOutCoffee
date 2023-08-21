@@ -42,8 +42,6 @@ class ReviewListViewController: UIViewController {
     private var loadingIndicator: UIActivityIndicatorView!
     private lazy var hostingController = UIHostingController(rootView: ReviewView())
     
-    private var loadingIndicator = UIActivityIndicatorView()
-    
     var viewModel: ReviewListViewModel!
     private var dataLoader = ReviewDataLoader()
     private var convenienceStoreDataLoader: ConvenienceStoreDataLoader!
