@@ -7,6 +7,8 @@
 
 import ComposableArchitecture
 
+import Foundation
+
 public struct ReviewContent: Reducer {
     public struct State: Equatable {
         public var brands: [String]?
@@ -19,10 +21,10 @@ public struct ReviewContent: Reducer {
         public var drink: String?
         public var iceOrHot: IceOrHot?
         public var price: String?
-        public var photos: Photo?
+        public var photo: [Data]?
         public var text: String
         
-        public init(brands: [String]? = nil, categories: [String]? = nil, drinks: [String]? = nil, prices: [String]? = nil, store: Store? = nil, brand: String? = nil, category: String? = nil, drink: String? = nil, iceOrHot: IceOrHot? = nil, price: String? = nil, photos: Photo? = nil, text: String = "") {
+        public init(brands: [String]? = nil, categories: [String]? = nil, drinks: [String]? = nil, prices: [String]? = nil, store: Store? = nil, brand: String? = nil, category: String? = nil, drink: String? = nil, iceOrHot: IceOrHot? = nil, price: String? = nil, photo: [Data]? = nil, text: String = "") {
             self.brands = brands
             self.categories = categories
             self.drinks = drinks
@@ -33,7 +35,7 @@ public struct ReviewContent: Reducer {
             self.drink = drink
             self.iceOrHot = iceOrHot
             self.price = price
-            self.photos = photos
+            self.photo = photo
             self.text = text
         }
     }
@@ -49,6 +51,7 @@ public struct ReviewContent: Reducer {
         case selectDrink(String)
         case selectIceOrHot(IceOrHot)
         case selectPrice(String)
+        case selectPhoto([Data])
         case editText(String)
         case loadBrandsResponse(TaskResult<CafeNamesResponse>)
         case loadDrinksResponse(TaskResult<CafeMenusReponse>)
@@ -127,6 +130,10 @@ public struct ReviewContent: Reducer {
             
         case let .selectPrice(price):
             state.price = price
+            return .none
+            
+        case let .selectPhoto(photo):
+            state.photo = photo
             return .none
             
         case let .editText(text):
