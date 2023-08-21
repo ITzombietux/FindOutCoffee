@@ -17,14 +17,14 @@ extension ReviewClient: DependencyKey {
         submit: { request in
             let db = Firestore.firestore()
             
-            db.collection(request.selectedTitle).document("\(request.id)").setData(
+            db.collection(request.selectedTitle).document("\(request.userIdentifier)").setData(
                 ["id" : "\(request.id)",
                  "nickname" : request.coffee.nickname,
                  "title" : request.coffee.title,
                  "price" : request.coffee.price,
                  "taste" : request.coffee.taste,
                  "size" : request.coffee.size,
-                 "isHot" : "",
+                 "isHot" : request.coffee.isHot,
                  "text" : request.coffee.text,
                  "address" : request.coffee.address,
                  "date" : request.coffee.date,

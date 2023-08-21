@@ -11,10 +11,10 @@ import XCTestDynamicOverlay
 
 public struct SubmitRequest: Codable, Identifiable {
     public var id = UUID()
+    var userIdentifier: String
     var coffee: Coffee
     var imageDatas: [Data]
     var selectedTitle: String
-    var selectedStore: String?
 }
 
 public struct Coffee: Codable {
