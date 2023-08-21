@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct InformationView: View {
+    @Environment(\.openURL) var openURL
+    
     var body: some View {
         VStack() {
             Divider()
@@ -20,17 +22,26 @@ struct InformationView: View {
             
             Divider()
             
-            row(title: "개인정보 취급 방침", body: "")
+            row(title: "개인정보 취급 방침", body: "", tappable: true)
+                .onTapGesture {
+                    let articleURLString = "https://velog.io/@architecture/개인정보처리방침-t22k6wps"
+                    let articleURL = articleURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                    guard let url = URL(string: articleURL) else { return }
+                    self.openURL(url)
+                }
             
             Divider()
             
-            row(title: "이용약관", body: "")
+            row(title: "이용약관", body: "", tappable: true)
+                .onTapGesture {
+                    
+                }
             
             Divider()
         }
     }
     
-    private func row(title: String, body: String) -> some View {
+    private func row(title: String, body: String, tappable: Bool = false) -> some View {
         HStack {
             Text(title)
                 .font(.system(size: 16))
@@ -43,8 +54,10 @@ struct InformationView: View {
                 .multilineTextAlignment(.trailing)
                 .foregroundColor(Color(red: 0.13, green: 0.13, blue: 0.13))
             
-            Image(systemName: "chevron.right")
-                .frame(width: 30, height: 30)
+            if tappable {
+                Image(systemName: "chevron.right")
+                    .frame(width: 30, height: 30)
+            }
         }
         .frame(height: 48)
         .padding(.horizontal)

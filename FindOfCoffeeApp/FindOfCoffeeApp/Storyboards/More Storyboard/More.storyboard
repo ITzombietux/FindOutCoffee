@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,27 +30,14 @@
         <!--My View Controller-->
         <scene sceneID="23P-9c-luG">
             <objects>
-                <viewController id="sVY-q0-vCo" customClass="MyViewController" customModule="FindOfCoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5Ty-6o-Iyv">
+                <viewController storyboardIdentifier="More" id="sVY-q0-vCo" customClass="MyViewController" customModule="FindOfCoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <containerView key="view" opaque="NO" contentMode="scaleToFill" id="QMw-Gi-SMd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EtM-29-vX2">
-                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
-                                <connections>
-                                    <segue destination="uwI-r6-hGZ" kind="embed" id="D8C-fs-v1f"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Qlk-G0-6nv"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Qlk-G0-6nv" firstAttribute="trailing" secondItem="EtM-29-vX2" secondAttribute="trailing" id="6WA-Fm-kEu"/>
-                            <constraint firstItem="EtM-29-vX2" firstAttribute="leading" secondItem="Qlk-G0-6nv" secondAttribute="leading" id="RoH-Ns-9km"/>
-                            <constraint firstItem="Qlk-G0-6nv" firstAttribute="bottom" secondItem="EtM-29-vX2" secondAttribute="bottom" id="nvv-zf-xF2"/>
-                            <constraint firstItem="EtM-29-vX2" firstAttribute="top" secondItem="Qlk-G0-6nv" secondAttribute="top" id="wl0-HA-ujI"/>
-                        </constraints>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <connections>
+                            <segue destination="uwI-r6-hGZ" kind="embed" destinationCreationSelector="embededMyView:" id="hDC-1L-wAY"/>
+                        </connections>
+                    </containerView>
                     <navigationItem key="navigationItem" id="I96-fy-LKo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aYy-7G-hjT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -159,6 +145,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jy3-yx-JMQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1380" y="-433"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="idh-nJ-2UO">
+            <objects>
+                <viewController id="LV1-AW-djA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cru-TW-lOU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GW5-aO-kW4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-235" y="269"/>
         </scene>
     </scenes>
     <resources>
