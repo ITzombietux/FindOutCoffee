@@ -20,7 +20,7 @@ extension ReviewContentView {
         }
         
         var body: some View {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 20) {
                 Text("\(store)에서 구매한 음료 이름이 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
@@ -29,6 +29,8 @@ extension ReviewContentView {
                         self.selection = drink
                     }
                 }
+                
+                Spacer()
             }
         }
     }

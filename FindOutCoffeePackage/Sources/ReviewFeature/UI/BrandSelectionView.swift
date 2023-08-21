@@ -11,14 +11,20 @@ extension ReviewContentView {
     struct BrandSelectionView: View {
         private let brands: [String]
         @Binding var selection: String?
+        private let onAppear: () -> Void
         
-        init(brands: [String], selection: Binding<String?>) {
+        init(
+            brands: [String],
+            selection: Binding<String?>,
+            onAppear: @escaping () -> Void
+        ) {
             self.brands = brands
             self._selection = selection
+            self.onAppear = onAppear
         }
         
         var body: some View {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 20) {
                 Text("카페 이름이 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
@@ -30,6 +36,11 @@ extension ReviewContentView {
                         self.selection = brand
                     }
                 }
+                
+                Spacer()
+            }
+            .onAppear {
+                onAppear()
             }
         }
     }
@@ -38,6 +49,6 @@ extension ReviewContentView {
 struct BrandSelectionView_Previews: PreviewProvider {
     static var previews: some View {
         ReviewContentView.BrandSelectionView(
-            brands: ["스타벅스", "투썸플레이스", "이디야", "할리스"], selection: .constant(nil))
+            brands: ["스타벅스", "투썸플레이스", "이디야", "할리스"], selection: .constant(nil)) {}
     }
 }
