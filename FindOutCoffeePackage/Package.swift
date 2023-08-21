@@ -54,6 +54,7 @@ let package = Package(
             name: "LoginFeature",
             dependencies: [
                 "AuthorizationDependency",
+                "UserDefaultsDependency",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
