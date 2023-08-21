@@ -23,8 +23,10 @@ public struct ReviewContent: Reducer {
         public var price: String?
         public var photo: [Data]?
         public var text: String
+        public var text: String?
         
         public init(brands: [String]? = nil, categories: [String]? = nil, drinks: [String]? = nil, prices: [String]? = nil, store: Store? = nil, brand: String? = nil, category: String? = nil, drink: String? = nil, iceOrHot: IceOrHot? = nil, price: String? = nil, photo: [Data]? = nil, text: String = "") {
+        public init(brands: [String]? = nil, categories: [String]? = nil, drinks: [String]? = nil, prices: [String]? = nil, store: Store? = nil, brand: String? = nil, category: String? = nil, drink: String? = nil, iceOrHot: IceOrHot? = nil, price: String? = nil, isRecommend: Bool? = nil, photo: [Data]? = nil, text: String? = nil) {
             self.brands = brands
             self.categories = categories
             self.drinks = drinks

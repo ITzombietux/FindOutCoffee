@@ -62,7 +62,7 @@ struct ReviewContentView: View {
                     ),
                     text: viewStore.binding(
                         get: \.text,
-                        send: { .editText($0) }
+                        send: { .editText($0 ?? "") }
                     )
                 )
             }
