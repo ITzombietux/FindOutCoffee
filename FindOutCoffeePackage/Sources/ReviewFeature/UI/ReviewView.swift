@@ -17,7 +17,7 @@ public struct ReviewView: View {
     }
     
     public var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             navigationBar()
             
             WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -26,20 +26,22 @@ public struct ReviewView: View {
                 ReviewContentView(step: viewStore.state.steps[viewStore.state.currentStep], store: self.store.scope(state: \.content, action: Review.Action.content))
             }
             
-            Spacer()
-            
             WithViewStore(self.store, observe: { $0 }) { viewStore in
                 ReviewButton(step: viewStore.state.steps[viewStore.state.currentStep]) {
                     viewStore.send(.nextButtonTapped)
                 }
             }
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 20)
     }
     
     private func navigationBar() -> some View {
         HStack {
-            Image(systemName: "chevron.left")
+            Button {
+                NotificationCenter.default.post(name: Notification.Name.dismissReviewView, object: nil)
+            } label: {
+                Image(systemName: "chevron.left")
+            }
             
             Spacer()
         }
@@ -54,4 +56,8 @@ struct ReviewView_Previews: PreviewProvider {
                           reducer: { Review() })
         )
     }
+}
+
+public extension Notification.Name {
+    static let dismissReviewView = Notification.Name("dismissReviewView")
 }

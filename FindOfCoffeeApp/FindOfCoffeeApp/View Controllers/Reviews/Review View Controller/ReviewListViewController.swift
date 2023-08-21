@@ -40,6 +40,8 @@ class ReviewListViewController: UIViewController {
     }
 
     private var loadingIndicator: UIActivityIndicatorView!
+    private lazy var hostingController = UIHostingController(rootView: ReviewView())
+    
     
     var viewModel: ReviewListViewModel!
     private var dataLoader = ReviewDataLoader()
@@ -81,11 +83,23 @@ class ReviewListViewController: UIViewController {
         showImage(true)
     }
         
-    @objc func writeReview(tapGestureRecognizer: UITapGestureRecognizer) {        
-        let reviewView = ReviewView()
-        let hostingController = UIHostingController(rootView: reviewView)
-        hostingController.modalPresentationStyle = .fullScreen
-        self.present(hostingController, animated: true)
+    @objc func writeReview(tapGestureRecognizer: UITapGestureRecognizer) {
+        self.addNotification()
+        self.hostingController.modalPresentationStyle = .fullScreen
+        self.present(self.hostingController, animated: true)
+    }
+    
+    private func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissReviewView), name: Notification.Name.dismissReviewView, object: nil)
+    }
+    
+    private func removeNotification() {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.dismissReviewView, object: nil)
+    }
+    
+    @objc func dismissReviewView() {
+        self.hostingController.dismiss(animated: true)
+        self.removeNotification()
     }
     
     private func configureCollectionView() {
