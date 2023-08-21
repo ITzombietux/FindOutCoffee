@@ -5,6 +5,8 @@
 //  Created by 김혜지 on 2023/08/08.
 //
 
+import Foundation
+
 import ComposableArchitecture
 
 public struct Review: Reducer {
@@ -21,6 +23,7 @@ public struct Review: Reducer {
     }
     
     public enum Action {
+        case backButtonTapped
         case nextButtonTapped
         case saveReview
         case content(ReviewContent.Action)
@@ -31,14 +34,21 @@ public struct Review: Reducer {
     public var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
+            case .backButtonTapped:
+                if state.currentStep > 0 {
+                    state.currentStep -= 1
+                    return .none
+                }
+                
+                NotificationCenter.default.post(name: Notification.Name.dismissReviewView, object: nil)
+                return .none
+                
             case .nextButtonTapped:
                 if state.steps[state.currentStep] == .writing {
                     // TODO: saveReview
                     return .none
                 }
-                
-                state.currentStep += 1
-                return .none
+                return .send(.content(.load(state.steps[state.currentStep + 1])))
                 
             case .saveReview:
                 // TODO: 서버 통신
@@ -52,6 +62,10 @@ public struct Review: Reducer {
                 case .cafe:
                     state.steps = Step.cafeSteps
                 }
+                return .none
+                
+            case .content(.completeLoading):
+                state.currentStep += 1
                 return .none
                 
             case .content:

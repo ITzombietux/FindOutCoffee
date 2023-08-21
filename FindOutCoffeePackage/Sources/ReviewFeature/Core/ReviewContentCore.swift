@@ -41,10 +41,12 @@ public struct ReviewContent: Reducer {
     }
     
     public enum Action {
+        case load(Review.Step)
         case loadBrands
         case loadCategories
         case loadDrinks
         case loadPrices
+        case completeLoading
         case selectStore(Store)
         case selectBrand(String)
         case selectCategory(String)
@@ -63,6 +65,18 @@ public struct ReviewContent: Reducer {
     
     public func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
+        case let .load(step):
+            switch step {
+            case .brand:
+                return .send(.loadBrands)
+            case .category:
+                return .send(.loadCategories)
+            case .drink:
+                return .send(.loadDrinks)
+            default:
+                return .none
+            }
+            
         case .loadBrands:
             return .run { send in
                 await send(
@@ -76,14 +90,14 @@ public struct ReviewContent: Reducer {
             
         case .loadBrandsResponse(.success(let response)):
             state.brands = response.names
-            return .none
+            return .send(.completeLoading)
             
         case .loadBrandsResponse(.failure(let error)):
             return .none
             
         case .loadCategories:
             state.categories = ["에스프레소", "콜드브루", "티바나", "요거트", "주스&에이드", "기타"]
-            return .none
+            return .send(.completeLoading)
             
         case .loadDrinks:
             guard let brand = state.brand else { return .none }
@@ -106,6 +120,9 @@ public struct ReviewContent: Reducer {
             
         case .loadPrices:
             state.prices = ["너무 비싸요", "비싸지만 맛있어요"]
+            return .none
+            
+        case .completeLoading:
             return .none
             
         case let .selectStore(store):

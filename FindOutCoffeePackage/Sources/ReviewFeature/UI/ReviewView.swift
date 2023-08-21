@@ -36,16 +36,18 @@ public struct ReviewView: View {
     }
     
     private func navigationBar() -> some View {
-        HStack {
-            Button {
-                NotificationCenter.default.post(name: Notification.Name.dismissReviewView, object: nil)
-            } label: {
-                Image(systemName: "chevron.left")
+        WithViewStore(self.store, observe: \.currentStep) { viewStore in
+            HStack {
+                Button {
+                    viewStore.send(.backButtonTapped)
+                } label: {
+                    Image(systemName: viewStore.state == 0 ? "multiply" : "chevron.left")
+                }
+                
+                Spacer()
             }
-            
-            Spacer()
+            .frame(height: 44)
         }
-        .frame(height: 44)
     }
 }
 
