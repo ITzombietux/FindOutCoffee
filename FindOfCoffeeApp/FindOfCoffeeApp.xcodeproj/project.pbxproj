@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D25C2852A933B3D0058B849 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25C2842A933B3D0058B849 /* MyViewController.swift */; };
+		2D25C2872A933BE40058B849 /* MyFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2D25C2862A933BE40058B849 /* MyFeature */; };
 		2DA8C3582A8CA5C3008A20BC /* UserDefaultsDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 2DA8C3572A8CA5C3008A20BC /* UserDefaultsDependency */; };
 		2DA8C35A2A8D93BD008A20BC /* FirebaseDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 2DA8C3592A8D93BD008A20BC /* FirebaseDependency */; };
 		2DA8C35D2A8DE30E008A20BC /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8C35C2A8DE30E008A20BC /* MainTabBarController.swift */; };
@@ -88,6 +90,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D25C2842A933B3D0058B849 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		2DA8C35C2A8DE30E008A20BC /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3302998C2A8289B100647BEA /* FindOutCoffeePackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FindOutCoffeePackage; path = ../../FindOutCoffeePackage; sourceTree = "<group>"; };
 		93008973259D959600AB7DA5 /* BMJUA_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMJUA_otf.otf; sourceTree = "<group>"; };
@@ -166,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D25C2872A933BE40058B849 /* MyFeature in Frameworks */,
 				330299912A829D7A00647BEA /* LoginFeature in Frameworks */,
 				2DBE677E2A8076C4004DFBD8 /* Kingfisher in Frameworks */,
 				2DA8C35A2A8D93BD008A20BC /* FirebaseDependency in Frameworks */,
@@ -273,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				9334886E258AFBC200CA3012 /* MoreViewController.swift */,
+				2D25C2842A933B3D0058B849 /* MyViewController.swift */,
 			);
 			path = Mores;
 			sourceTree = "<group>";
@@ -646,6 +651,7 @@
 				33B10C6A2A86A45C00C135DB /* KakaoLoginDependency */,
 				2DA8C3572A8CA5C3008A20BC /* UserDefaultsDependency */,
 				2DA8C3592A8D93BD008A20BC /* FirebaseDependency */,
+				2D25C2862A933BE40058B849 /* MyFeature */,
 			);
 			productName = FindOfCoffeeApp;
 			productReference = 933DB0DC257E4B5A00CB6FF8 /* FindOfCoffeeApp.app */;
@@ -771,6 +777,7 @@
 				93E241F025888D34003E7156 /* NoticeCell.swift in Sources */,
 				93348A7125973CB100CA3012 /* CafeReviewDetailViewController.swift in Sources */,
 				93E241D9258853B9003E7156 /* Cafe.swift in Sources */,
+				2D25C2852A933B3D0058B849 /* MyViewController.swift in Sources */,
 				9334886C258A3F7400CA3012 /* CafeReviewCell.swift in Sources */,
 				9334887F258B4E0900CA3012 /* CSReviewCell.swift in Sources */,
 				9334894C258E05A200CA3012 /* Model Types.swift in Sources */,
@@ -1081,6 +1088,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2D25C2862A933BE40058B849 /* MyFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MyFeature;
+		};
 		2DA8C3572A8CA5C3008A20BC /* UserDefaultsDependency */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UserDefaultsDependency;

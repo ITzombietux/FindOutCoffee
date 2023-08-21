@@ -88,6 +88,7 @@ let package = Package(
                 "KakaoLoginDependency",
                 "AuthorizationDependency",
                 "DesignSystem",
+                "UserDefaultsDependency",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),

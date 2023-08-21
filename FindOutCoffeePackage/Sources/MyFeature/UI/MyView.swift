@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-struct MyView: View {
-    var body: some View {
+public struct MyView: View {
+    public init() {}
+    
+    public var body: some View {
         VStack(spacing: 60) {
             ProfileView()
                 .padding(.vertical)
