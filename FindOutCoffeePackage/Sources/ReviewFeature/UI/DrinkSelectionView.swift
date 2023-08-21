@@ -24,6 +24,7 @@ extension ReviewContentView {
                 Text("\(store)에서 구매한 음료 이름이 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
+                
                 ForEach(self.drinks, id: \.self) { drink in
                     SelectionCell(title: drink, isSelected: drink == selection) {
                         self.selection = drink

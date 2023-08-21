@@ -28,9 +28,7 @@ struct ReviewContentView: View {
             
         case .brand:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                BrandSelectionView(brands: viewStore.state.brands ?? [], selection: viewStore.binding(get: \.brand, send: { .selectBrand($0 ?? "") })) {
-                    viewStore.send(.loadBrands)
-                }
+                BrandSelectionView(brands: viewStore.state.brands ?? [], selection: viewStore.binding(get: \.brand, send: { .selectBrand($0 ?? "") }))
             }
             
         case .category:
