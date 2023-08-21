@@ -79,6 +79,7 @@ extension ReviewClient: DependencyKey {
                 }
             }
             
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC)
             return response
         },
         cafeMenus: { cafeName in
@@ -92,6 +93,7 @@ extension ReviewClient: DependencyKey {
                 }
             }
             
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC)
             return response
         }
     )
