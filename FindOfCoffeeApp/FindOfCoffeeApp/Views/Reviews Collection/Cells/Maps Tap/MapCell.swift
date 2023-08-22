@@ -30,7 +30,7 @@ class MapCell: UICollectionViewCell {
         
         titleLabel.textColor = .label
         addressLabel.textColor = .secondaryLabel
-        subtitleLabel.textColor = .systemBlue
+        subtitleLabel.textColor = UIColor(named: "mainColor")
         
         let emptyView = UIView()
         emptyView.backgroundColor = .clear

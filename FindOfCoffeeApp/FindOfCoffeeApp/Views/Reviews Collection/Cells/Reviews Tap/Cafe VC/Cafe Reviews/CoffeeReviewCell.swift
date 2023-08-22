@@ -47,7 +47,7 @@ class CoffeeReviewCell: UICollectionViewCell {
         thumbnailImageView.constrainHeight(constant: 114)
         
         subtitleLabel.textColor = .systemGray
-        nameLabel.textColor = .systemBlue
+        nameLabel.textColor = UIColor(named: "mainColor")
         
         let subHorizontalStackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
         subHorizontalStackView.axis = .vertical

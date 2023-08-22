@@ -67,6 +67,7 @@ let package = Package(
             dependencies: [
                 "FirebaseDependency",
                 "UserDefaultsDependency",
+                "DesignSystem",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),

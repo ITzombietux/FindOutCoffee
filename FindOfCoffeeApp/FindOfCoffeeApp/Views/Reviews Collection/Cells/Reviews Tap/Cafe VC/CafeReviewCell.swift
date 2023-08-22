@@ -33,7 +33,7 @@ class CafeReviewCell: UICollectionViewCell {
         subtitleLabel.textColor = .secondaryLabel
         
         nameLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        nameLabel.textColor = .systemBlue
+        nameLabel.textColor = UIColor(named: "mainColor")
         
         let emptyView = UIView()
         emptyView.backgroundColor = .clear

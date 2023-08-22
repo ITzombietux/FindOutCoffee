@@ -28,7 +28,7 @@ struct ProgressView: View {
                 
                 GeometryReader { geometry in
                     Capsule()
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color.mainColor)
                         .frame(width: geometry.size.width / CGFloat(totalStep) * CGFloat(currentStep))
                         .animation(.spring(), value: currentStep)
                 }

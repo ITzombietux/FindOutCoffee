@@ -103,6 +103,7 @@ class ReviewListViewController: UIViewController {
     }
     
     private func configureLoadingIndicator() {
+        loadingIndicator.color = UIColor(named: "mainColor")
         loadingIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         loadingIndicator.center = self.view.center
         loadingIndicator.style = .large
@@ -298,6 +299,7 @@ extension ReviewListViewController {
         
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         navigationBar.addSubview(writeImageView)
+        writeImageView.tintColor = UIColor(named: "mainColor")
         writeImageView.layer.cornerRadius = Const.ImageSizeForLargeState / 2
         writeImageView.clipsToBounds = true
         writeImageView.translatesAutoresizingMaskIntoConstraints = false

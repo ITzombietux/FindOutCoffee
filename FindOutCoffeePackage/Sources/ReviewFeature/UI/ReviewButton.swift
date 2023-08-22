@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import DesignSystem
+
 struct ReviewButton: View {
     private let step: Review.Step
     private let action: () -> Void
@@ -22,7 +24,7 @@ struct ReviewButton: View {
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                    .foregroundColor(.blue)
+                    .foregroundColor(Color.mainColor)
                 
                 Text(self.step == .writing ? "작성 완료" : "다음")
                     .font(.system(size: 20, weight: .bold))

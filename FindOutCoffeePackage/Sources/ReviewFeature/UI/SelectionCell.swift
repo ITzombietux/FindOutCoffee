@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import DesignSystem
+
 struct SelectionCell: View {
     private let title: String
     private let isSelected: Bool
@@ -25,7 +27,7 @@ struct SelectionCell: View {
             ZStack(alignment: .leading) {
                 if isSelected {
                     RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color.mainColor)
                 } else {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke()

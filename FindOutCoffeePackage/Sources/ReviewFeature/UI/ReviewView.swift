@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import DesignSystem
 
 import SwiftUI
 
@@ -22,6 +23,7 @@ public struct ReviewView: View {
             
             WithViewStore(self.store, observe: { $0 }) { viewStore in
                 ProgressView(totalStep: viewStore.state.steps.count, currentStep: viewStore.state.currentStep + 1)
+                    .tint(Color.mainColor)
                 
                 ReviewContentView(step: viewStore.state.steps[viewStore.state.currentStep], store: self.store.scope(state: \.content, action: Review.Action.content))
             }
@@ -42,6 +44,7 @@ public struct ReviewView: View {
                     viewStore.send(.backButtonTapped)
                 } label: {
                     Image(systemName: viewStore.state == 0 ? "multiply" : "chevron.left")
+                        .foregroundColor(Color.mainColor)
                 }
                 
                 Spacer()

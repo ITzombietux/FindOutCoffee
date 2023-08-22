@@ -39,7 +39,7 @@ class NoticeCell: UICollectionViewCell {
         titleLabel.numberOfLines = 2
         
         secondaryTitleLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
-        secondaryTitleLabel.textColor = .systemBlue
+        secondaryTitleLabel.textColor = UIColor(named: "mainColor")
         secondaryTitleLabel.numberOfLines = 1
         
         subtitleLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)

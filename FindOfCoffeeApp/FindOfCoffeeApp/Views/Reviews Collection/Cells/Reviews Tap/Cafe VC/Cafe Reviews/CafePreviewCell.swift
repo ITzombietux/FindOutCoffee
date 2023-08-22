@@ -28,7 +28,7 @@ class CafePreviewCell: UICollectionViewCell {
         addSubview(previewLabel)
         addSubview(horizontalController.view)
         
-        previewLabel.textColor = .systemBlue
+        previewLabel.textColor = UIColor(named: "mainColor")
         previewLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 20, bottom: 0, right: 20))
         
         horizontalController.view.anchor(top: previewLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 20, left: 0, bottom: 0, right: 0))
