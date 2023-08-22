@@ -37,7 +37,6 @@ public struct LoginView: View {
             .padding(.horizontal, 20)
             .onChange(of: viewStore.isLoggedIn) { newValue in
                 if newValue {
-                    print("@@@@@@", newValue)
                     self.dismiss()
                 }
             }

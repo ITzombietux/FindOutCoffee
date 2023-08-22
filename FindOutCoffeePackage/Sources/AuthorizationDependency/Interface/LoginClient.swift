@@ -9,7 +9,7 @@ import Dependencies
 import Foundation
 import XCTestDynamicOverlay
 
-public struct LoginApiEntity: Sendable {
+public struct LoginApiEntity: Sendable, Equatable {
     public var identifier: String
     public var name: String
     public var imageURL: String

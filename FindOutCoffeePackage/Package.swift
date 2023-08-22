@@ -90,6 +90,7 @@ let package = Package(
                 "AuthorizationDependency",
                 "DesignSystem",
                 "UserDefaultsDependency",
+                "LoginFeature",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
