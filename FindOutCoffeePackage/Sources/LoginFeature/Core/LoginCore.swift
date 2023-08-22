@@ -67,7 +67,7 @@ public struct Login: Reducer {
                     .saveUser(
                         await TaskResult {
                             try await self.loginClient.login(
-                                .init(identifier: identifier, name: nickname, imageURL: profileImageURL ?? "")
+                                .init(identifier: identifier, name: nickname, imageURL: profileImageURL ?? "", type: "카카오")
                             )
                         }
                     )
@@ -83,6 +83,9 @@ public struct Login: Reducer {
             
             return .run { _ in
                 UserDefaults.standard.setValue(response.identifier, forKey: "isLoggedInKey")
+                UserDefaults.standard.setValue(response.type, forKey: "tpyeKey")
+                UserDefaults.standard.setValue(response.name, forKey: "nameKey")
+                UserDefaults.standard.setValue(response.imageURL, forKey: "imageURLKey")
             }
             
         case let .saveUser(.failure(error)):
