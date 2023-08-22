@@ -82,18 +82,49 @@ extension ReviewClient: DependencyKey {
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
             return response
         },
-        cafeMenus: { cafeName in
+        cafeMenus: { cafeName, cafeCategory in
             let db = Firestore.firestore()
-            var response = CafeMenusReponse(names: [])
+            var response = CafeMenusResponse(names: [])
             
-            db.collectionGroup("CafeList").getDocuments { (querySnapshot, error) in
-                querySnapshot?.documents.forEach { document in
-                    let menus = document.data()[cafeName] as! [String]
-                    response.names = menus
+            db.collection("CafeMenus").document(cafeName).getDocument { (snapshot, error) in
+                guard let categoryDictionary = snapshot?.data() else { return }
+                guard let categoryValues = categoryDictionary[cafeCategory] else { return }
+                guard let menus = categoryValues as? [String] else { return }
+                
+                print("#####", menus)
+                response.names = menus
+            }
+            
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC)
+            return response
+        },
+        cafeCategores: { cafeName in
+            let db = Firestore.firestore()
+            var response = CafeCategoresResponse(names: [])
+            
+            db.collection("CafeMenus").document(cafeName).getDocument { (snapshot, error) in
+                guard let categoryKeys = snapshot?.data() else { return }
+                categoryKeys.keys.forEach { categoryName in
+                    response.names.append(categoryName)
                 }
             }
             
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
+            print("######", response)
+            return response
+        },
+        convenienceStoreMenus: {
+            let db = Firestore.firestore()
+            var response = ConvenienceStoreMenusResponse(names: [])
+            
+            db.collectionGroup("CSMenus").getDocuments { (querySnapshot, error) in
+                querySnapshot?.documents.forEach { document in
+                    response.names.append(document.documentID)
+                }
+            }
+            
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC)
+            print("######", response)
             return response
         }
     )
