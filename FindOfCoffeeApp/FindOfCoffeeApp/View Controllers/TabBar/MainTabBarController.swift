@@ -20,7 +20,7 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let isLoggedInKey = UserDefaults.standard.string(forKey: isLoggedInKey) else { return }
+        let isLoggedInKey = UserDefaults.standard.string(forKey: isLoggedInKey) ?? ""
         guard isLoggedInKey.count == 0 else { return }
         
         let loginViewController = LoginViewController(rootView: LoginView())
