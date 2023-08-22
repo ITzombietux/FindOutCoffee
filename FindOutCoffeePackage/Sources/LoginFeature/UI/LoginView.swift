@@ -31,7 +31,6 @@ public struct LoginView: View {
             }
             .onChange(of: viewStore.isLoggedIn) { newValue in
                 if newValue {
-                    print("@@@@@@", newValue)
                     self.dismiss()
                 }
             }

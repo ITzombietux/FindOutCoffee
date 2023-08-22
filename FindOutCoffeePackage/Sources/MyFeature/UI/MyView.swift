@@ -7,28 +7,33 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 public struct MyView: View {
+    let store: StoreOf<My> = Store(initialState: My.State()) {
+        My()
+    }
+    
     public init() {}
     
     public var body: some View {
-        VStack(spacing: 0) {
-            ProfileView()
-                .padding()
-                .padding(.vertical)
-
-            InformationView()
-                .padding(.vertical)
-            
-            Spacer()
-            
-            LogoutView()
-                .padding(.horizontal)
+        WithViewStore(self.store, observe: \.user) { viewStore in
+            VStack(spacing: 0) {
+                ProfileView(store: self.store)
+                    .padding()
+                    .padding(.vertical)
+                
+                InformationView(store: self.store)
+                    .padding(.vertical)
+                
+                Spacer()
+                
+                LogoutView(store: self.store)
+                    .padding(.horizontal)
+            }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
         }
-    }
-}
-
-struct MyView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyView()
     }
 }

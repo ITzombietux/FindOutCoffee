@@ -7,14 +7,23 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 struct InformationView: View {
     @Environment(\.openURL) var openURL
+    
+    let store: StoreOf<My>
+    
+    init(store: StoreOf<My>) {
+        self.store = store
+    }
     
     var body: some View {
         VStack() {
             Divider()
-            
-            row(title: "로그인 정보", body: "카카오톡")
+            WithViewStore(self.store, observe: \.user) { viewStore in
+                row(title: "로그인 정보", body: viewStore.type)
+            }
             
             Divider()
             
@@ -61,11 +70,5 @@ struct InformationView: View {
         }
         .frame(height: 48)
         .padding(.horizontal)
-    }
-}
-
-struct InformationView_Previews: PreviewProvider {
-    static var previews: some View {
-        InformationView()
     }
 }

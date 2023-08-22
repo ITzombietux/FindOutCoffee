@@ -16,9 +16,15 @@ extension LoginClient: DependencyKey {
         let db = Firestore.firestore()
         db.collection("Users").document(request.identifier).setData(
             ["nickname" : request.name,
-             "imageURL" : request.imageURL
+             "imageURL" : request.imageURL,
+             "type" : request.type
             ]
         )
+        
+        UserDefaults.standard.set(request.identifier, forKey: "isLoggedInKey")
+        UserDefaults.standard.set(request.type, forKey: "tpyeKey")
+        UserDefaults.standard.set(request.name, forKey: "nameKey")
+        UserDefaults.standard.set(request.imageURL, forKey: "imageURLKey")
         
         return LoginApiEntity(identifier: request.identifier,
                               name: request.name,
@@ -26,14 +32,19 @@ extension LoginClient: DependencyKey {
                               type: request.type)
     } user: {
         guard let identifier = UserDefaults.standard.string(forKey: "isLoggedInKey") else { return .mock }
-        guard let type = UserDefaults.standard.string(forKey: "tpyeKey") else { return .mock }
-        guard let name = UserDefaults.standard.string(forKey: "nameKey") else { return .mock }
-        guard let imageURL = UserDefaults.standard.string(forKey: "imageURLKey") else { return .mock }
+        let db = Firestore.firestore()
+        var response = LoginApiEntity(identifier: "", name: "", imageURL: "", type: "")
         
-        return LoginApiEntity(identifier: identifier,
-                              name: name,
-                              imageURL: imageURL,
-                              type: type)
+        db.collection("Users").document(identifier).getDocument { (snapshot, error) in
+            guard let name = snapshot?.data()?["nickname"] as? String else { return }
+            guard let imageURL = snapshot?.data()?["imageURL"] as? String else { return }
+            guard let type = snapshot?.data()?["type"] as? String else { return }
+            
+            response = LoginApiEntity(identifier: identifier, name: name, imageURL: imageURL, type: type)
+        }
+        
+        try await Task.sleep(nanoseconds: NSEC_PER_SEC)
+        return response
     } logout: {
         removeUser()
         
