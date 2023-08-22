@@ -44,9 +44,25 @@ public struct Review: Reducer {
                 return .none
                 
             case .nextButtonTapped:
-                if state.steps[state.currentStep] == .writing {
-                    // TODO: saveReview
-                    return .none
+                switch state.steps[state.currentStep] {
+                case .store:
+                    guard state.content.store != nil else { return .none }
+                case .brand:
+                    guard state.content.brand != nil else { return .none }
+                case .category:
+                    guard state.content.category != nil else { return .none }
+                case .drink:
+                    guard state.content.drink != nil else { return .none }
+                case .options:
+                    guard state.content.size != nil,
+                          state.content.iceOrHot != nil
+                    else { return .none }
+                case .price:
+                    guard state.content.isRecommend != nil,
+                          state.content.priceFeeling != nil
+                    else { return .none }
+                case .writing:
+                    break
                 }
                 return .send(.content(.load(state.steps[state.currentStep + 1])))
                 

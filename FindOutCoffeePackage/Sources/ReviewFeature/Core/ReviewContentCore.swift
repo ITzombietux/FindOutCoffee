@@ -14,28 +14,30 @@ public struct ReviewContent: Reducer {
         public var brands: [String]?
         public var categories: [String]?
         public var drinks: [String]?
-        public var prices: [String]?
+        public var priceFeelings: [String]?
         public var store: Store?
         public var brand: String?
         public var category: String?
         public var drink: String?
+        public var size: Size?
         public var iceOrHot: IceOrHot?
-        public var price: String?
+        public var priceFeeling: String?
         public var isRecommend: Bool?
         public var photo: [Data]?
         public var text: String?
         
-        public init(brands: [String]? = nil, categories: [String]? = nil, drinks: [String]? = nil, prices: [String]? = nil, store: Store? = nil, brand: String? = nil, category: String? = nil, drink: String? = nil, iceOrHot: IceOrHot? = nil, price: String? = nil, isRecommend: Bool? = nil, photo: [Data]? = nil, text: String? = nil) {
+        public init(brands: [String]? = nil, categories: [String]? = nil, drinks: [String]? = nil, priceFeelings: [String]? = nil, store: Store? = nil, brand: String? = nil, category: String? = nil, drink: String? = nil, size: Size? = nil, iceOrHot: IceOrHot? = nil, priceFeeling: String? = nil, isRecommend: Bool? = nil, photo: [Data]? = nil, text: String? = nil) {
             self.brands = brands
             self.categories = categories
             self.drinks = drinks
-            self.prices = prices
+            self.priceFeelings = priceFeelings
             self.store = store
             self.brand = brand
             self.category = category
             self.drink = drink
+            self.size = size
             self.iceOrHot = iceOrHot
-            self.price = price
+            self.priceFeeling = priceFeeling
             self.isRecommend = isRecommend
             self.photo = photo
             self.text = text
@@ -47,14 +49,15 @@ public struct ReviewContent: Reducer {
         case loadBrands
         case loadCategories
         case loadDrinks
-        case loadPrices
+        case loadPriceFeelings
         case completeLoading
         case selectStore(Store)
         case selectBrand(String)
         case selectCategory(String)
         case selectDrink(String)
+        case selectSize(Size)
         case selectIceOrHot(IceOrHot)
-        case selectPrice(String)
+        case selectPriceFeeling(String)
         case selectRecommendation(Bool)
         case selectPhoto([Data])
         case editText(String)
@@ -78,8 +81,10 @@ public struct ReviewContent: Reducer {
                 return .send(.loadCategories)
             case .drink:
                 return .send(.loadDrinks)
+            case .price:
+                return .send(.loadPriceFeelings)
             default:
-                return .none
+                return .send(.completeLoading)
             }
             
         case .loadBrands:
@@ -161,9 +166,9 @@ public struct ReviewContent: Reducer {
         case .loadConvenienceStoreDrinksResponse(.failure(let error)):
             return .none
             
-        case .loadPrices:
-            state.prices = ["너무 비싸요", "비싸지만 맛있어요"]
-            return .none
+        case .loadPriceFeelings:
+            state.priceFeelings = ["너무 비싸요😂", "비싸지만 맛있어요🫢", "가성비가 좋아요👍"]
+            return .send(.completeLoading)
             
         case .completeLoading:
             return .none
@@ -188,12 +193,16 @@ public struct ReviewContent: Reducer {
             state.drink = drink
             return .none
             
+        case let .selectSize(size):
+            state.size = size
+            return .none
+            
         case let .selectIceOrHot(iceOrHot):
             state.iceOrHot = iceOrHot
             return .none
             
-        case let .selectPrice(price):
-            state.price = price
+        case let .selectPriceFeeling(priceFeeling):
+            state.priceFeeling = priceFeeling
             return .none
             
         case let .selectRecommendation(isRecommend):
