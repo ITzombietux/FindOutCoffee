@@ -59,7 +59,8 @@ public struct ReviewContent: Reducer {
         case selectPhoto([Data])
         case editText(String)
         case loadBrandsResponse(TaskResult<CafeNamesResponse>)
-        case loadDrinksResponse(TaskResult<CafeMenusResponse>)
+        case loadCafeDrinksResponse(TaskResult<CafeMenusResponse>)
+        case loadConvenienceStoreDrinksResponse(TaskResult<ConvenienceStoreMenusResponse>)
         case loadCategoriesResponse(TaskResult<CafeCategoresResponse>)
     }
     
@@ -120,23 +121,44 @@ public struct ReviewContent: Reducer {
             return .none
             
         case .loadDrinks:
-            guard let brand = state.brand else { return .none }
-            guard let category = state.category else { return .none }
-            return .run { send in
-                await send(
-                    .loadDrinksResponse(
-                        await TaskResult {
-                            try await self.reviewClient.cafeMenus(brand, category)
-                        }
+            guard let store = state.store else { return .none }
+            switch store {
+            case .cafe:
+                guard let brand = state.brand else { return .none }
+                guard let category = state.category else { return .none }
+                return .run { send in
+                    await send(
+                        .loadCafeDrinksResponse(
+                            await TaskResult {
+                                try await self.reviewClient.cafeMenus(brand, category)
+                            }
+                        )
                     )
-                )
+                }
+            case .convenienceStore:
+                return .run { send in
+                    await send(
+                        .loadConvenienceStoreDrinksResponse(
+                            await TaskResult {
+                                try await self.reviewClient.convenienceStoreMenus()
+                            }
+                        )
+                    )
+                }
             }
             
-        case .loadDrinksResponse(.success(let response)):
+        case .loadCafeDrinksResponse(.success(let response)):
             state.drinks = response.names
             return .send(.completeLoading)
             
-        case .loadDrinksResponse(.failure(let error)):
+        case .loadCafeDrinksResponse(.failure(let error)):
+            return .none
+            
+        case .loadConvenienceStoreDrinksResponse(.success(let response)):
+            state.drinks = response.names
+            return .send(.completeLoading)
+            
+        case .loadConvenienceStoreDrinksResponse(.failure(let error)):
             return .none
             
         case .loadPrices:
@@ -148,6 +170,10 @@ public struct ReviewContent: Reducer {
             
         case let .selectStore(store):
             state.store = store
+            if store == .convenienceStore {
+                state.brand = nil
+                state.categories = nil
+            }
             return .none
             
         case let .selectBrand(brand):
