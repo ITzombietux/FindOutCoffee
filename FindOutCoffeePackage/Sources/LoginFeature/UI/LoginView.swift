@@ -20,15 +20,21 @@ public struct LoginView: View {
     
     public var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack(spacing: 20) {
-                AppleLoginButton { result in
-                    
-                }
+            VStack(spacing: 10) {
+                Image("AppIcon", bundle: Bundle.main)
+                    .resizable()
                 
-                Button("카카오톡 로그인") {
+                AppleLoginButton { result in
+                    viewStore.send(.apple(result))
+                }
+                .frame(height: 50)
+                
+                KakaoLoginButton {
                     viewStore.send(.kakao)
                 }
+                .frame(height: 50)
             }
+            .padding(.horizontal, 20)
             .onChange(of: viewStore.isLoggedIn) { newValue in
                 if newValue {
                     print("@@@@@@", newValue)
