@@ -39,7 +39,7 @@ class ReviewListViewController: UIViewController {
         static let sectionHeader = "supplementary-section-header"
     }
 
-    private var loadingIndicator: UIActivityIndicatorView!
+    private var loadingIndicator = UIActivityIndicatorView()
     private lazy var hostingController = UIHostingController(rootView: ReviewView())
     
     var viewModel: ReviewListViewModel!
