@@ -35,6 +35,8 @@ extension ReviewContentView {
                                 self.selection = brand
                             }
                         }
+                        
+                        Spacer(minLength: 0)
                     }
                     .padding(.vertical)
                 }

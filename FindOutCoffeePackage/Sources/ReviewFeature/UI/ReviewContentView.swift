@@ -43,17 +43,28 @@ struct ReviewContentView: View {
             
         case .options:
             WithViewStore(self.store, observe:  { $0 }) { viewStore in
-                OptionSelectionView(iceOrHot: viewStore.binding(get: \.iceOrHot, send: { .selectIceOrHot($0 ?? .ice) }))
+                OptionSelectionView(
+                    size:
+                        viewStore.binding(
+                            get: \.size,
+                            send: { .selectSize($0 ?? .small) }
+                        ),
+                    iceOrHot:
+                        viewStore.binding(
+                            get: \.iceOrHot,
+                            send: { .selectIceOrHot($0 ?? .ice) }
+                        )
+                )
             }
             
         case .price:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
                 PriceSelectionView(
-                    priceFeelings: viewStore.prices ?? [],
+                    priceFeelings: viewStore.priceFeelings ?? [],
                     selectedFeeling:
                         viewStore.binding(
-                            get: \.price,
-                            send: { .selectPrice($0 ?? "") }
+                            get: \.priceFeeling,
+                            send: { .selectPriceFeeling($0 ?? "") }
                         ),
                     isRecommend:
                         viewStore.binding(

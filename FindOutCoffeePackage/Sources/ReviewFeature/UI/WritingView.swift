@@ -64,6 +64,7 @@ extension ReviewContentView {
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFill()
+                        .clipShape(Rectangle())
                         .frame(width: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4, height: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4)
                     
                     Button {
@@ -74,7 +75,7 @@ extension ReviewContentView {
                             .frame(width: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4 / 9, height: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4 / 9)
                             .background(
                                 Circle()
-                                    .foregroundColor(.gray.opacity(0.5))
+                                    .foregroundColor(.gray.opacity(0.7))
                             )
                     }
                 }

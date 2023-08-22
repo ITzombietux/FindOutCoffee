@@ -9,9 +9,11 @@ import SwiftUI
 
 extension ReviewContentView {
     struct OptionSelectionView: View {
+        @Binding var size: ReviewContent.Size?
         @Binding var iceOrHot: ReviewContent.IceOrHot?
         
-        init(iceOrHot: Binding<ReviewContent.IceOrHot?>) {
+        init(size: Binding<ReviewContent.Size?>, iceOrHot: Binding<ReviewContent.IceOrHot?>) {
+            self._size = size
             self._iceOrHot = iceOrHot
         }
         
@@ -25,16 +27,16 @@ extension ReviewContentView {
                     .font(.system(size: 20, weight: .bold))
                 
                 HStack(spacing: 10) {
-                    SelectionCell(title: "Small", isSelected: iceOrHot == .ice) {
-                        self.iceOrHot = .ice
+                    SelectionCell(title: "Small", isSelected: size == .small) {
+                        self.size = .small
                     }
                     
-                    SelectionCell(title: "Medium", isSelected: iceOrHot == .ice) {
-                        self.iceOrHot = .ice
+                    SelectionCell(title: "Medium", isSelected: size == .medium) {
+                        self.size = .medium
                     }
                     
-                    SelectionCell(title: "Large", isSelected: iceOrHot == .ice) {
-                        self.iceOrHot = .ice
+                    SelectionCell(title: "Large", isSelected: size == .large) {
+                        self.size = .large
                     }
                 }
                 .padding(.bottom, 20)
@@ -60,6 +62,6 @@ extension ReviewContentView {
 
 struct OptionSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewContentView.OptionSelectionView(iceOrHot: .constant(nil))
+        ReviewContentView.OptionSelectionView(size: .constant(nil), iceOrHot: .constant(nil))
     }
 }
