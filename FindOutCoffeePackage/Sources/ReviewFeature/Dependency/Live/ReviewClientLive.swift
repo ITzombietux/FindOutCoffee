@@ -91,7 +91,6 @@ extension ReviewClient: DependencyKey {
                 guard let categoryValues = categoryDictionary[cafeCategory] else { return }
                 guard let menus = categoryValues as? [String] else { return }
                 
-                print("#####", menus)
                 response.names = menus
             }
             
@@ -110,7 +109,6 @@ extension ReviewClient: DependencyKey {
             }
             
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
-            print("######", response)
             return response
         },
         convenienceStoreMenus: {
@@ -124,7 +122,6 @@ extension ReviewClient: DependencyKey {
             }
             
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
-            print("######", response)
             return response
         }
     )
