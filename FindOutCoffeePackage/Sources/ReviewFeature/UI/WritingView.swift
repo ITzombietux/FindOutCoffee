@@ -15,7 +15,7 @@ extension ReviewContentView {
         private let columns: [GridItem] = Array(repeating: GridItem(), count: 2)
         private let placeholder: String = "직접 후기를 입력해주세요!"
         
-//        @FocusState var isFocused: Bool
+        @FocusState var isFocused: Bool
         @State private var items: [PhotosPickerItem] = []
         @Binding var photo: [Data]?
         @Binding var text: String?
@@ -34,39 +34,18 @@ extension ReviewContentView {
                     photosPicker()
                     
                     ForEach(self.photo ?? [], id: \.self) { data in
-                        photoView(data: data) {
+                        photoItem(data: data) {
                             guard let index = self.photo?.firstIndex(of: data) else { return }
                             self.items.remove(at: index)
                         }
                     }
                 }
                 
-                TextEditor(text:
-                            Binding(
-                                get: { return text ?? placeholder },
-                                set: { self.text = $0 }
-                            )
-                )
-//                .focused(Binding(get: { self.isFocused }, set: { self.isFocused = $0 }))
-                .foregroundColor(text == nil ? .secondary : .black)
-                .padding(10)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke()
-                        .foregroundColor(.gray)
-                )
-                .frame(height: (UIScreen.main.bounds.width - 40) * 3 / 4)
-                .toolbar {
-                    ToolbarItem(placement: .keyboard) {
-                        Button("완료") {
-                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                        }
-                    }
-                }
+                textView()
                 
                 Spacer()
             }
-            .onChange(of: items) { newItema in
+            .onChange(of: items) { _ in
                 Task {
                     var itemsData: [Data] = []
                     for item in self.items {
@@ -76,13 +55,10 @@ extension ReviewContentView {
                     self.photo = itemsData
                 }
             }
-            //            .onTapGesture {
-            //                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            //            }
         }
         
         @ViewBuilder
-        private func photoView(data: Data, completion: @escaping () -> Void) -> some View {
+        private func photoItem(data: Data, completion: @escaping () -> Void) -> some View {
             if let uiImage = UIImage(data: data) {
                 ZStack(alignment: .topTrailing) {
                     Image(uiImage: uiImage)
@@ -128,6 +104,39 @@ extension ReviewContentView {
                 }
                 .frame(width: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4, height: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4)
             }
+        }
+        
+        private func textView() -> some View {
+            ZStack(alignment: .topLeading) {
+                TextEditor(text:
+                            Binding(
+                                get: { return text ?? "" },
+                                set: { self.text = $0 }
+                            )
+                )
+                .font(.system(size: 15))
+                .focused($isFocused)
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        Button("완료") {
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        }
+                    }
+                }
+                
+                if !isFocused, text == nil {
+                    Text(placeholder)
+                        .font(.system(size: 15))
+                        .foregroundColor(.secondary)
+                }
+            }
+            .padding(10)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke()
+                    .foregroundColor(.gray)
+            )
+            .frame(height: (UIScreen.main.bounds.width - 40) * 3 / 4)
         }
     }
 }
