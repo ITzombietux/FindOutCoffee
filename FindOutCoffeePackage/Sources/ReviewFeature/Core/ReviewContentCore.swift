@@ -59,7 +59,8 @@ public struct ReviewContent: Reducer {
         case selectPhoto([Data])
         case editText(String)
         case loadBrandsResponse(TaskResult<CafeNamesResponse>)
-        case loadDrinksResponse(TaskResult<CafeMenusReponse>)
+        case loadDrinksResponse(TaskResult<CafeMenusResponse>)
+        case loadCategoriesResponse(TaskResult<CafeCategoresResponse>)
     }
     
     @Dependency(\.reviewClient) var reviewClient
@@ -99,16 +100,33 @@ public struct ReviewContent: Reducer {
             return .none
             
         case .loadCategories:
-            state.categories = ["에스프레소", "콜드브루", "티바나", "요거트", "주스&에이드", "기타"]
+            guard let brand = state.brand else { return .none }
+            
+            return .run { send in
+                await send(
+                    .loadCategoriesResponse(
+                        await TaskResult {
+                            try await self.reviewClient.cafeCategores(brand)
+                        }
+                    )
+                )
+            }
+            
+        case .loadCategoriesResponse(.success(let response)):
+            state.categories = response.names
             return .send(.completeLoading)
+            
+        case .loadCategoriesResponse(.failure(let error)):
+            return .none
             
         case .loadDrinks:
             guard let brand = state.brand else { return .none }
+            guard let category = state.category else { return .none }
             return .run { send in
                 await send(
                     .loadDrinksResponse(
                         await TaskResult {
-                            try await self.reviewClient.cafeMenus(brand)
+                            try await self.reviewClient.cafeMenus(brand, category)
                         }
                     )
                 )
@@ -116,7 +134,7 @@ public struct ReviewContent: Reducer {
             
         case .loadDrinksResponse(.success(let response)):
             state.drinks = response.names
-            return .none
+            return .send(.completeLoading)
             
         case .loadDrinksResponse(.failure(let error)):
             return .none
