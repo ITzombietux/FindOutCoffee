@@ -8,11 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--더보기-->
+        <!--마이-->
         <scene sceneID="219-uc-uH2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8PG-2k-Zy6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="더보기" image="more" id="bZ1-dw-cyY"/>
+                    <tabBarItem key="tabBarItem" title="마이" image="person.fill" catalog="system" id="bZ1-dw-cyY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="AyM-1j-7LP">
                         <rect key="frame" x="0.0" y="48" width="414" height="96"/>
@@ -162,7 +162,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="more" width="30" height="30"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
