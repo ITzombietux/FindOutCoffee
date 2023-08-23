@@ -27,7 +27,7 @@ extension AuthenticationClient: DependencyKey {
     } logout: { snsLoginType in
         switch snsLoginType {
         case .apple:
-            AppleLoginHelper.logout()
+//            AppleLoginHelper.logout()
             return true
             
         case .kakao:
