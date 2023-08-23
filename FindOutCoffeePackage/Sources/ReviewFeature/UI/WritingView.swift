@@ -31,23 +31,27 @@ extension ReviewContentView {
                 Text("직접 후기를 작성해주세요!\n여기는 선택사항이에요☺️")
                     .font(.system(size: 25, weight: .bold))
                 
-                HStack(spacing: 10) {
-                    photosPicker()
-                    
-                    ForEach(0..<3) { index in
-                        if let data = self.photo?[index] {
-                            photoCell(data: data) {
-                                self.items.remove(at: index)
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        HStack(spacing: 10) {
+                            photosPicker()
+                            
+                            ForEach(0..<3) { index in
+                                if let data = self.photo?[index] {
+                                    photoCell(data: data) {
+                                        self.items.remove(at: index)
+                                    }
+                                } else {
+                                    emptyCell()
+                                }
                             }
-                        } else {
-                            emptyCell()
                         }
+                        
+                        textView()
+                        
+                        Spacer()
                     }
                 }
-                
-                textView()
-                
-                Spacer()
             }
             .onChange(of: items) { _ in
                 Task {
@@ -119,6 +123,12 @@ extension ReviewContentView {
         
         private func textView() -> some View {
             ZStack(alignment: .topLeading) {
+                if !isFocused, text == nil {
+                    Text(placeholder)
+                        .font(.system(size: 15))
+                        .foregroundColor(.secondary)
+                }
+                
                 TextEditor(text:
                             Binding(
                                 get: { return text ?? "" },
@@ -133,12 +143,6 @@ extension ReviewContentView {
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                         }
                     }
-                }
-                
-                if !isFocused, text == nil {
-                    Text(placeholder)
-                        .font(.system(size: 15))
-                        .foregroundColor(.secondary)
                 }
             }
             .padding(10)

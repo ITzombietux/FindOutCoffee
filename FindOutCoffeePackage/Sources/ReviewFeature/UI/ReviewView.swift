@@ -48,9 +48,9 @@ public struct ReviewView: View {
                 } label: {
                     Image(systemName: viewStore.state == 0 ? "multiply" : "chevron.left")
                         .resizable()
-                        .foregroundColor(Color.mainColor)
                         .frame(width: 20, height: 20)
                 }
+                .foregroundColor(.black)
                 
                 Spacer()
             }
