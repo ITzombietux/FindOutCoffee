@@ -8,6 +8,7 @@
 import SwiftUI
 
 import ComposableArchitecture
+import SkeletonUI
 
 struct ProfileView: View {
     let store: StoreOf<My>
@@ -20,8 +21,10 @@ struct ProfileView: View {
         WithViewStore(self.store, observe: \.user) { viewStore in
             HStack(alignment: .center) {
                 Text(viewStore.name)
+                    .skeleton(with: viewStore.name.isEmpty)
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(Color(red: 0.26, green: 0.26, blue: 0.26))
+                    .frame(width: 80, height: 30)
                 
                 Spacer()
                 
@@ -34,6 +37,7 @@ struct ProfileView: View {
                 } placeholder: {
                     
                 }
+                .skeleton(with: viewStore.imageURL.isEmpty)
                 .foregroundColor(.clear)
                 .frame(width: 72, height: 72)
                 .background(.black.opacity(0.1))

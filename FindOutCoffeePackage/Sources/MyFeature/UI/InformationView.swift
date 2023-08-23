@@ -8,6 +8,7 @@
 import SwiftUI
 
 import ComposableArchitecture
+import SkeletonUI
 
 struct InformationView: View {
     @Environment(\.openURL) var openURL
