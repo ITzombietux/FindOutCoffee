@@ -21,8 +21,7 @@ extension ReviewClient: DependencyKey {
                 ["id" : "\(request.id)",
                  "nickname" : request.coffee.nickname,
                  "title" : request.coffee.title,
-                 "price" : request.coffee.price,
-                 "taste" : request.coffee.taste,
+                 "category" : request.coffee.category,
                  "size" : request.coffee.size,
                  "isHot" : request.coffee.isHot,
                  "text" : request.coffee.text,
@@ -39,13 +38,14 @@ extension ReviewClient: DependencyKey {
                 }
             }
             
-            return SubmitResponse()
+            return SubmitReviewResponse(menuIdentifier: request.id.uuidString,
+                                        userIdentifier: request.userIdentifier)
         },
         uploadImages: { request in
             let storageRef = Storage.storage().reference()
             var images: [UIImage] = []
             
-            request.imageDatas.forEach { imageData in
+            request.photosData.forEach { imageData in
                 if let image = imageData.image {
                     images.append(image)
                 }
@@ -67,7 +67,7 @@ extension ReviewClient: DependencyKey {
                 }
             }
             
-            return SubmitResponse()
+            return SubmitImagesResponse()
         },
         cafeNames: {
             let db = Firestore.firestore()

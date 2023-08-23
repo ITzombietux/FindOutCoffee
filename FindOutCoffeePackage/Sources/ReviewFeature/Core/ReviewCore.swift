@@ -11,6 +11,7 @@ import ComposableArchitecture
 
 public struct Review: Reducer {
     public struct State: Equatable {
+        @PresentationState var alert: AlertState<Action.Alert>?
         public var steps: [Step]
         public var currentStep: Int
         public var nextButtonIsEnabled: Bool
@@ -25,11 +26,15 @@ public struct Review: Reducer {
     }
     
     public enum Action {
+        case alert(PresentationAction<Alert>)
         case backButtonTapped
         case nextButtonTapped
         case checkNextButtonIsEnabled
-        case saveReview
         case content(ReviewContent.Action)
+        
+        public enum Alert {
+            case confirmSubmit
+        }
     }
     
     public init() {}
@@ -92,10 +97,6 @@ public struct Review: Reducer {
                 }
                 return .none
                 
-            case .saveReview:
-                // TODO: 서버 통신
-                return .none
-                
             case .content(.completeLoading):
                 state.currentStep += 1
                 return .run { send in
@@ -118,11 +119,42 @@ public struct Review: Reducer {
                 
             case .content:
                 return .none
+                
+            case .alert(.presented(.confirmSubmit)):
+                return .run { send in
+                    await send(.content(.delegate(.saveReview)))
+                }
+                
+            case .alert:
+                return .none
             }
         }
+        .ifLet(\.$alert, action: /Action.alert)
         
         Scope(state: \.content, action: /Action.content) {
             ReviewContent()
+        }
+    }
+}
+
+extension AlertState where Action == Review.Action.Alert {
+    static func submit() -> Self {
+        Self {
+            TextState("리뷰를 등록하시겠습니까?")
+        } actions: {
+            ButtonState(role: .cancel) {
+                TextState("취소")
+            }
+            
+            ButtonState(role: .destructive, action: .confirmSubmit) {
+                TextState("등록하기")
+            }
+        } message: {
+            TextState(
+              """
+              1일 내에 관리자 검수를 거쳐 정상적으로 리뷰가 등록됩니다!!!
+              """
+            )
         }
     }
 }

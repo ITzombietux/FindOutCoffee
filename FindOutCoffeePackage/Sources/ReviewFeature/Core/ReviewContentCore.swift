@@ -59,9 +59,17 @@ public struct ReviewContent: Reducer {
         case loadConvenienceStoreDrinksResponse(TaskResult<ConvenienceStoreMenusResponse>)
         case loadConvenienceStoreBrandsResponse(TaskResult<ConvenienceStoreBrandsResponse>)
         case loadCategoriesResponse(TaskResult<CafeCategoresResponse>)
+        case saveReviewResponse(TaskResult<SubmitReviewResponse>)
+        case uploadImagesResponse(TaskResult<SubmitImagesResponse>)
+        case delegate(Delegate)
+        
+        public enum Delegate {
+            case saveReview
+        }
     }
     
     @Dependency(\.reviewClient) var reviewClient
+    @Dependency(\.date.now) var now
     
     public init() {}
     
@@ -220,6 +228,73 @@ public struct ReviewContent: Reducer {
             
         case let .editText(text):
             state.text = text
+            return .none
+            
+        case .delegate(.saveReview):
+            guard let store = state.store else { return .none }
+            guard let title = state.drink else { return .none }
+            guard let size = state.size else { return .none }
+            guard let iceOrHot = state.iceOrHot else { return .none }
+            guard let category = state.category else { return .none }
+            guard let brand = state.brand else { return .none }
+            guard let feeling = state.priceFeeling else { return .none }
+            guard let isRecommend = state.isRecommend else { return .none }
+            let text = state.text ?? ""
+            
+            return .run { send in
+                await send(
+                    .saveReviewResponse(
+                        await TaskResult {
+                            try await self.reviewClient.submit(
+                                SubmitReviewRequest(
+                                    userIdentifier: UserDefaults.standard.string(forKey: "isLoggedinKey") ?? "",
+                                    coffee: Coffee(nickname: UserDefaults.standard.string(forKey: "nameKey") ?? "",
+                                                   title: title,
+                                                   size: size.rawValue,
+                                                   isHot: iceOrHot.rawValue,
+                                                   text: text,
+                                                   address: brand,
+                                                   category: category,
+                                                   date: self.now.description,
+                                                   feeling: feeling,
+                                                   isRecommend: isRecommend
+                                                  ),
+                                    selectedTitle: store == .cafe ? "CafeReview" : "CSReview"
+                                )
+                            )
+                        }
+                    )
+                )
+            }
+        
+        case let .saveReviewResponse(.success(response)):
+            guard let photoDatas = state.photo else { return .none }
+            
+            return .run { send in
+                await send(
+                    .uploadImagesResponse(
+                        await TaskResult {
+                            try await self.reviewClient.uploadImages(
+                                SubmitImagesRequest(menuIdentifier: response.menuIdentifier,
+                                                    userIdentifier: response.userIdentifier,
+                                                    photosData: photoDatas)
+                            )
+                        }
+                    )
+                )
+            }
+            
+        case let .saveReviewResponse(.failure(error)):
+            return .none
+            
+        case let .uploadImagesResponse(.success(response)):
+            //TODO: - 성공했다는 Alert 확인 누르면 뷰 닫기
+            return .none
+            
+        case let .uploadImagesResponse(.failure(error)):
+            return .none
+            
+        case .delegate:
             return .none
         }
     }
