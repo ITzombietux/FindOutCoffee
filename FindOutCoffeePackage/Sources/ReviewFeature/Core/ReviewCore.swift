@@ -71,11 +71,9 @@ public struct Review: Reducer {
                 let nextStep = state.steps[state.currentStep + 1]
                 return .run { send in
                     await send(.content(.load(nextStep)))
-//                    await send(.checkNextButtonIsEnabled)
                 }
                 
             case .checkNextButtonIsEnabled:
-                print("checkNextButtonIsEnabled", state.steps[state.currentStep])
                 switch state.steps[state.currentStep] {
                 case .store:
                     state.nextButtonIsEnabled = state.content.store != nil
@@ -103,19 +101,20 @@ public struct Review: Reducer {
                 return .run { send in
                     await send(.checkNextButtonIsEnabled)
                 }
-                
-            case .content(.select):
-                return .send(.checkNextButtonIsEnabled)
-                
-            case let .content(.select(.store(store))):
-                switch store {
-                case .convenienceStore:
-                    state.steps = Step.convenienceStoreSteps
-                    
-                case .cafe:
-                    state.steps = Step.cafeSteps
+            
+            case let .content(.select(selection)):
+                if case let .store(store) = selection {
+                    switch store {
+                    case .convenienceStore:
+                        state.steps = Step.convenienceStoreSteps
+                        
+                    case .cafe:
+                        state.steps = Step.cafeSteps
+                    }
                 }
-                return .none
+                return .run { send in
+                    await send(.checkNextButtonIsEnabled)
+                }
                 
             case .content:
                 return .none
