@@ -37,7 +37,7 @@ public struct LoginView: View {
             .padding(.horizontal, 20)
             .onChange(of: viewStore.isLoggedIn) { newValue in
                 if newValue {
-                    self.dismiss()
+                    NotificationCenter.default.post(name: Notification.Name.dismissLoginView, object: nil)
                 }
             }
         }
@@ -48,4 +48,8 @@ struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView(store: Store(initialState: Login.State(), reducer: { Login() }))
     }
+}
+
+public extension Notification.Name {
+    static let dismissLoginView = Notification.Name("dismissLoginView")
 }
