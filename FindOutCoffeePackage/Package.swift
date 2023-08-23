@@ -45,7 +45,8 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "1.0.0"),
         .package(url: "https://github.com/kakao/kakao-ios-sdk", exact: "2.16.0"),
-        .package(url: "https://github.com/firebase/firebase-ios-sdk", exact: "9.0.0")
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", exact: "9.0.0"),
+        .package(url: "https://github.com/CSolanaM/SkeletonUI.git", exact: "1.0.11")
     ],
     targets: [
         .target(
@@ -59,6 +60,7 @@ let package = Package(
             dependencies: [
                 "AuthorizationDependency",
                 "UserDefaultsDependency",
+                "DesignSystem",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
@@ -105,7 +107,9 @@ let package = Package(
         ),
         .target(
             name: "DesignSystem",
-            dependencies: []
+            dependencies: [
+                .product(name: "SkeletonUI", package: "SkeletonUI")
+            ]
         ),
         .testTarget(
             name: "FindOutCoffeePackageTests",

@@ -51,23 +51,25 @@ public struct ReviewContent: Reducer {
         case loadDrinks
         case loadPriceFeelings
         case completeLoading
-        case selectStore(Store)
-        case selectBrand(String)
-        case selectCategory(String)
-        case selectDrink(String)
-        case selectSize(Size)
-        case selectIceOrHot(IceOrHot)
-        case selectPriceFeeling(String)
-        case selectRecommendation(Bool)
+        case select(Selection)
         case selectPhoto([Data])
         case editText(String)
         case loadBrandsResponse(TaskResult<CafeNamesResponse>)
         case loadCafeDrinksResponse(TaskResult<CafeMenusResponse>)
         case loadConvenienceStoreDrinksResponse(TaskResult<ConvenienceStoreMenusResponse>)
+        case loadConvenienceStoreBrandsResponse(TaskResult<ConvenienceStoreBrandsResponse>)
         case loadCategoriesResponse(TaskResult<CafeCategoresResponse>)
+        case saveReviewResponse(TaskResult<SubmitReviewResponse>)
+        case uploadImagesResponse(TaskResult<SubmitImagesResponse>)
+        case delegate(Delegate)
+        
+        public enum Delegate {
+            case saveReview
+        }
     }
     
     @Dependency(\.reviewClient) var reviewClient
+    @Dependency(\.date.now) var now
     
     public init() {}
     
@@ -88,14 +90,28 @@ public struct ReviewContent: Reducer {
             }
             
         case .loadBrands:
-            return .run { send in
-                await send(
-                    .loadBrandsResponse(
-                        await TaskResult {
-                            try await self.reviewClient.cafeNames()
-                        }
+            guard let store = state.store else { return .none }
+            switch store {
+            case .cafe:
+                return .run { send in
+                    await send(
+                        .loadBrandsResponse(
+                            await TaskResult {
+                                try await self.reviewClient.cafeNames()
+                            }
+                        )
                     )
-                )
+                }
+            case .convenienceStore:
+                return .run { send in
+                    await send(
+                        .loadConvenienceStoreBrandsResponse(
+                            await TaskResult {
+                                try await self.reviewClient.convenienceStoreBrands()
+                            }
+                        )
+                    )
+                }
             }
             
         case .loadBrandsResponse(.success(let response)):
@@ -141,11 +157,12 @@ public struct ReviewContent: Reducer {
                     )
                 }
             case .convenienceStore:
+                guard let brand = state.brand else { return .none }
                 return .run { send in
                     await send(
                         .loadConvenienceStoreDrinksResponse(
                             await TaskResult {
-                                try await self.reviewClient.convenienceStoreMenus()
+                                try await self.reviewClient.convenienceStoreMenus(brand)
                             }
                         )
                     )
@@ -157,6 +174,13 @@ public struct ReviewContent: Reducer {
             return .send(.completeLoading)
             
         case .loadCafeDrinksResponse(.failure(let error)):
+            return .none
+            
+        case .loadConvenienceStoreBrandsResponse(.success(let response)):
+            state.brands = response.names
+            return .send(.completeLoading)
+            
+        case .loadConvenienceStoreBrandsResponse(.failure(let error)):
             return .none
             
         case .loadConvenienceStoreDrinksResponse(.success(let response)):
@@ -173,40 +197,29 @@ public struct ReviewContent: Reducer {
         case .completeLoading:
             return .none
             
-        case let .selectStore(store):
-            state.store = store
-            if store == .convenienceStore {
-                state.brand = nil
-                state.categories = nil
+        case let .select(selection):
+            switch selection {
+            case let .store(store):
+                state.store = store
+                if store == .convenienceStore {
+                    state.brand = nil
+                    state.categories = nil
+                }
+            case let .brand(brand):
+                state.brand = brand
+            case let .category(category):
+                state.category = category
+            case let .drink(drink):
+                state.drink = drink
+            case let .size(size):
+                state.size = size
+            case let .iceOrHot(iceOrHot):
+                state.iceOrHot = iceOrHot
+            case let .priceFeeling(priceFeeling):
+                state.priceFeeling = priceFeeling
+            case let .recommendation(isRecommend):
+                state.isRecommend = isRecommend
             }
-            return .none
-            
-        case let .selectBrand(brand):
-            state.brand = brand
-            return .none
-            
-        case let .selectCategory(category):
-            state.category = category
-            return .none
-            
-        case let .selectDrink(drink):
-            state.drink = drink
-            return .none
-            
-        case let .selectSize(size):
-            state.size = size
-            return .none
-            
-        case let .selectIceOrHot(iceOrHot):
-            state.iceOrHot = iceOrHot
-            return .none
-            
-        case let .selectPriceFeeling(priceFeeling):
-            state.priceFeeling = priceFeeling
-            return .none
-            
-        case let .selectRecommendation(isRecommend):
-            state.isRecommend = isRecommend
             return .none
             
         case let .selectPhoto(photo):
@@ -215,6 +228,73 @@ public struct ReviewContent: Reducer {
             
         case let .editText(text):
             state.text = text
+            return .none
+            
+        case .delegate(.saveReview):
+            guard let store = state.store else { return .none }
+            guard let title = state.drink else { return .none }
+            guard let size = state.size else { return .none }
+            guard let iceOrHot = state.iceOrHot else { return .none }
+            guard let category = state.category else { return .none }
+            guard let brand = state.brand else { return .none }
+            guard let feeling = state.priceFeeling else { return .none }
+            guard let isRecommend = state.isRecommend else { return .none }
+            let text = state.text ?? ""
+            
+            return .run { send in
+                await send(
+                    .saveReviewResponse(
+                        await TaskResult {
+                            try await self.reviewClient.submit(
+                                SubmitReviewRequest(
+                                    userIdentifier: UserDefaults.standard.string(forKey: "isLoggedinKey") ?? "",
+                                    coffee: Coffee(nickname: UserDefaults.standard.string(forKey: "nameKey") ?? "",
+                                                   title: title,
+                                                   size: size.rawValue,
+                                                   isHot: iceOrHot.rawValue,
+                                                   text: text,
+                                                   address: brand,
+                                                   category: category,
+                                                   date: self.now.description,
+                                                   feeling: feeling,
+                                                   isRecommend: isRecommend
+                                                  ),
+                                    selectedTitle: store == .cafe ? "CafeReview" : "CSReview"
+                                )
+                            )
+                        }
+                    )
+                )
+            }
+        
+        case let .saveReviewResponse(.success(response)):
+            guard let photoDatas = state.photo else { return .none }
+            
+            return .run { send in
+                await send(
+                    .uploadImagesResponse(
+                        await TaskResult {
+                            try await self.reviewClient.uploadImages(
+                                SubmitImagesRequest(menuIdentifier: response.menuIdentifier,
+                                                    userIdentifier: response.userIdentifier,
+                                                    photosData: photoDatas)
+                            )
+                        }
+                    )
+                )
+            }
+            
+        case let .saveReviewResponse(.failure(error)):
+            return .none
+            
+        case let .uploadImagesResponse(.success(response)):
+            //TODO: - 성공했다는 Alert 확인 누르면 뷰 닫기
+            return .none
+            
+        case let .uploadImagesResponse(.failure(error)):
+            return .none
+            
+        case .delegate:
             return .none
         }
     }

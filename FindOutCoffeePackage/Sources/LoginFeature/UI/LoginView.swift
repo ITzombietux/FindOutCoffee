@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import UserDefaultsDependency
+import DesignSystem
 
 import SwiftUI
 
@@ -21,8 +22,13 @@ public struct LoginView: View {
     public var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack(spacing: 10) {
-                Image("AppIcon", bundle: Bundle.main)
+                Spacer()
+                
+                Image("커피를찾아서")
                     .resizable()
+                    .frame(width: 200, height: 200)
+                    
+                Spacer()
                 
                 AppleLoginButton { result in
                     viewStore.send(.apple(result))
@@ -33,12 +39,11 @@ public struct LoginView: View {
                     viewStore.send(.kakao)
                 }
                 .frame(height: 50)
+                .padding(.bottom, 40)
             }
             .padding(.horizontal, 20)
-            .onChange(of: viewStore.isLoggedIn) { newValue in
-                if newValue {
-                    self.dismiss()
-                }
+            .onChange(of: viewStore.loggedInFlag) { _ in
+                NotificationCenter.default.post(name: Notification.Name.dismissLoginView, object: nil)
             }
         }
     }
@@ -48,4 +53,8 @@ struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView(store: Store(initialState: Login.State(), reducer: { Login() }))
     }
+}
+
+public extension Notification.Name {
+    static let dismissLoginView = Notification.Name("dismissLoginView")
 }

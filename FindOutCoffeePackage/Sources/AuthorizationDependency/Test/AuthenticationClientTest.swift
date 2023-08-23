@@ -9,6 +9,8 @@ import XCTestDynamicOverlay
 
 extension AuthenticationClient {
     public static var testValue = Self(
-        login: unimplemented("AuthenticationClient.login")
+        appleLogin: { _ in unimplemented("AuthenticationClient.appleLogin") },
+        kakaoLogin: { unimplemented("AuthenticationClient.kakaoLogin") },
+        logout: { _ in unimplemented("AuthenticationClient.logout") }
     )
 }

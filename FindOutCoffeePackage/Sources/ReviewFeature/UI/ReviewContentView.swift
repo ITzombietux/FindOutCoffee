@@ -23,22 +23,22 @@ struct ReviewContentView: View {
         switch step {
         case .store:
             WithViewStore(self.store, observe: \.store) { viewStore in
-                StoreSelectionView(selection: viewStore.binding(get: \.optional, send: { .selectStore($0 ?? .cafe) }))
+                StoreSelectionView(selection: viewStore.binding(get: \.optional, send: { .select(.store($0 ?? .cafe)) }))
             }
             
         case .brand:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                BrandSelectionView(brands: viewStore.state.brands ?? [], selection: viewStore.binding(get: \.brand, send: { .selectBrand($0 ?? "") }))
+                BrandSelectionView(brands: viewStore.state.brands ?? [], selection: viewStore.binding(get: \.brand, send: { .select(.brand($0 ?? "")) }))
             }
             
         case .category:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                CategorySelectionView(categories: viewStore.state.categories ?? [], selection: viewStore.binding(get: \.category, send: { .selectCategory($0 ?? "") }))
+                CategorySelectionView(categories: viewStore.state.categories ?? [], selection: viewStore.binding(get: \.category, send: { .select(.category(($0 ?? ""))) }))
             }
             
         case .drink:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                DrinkSelectionView(store: viewStore.state.store?.description ?? "", drinks: viewStore.state.drinks ?? [], selection: viewStore.binding(get: \.drink, send: { .selectDrink($0 ?? "")   }))
+                DrinkSelectionView(store: viewStore.state.store?.description ?? "", drinks: viewStore.state.drinks ?? [], selection: viewStore.binding(get: \.drink, send: { .select(.drink($0 ?? "")) }))
             }
             
         case .options:
@@ -47,12 +47,12 @@ struct ReviewContentView: View {
                     size:
                         viewStore.binding(
                             get: \.size,
-                            send: { .selectSize($0 ?? .small) }
+                            send: { .select(.size($0 ?? .small)) }
                         ),
                     iceOrHot:
                         viewStore.binding(
                             get: \.iceOrHot,
-                            send: { .selectIceOrHot($0 ?? .ice) }
+                            send: { .select(.iceOrHot($0 ?? .ice)) }
                         )
                 )
             }
@@ -64,12 +64,12 @@ struct ReviewContentView: View {
                     selectedFeeling:
                         viewStore.binding(
                             get: \.priceFeeling,
-                            send: { .selectPriceFeeling($0 ?? "") }
+                            send: { .select(.priceFeeling($0 ?? "")) }
                         ),
                     isRecommend:
                         viewStore.binding(
                             get: \.isRecommend,
-                            send: { .selectRecommendation($0 ?? false) }
+                            send: { .select(.recommendation($0 ?? false)) }
                         )
                 )
             }

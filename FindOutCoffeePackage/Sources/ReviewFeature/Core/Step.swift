@@ -15,7 +15,7 @@ public extension Review {
         case price
         case writing
         
-        public static let convenienceStoreSteps: [Self] = [.store, .drink, .options, .price, .writing]
+        public static let convenienceStoreSteps: [Self] = [.store, .brand, .drink, .options, .price, .writing]
         public static let cafeSteps: [Self] = [.store, .brand, .category, .drink, .options, .price, .writing]
     }
 }

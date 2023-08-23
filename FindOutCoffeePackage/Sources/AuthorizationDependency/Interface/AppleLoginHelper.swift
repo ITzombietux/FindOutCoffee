@@ -18,8 +18,19 @@ final public class AppleLoginHelper {
         self.appleIDCredential = appleIDCredential
     }
     
-    public func loadUserInfomation() -> User? {
-        guard let nickname = appleIDCredential.fullName?.nickname else { return nil }
-        return User(id: appleIDCredential.user, profileImageURL: nil, nickname: nickname)
+    public static func logout() {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedOperation = .operationLogout
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.performRequests()
+    }
+    
+    public func loadUser() -> User? {
+        User(
+            id: appleIDCredential.user,
+            profileImageURL: nil,
+            nickname: appleIDCredential.fullName?.nickname ?? "리뷰어",
+            snsLoginType: .apple
+        )
     }
 }

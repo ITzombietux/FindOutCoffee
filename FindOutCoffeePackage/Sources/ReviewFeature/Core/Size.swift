@@ -6,9 +6,9 @@
 //
 
 public extension ReviewContent {
-    enum Size {
-        case small
-        case medium
-        case large
+    enum Size: String {
+        case small = "스몰 사이즈"
+        case medium = "미디움 사이즈"
+        case large = "라지 사이즈"
     }
 }

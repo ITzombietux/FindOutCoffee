@@ -9,48 +9,52 @@ import Dependencies
 import Foundation
 import XCTestDynamicOverlay
 
-public struct SubmitRequest: Codable, Identifiable {
+public struct SubmitReviewRequest: Codable, Identifiable {
     public var id = UUID()
     var userIdentifier: String
     var coffee: Coffee
-    var imageDatas: [Data]
     var selectedTitle: String
 }
 
+public struct SubmitImagesRequest: Codable {
+    let menuIdentifier: String
+    let userIdentifier: String
+    let photosData: [Data]
+}
+
 public struct Coffee: Codable {
-    var id: String
     var nickname: String
     var title: String
-    var price: Int
-    var taste: String
     var size: String
     var isHot: String
     var text: String
     var address: String
+    var category: String
     var date: String
     var feeling: String
     var isRecommend: Bool
     var isPublic = false
     
-    init(id: String, nickname: String, title: String, price: Int, taste: String, size: String, isHot: String, text: String, address: String, date: String, feeling: String, isRecommend: Bool) {
-        self.id = id
+    init(nickname: String, title: String, size: String, isHot: String, text: String, address: String, category: String, date: String, feeling: String, isRecommend: Bool) {
         self.nickname = nickname
         self.title = title
-        self.price = price
-        self.taste = taste
         self.size = size
         self.isHot = isHot
         self.text = text
         self.address = address
+        self.category = category
         self.date = date
         self.feeling = feeling
         self.isRecommend = isRecommend
     }
 }
 
-public struct SubmitResponse: Codable {
-    
+public struct SubmitReviewResponse: Codable {
+    let menuIdentifier: String
+    let userIdentifier: String
 }
+
+public struct SubmitImagesResponse: Codable {}
 
 public struct CafeNamesResponse {
     var names: [String]
@@ -64,17 +68,22 @@ public struct CafeMenusResponse {
     var names: [String]
 }
 
+public struct ConvenienceStoreBrandsResponse {
+    var names: [String]
+}
+
 public struct ConvenienceStoreMenusResponse {
     var names: [String]
 }
 
 public struct ReviewClient {
-    public var submit: @Sendable (SubmitRequest) async throws -> SubmitResponse
-    public var uploadImages: @Sendable (SubmitRequest) async throws -> SubmitResponse
+    public var submit: @Sendable (SubmitReviewRequest) async throws -> SubmitReviewResponse
+    public var uploadImages: @Sendable (SubmitImagesRequest) async throws -> SubmitImagesResponse
     public var cafeNames: @Sendable () async throws -> CafeNamesResponse
     public var cafeMenus: @Sendable (String, String) async throws -> CafeMenusResponse
     public var cafeCategores: @Sendable (String) async throws -> CafeCategoresResponse
-    public var convenienceStoreMenus: @Sendable () async throws -> ConvenienceStoreMenusResponse
+    public var convenienceStoreBrands: @Sendable () async throws -> ConvenienceStoreBrandsResponse
+    public var convenienceStoreMenus: @Sendable (String) async throws -> ConvenienceStoreMenusResponse
 }
 
 extension ReviewClient: TestDependencyKey {
@@ -84,6 +93,7 @@ extension ReviewClient: TestDependencyKey {
         cafeNames: unimplemented("\(Self.self).cafeNames"),
         cafeMenus: unimplemented("\(Self.self).cafeMenus"),
         cafeCategores: unimplemented("\(Self.self).cafeCategores"),
+        convenienceStoreBrands: unimplemented("\(Self.self).convenienceStoreBrands"),
         convenienceStoreMenus: unimplemented("\(Self.self).convenienceStoreMenus")
     )
 }

@@ -17,7 +17,7 @@ public struct MyView: View {
     public init() {}
     
     public var body: some View {
-        WithViewStore(self.store, observe: \.user) { viewStore in
+        WithViewStore(self.store, observe: \.loggedInFlag) { viewStore in
             VStack(spacing: 0) {
                 ProfileView(store: self.store)
                     .padding()
@@ -34,7 +34,14 @@ public struct MyView: View {
             .onAppear {
                 viewStore.send(.onAppear)
             }
+            .onChange(of: viewStore.state) { _ in
+                NotificationCenter.default.post(name: Notification.Name.showingLoginView, object: nil)
+            }
             .alert(store: self.store.scope(state: \.$alert, action: { .alert($0) }))
         }
     }
+}
+
+public extension Notification.Name {
+    static let showingLoginView = Notification.Name("showingLoginView")
 }

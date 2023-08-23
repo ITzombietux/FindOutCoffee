@@ -8,7 +8,10 @@
 import Dependencies
 
 public struct AuthenticationClient {
-    public var login: @Sendable (SNSLoginType) async throws -> User
+    public var appleLogin: @Sendable (AppleLoginHelper.Authorization) async throws -> User
+    public var kakaoLogin: @Sendable () async throws -> User
+    
+    public var logout: @Sendable (SNSLoginType) async throws -> Bool
 }
 
 extension DependencyValues {

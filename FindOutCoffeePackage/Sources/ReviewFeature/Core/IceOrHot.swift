@@ -6,8 +6,8 @@
 //
 
 public extension ReviewContent {
-    enum IceOrHot: Equatable {
-        case ice
-        case hot
+    enum IceOrHot: String, Equatable {
+        case ice = "아이스"
+        case hot = "핫"
     }
 }

@@ -22,7 +22,7 @@ extension ReviewContentView {
         
         var body: some View {
             VStack(alignment: .leading, spacing: 20) {
-                Text("카페 이름이 뭐에요?")
+                Text("브랜드 이름이 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
                 ScrollView(.vertical, showsIndicators: true) {

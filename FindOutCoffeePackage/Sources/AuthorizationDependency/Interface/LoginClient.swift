@@ -38,7 +38,7 @@ public enum FirebaseLoginError: Equatable, LocalizedError, Sendable {
 
 func removeUser() {
     UserDefaults.standard.removeObject(forKey: "isLoggedInKey")
-    UserDefaults.standard.removeObject(forKey: "tpyeKey")
+    UserDefaults.standard.removeObject(forKey: "typeKey")
     UserDefaults.standard.removeObject(forKey: "nameKey")
     UserDefaults.standard.removeObject(forKey: "imageURLKey")
 }

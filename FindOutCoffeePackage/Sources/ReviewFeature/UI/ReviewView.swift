@@ -29,7 +29,10 @@ public struct ReviewView: View {
             }
             
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                ReviewButton(step: viewStore.state.steps[viewStore.state.currentStep]) {
+                ReviewButton(
+                    isEnabled: viewStore.state.nextButtonIsEnabled,
+                    step: viewStore.state.steps[viewStore.state.currentStep]
+                ) {
                     viewStore.send(.nextButtonTapped)
                 }
             }
@@ -44,8 +47,10 @@ public struct ReviewView: View {
                     viewStore.send(.backButtonTapped)
                 } label: {
                     Image(systemName: viewStore.state == 0 ? "multiply" : "chevron.left")
-                        .foregroundColor(Color.mainColor)
+                        .resizable()
+                        .frame(width: 20, height: 20)
                 }
+                .foregroundColor(.black)
                 
                 Spacer()
             }
