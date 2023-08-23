@@ -45,26 +45,25 @@ class ReviewDataLoader {
         Cafe(id: "탐앤탐스", title: "탐앤탐스", subtitle: "활력과 감성을 충전한다", thumbnail: "탐앤탐스"),
         Cafe(id: "파스쿠찌", title: "파스쿠찌", subtitle: "이탈리안 초콜릿의 진한 맛", thumbnail: "파스쿠찌"),
         Cafe(id: "할리스커피", title: "할리스커피", subtitle: "Holiday in Hollys", thumbnail: "할리스커피"),
-        Cafe(id: "커피에반하다", title: "커피에반하다", subtitle: "커피에반하다", thumbnail: "커피에반하다"),
+//        Cafe(id: "커피에반하다", title: "커피에반하다", subtitle: "커피에반하다", thumbnail: "커피에반하다"),
         Cafe(id: "엔제리너스", title: "엔제리너스", subtitle: "천사처럼 부드럽고 달콤함 커피", thumbnail: "엔제리너스"),
         Cafe(id: "요거프레소", title: "요거프레소", subtitle: "요거트와 커피의 만남", thumbnail: "요거프레소"),
         Cafe(id: "더벤티", title: "더벤티", subtitle: "합리적인 가격에 맛있는 한 잔", thumbnail: "더벤티"),
-        Cafe(id: "커피나무", title: "커피나무", subtitle: "커피행 열차를 탈 준비를 하시죠", thumbnail: "커피나무"),
+//        Cafe(id: "커피나무", title: "커피나무", subtitle: "커피행 열차를 탈 준비를 하시죠", thumbnail: "커피나무"),
 //        Cafe(id: "셀렉토커피", title: "셀렉토커피", subtitle: "Select Your Americano", thumbnail: "셀렉토커피"),
         Cafe(id: "메가커피", title: "메가커피", subtitle: "더 크고, 더 맛있다!", thumbnail: "메가커피"),
         Cafe(id: "토프레소", title: "토프레소", subtitle: "No.1 FRESH COFFEE", thumbnail: "토프레소"),
-        Cafe(id: "공차", title: "공차", subtitle: "Blended Happiness With Tea", thumbnail: "공차"),
+//        Cafe(id: "공차", title: "공차", subtitle: "Blended Happiness With Tea", thumbnail: "공차"),
         Cafe(id: "커피빈", title: "커피빈", subtitle: "Coffee Bean & Tea Leaf", thumbnail: "커피빈"),
 //        Cafe(id: "폴바셋", title: "폴바셋", subtitle: "Cup to Seed", thumbnail: "폴바셋"),
     ]
     var tastes: [Taste] = [
         Taste(id: "1", title: "에스프레소", subtitle: "#신속#향과맛", thumbnail: "에스프레소"),
-        Taste(id: "2", title: "달달", subtitle: "#달콤#부드러움", thumbnail: "달달"),
-        Taste(id: "3", title: "과일", subtitle: "#새콤달콤#싱싱함", thumbnail: "과일"),
         Taste(id: "4", title: "콜드브루", subtitle: "#추출#깊은 맛", thumbnail: "콜드브루-1"),
         Taste(id: "5", title: "티바나", subtitle: "#유기농#건강", thumbnail: "티바나"),
-        Taste(id: "6", title: "요거트", subtitle: "#깔끔한#달콤함", thumbnail: "요거트"),
-        Taste(id: "7", title: "버블티", subtitle: "#톡특한#식감", thumbnail: "버블티")
+        Taste(id: "3", title: "주스&에이드", subtitle: "#새콤달콤#싱싱함", thumbnail: "과일"),
+        Taste(id: "7", title: "버블티", subtitle: "#톡특한#식감", thumbnail: "버블티"),
+        Taste(id: "2", title: "기타", subtitle: "#어떤 커피든", thumbnail: "달달")
     ]
 }
 
