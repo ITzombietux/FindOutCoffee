@@ -28,7 +28,8 @@ public struct AppleLoginButton: View {
                 guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
                 print("onCompletion user", credential.user) 
                 print("onCompletion fullName", credential.fullName)
-                print("onCompletion identityToken", credential.identityToken)
+                print("onCompletion identityToken", String(data: credential.identityToken!, encoding: .utf8))
+                action(.success(authorization))
             case let .failure(error):
                 break
             }

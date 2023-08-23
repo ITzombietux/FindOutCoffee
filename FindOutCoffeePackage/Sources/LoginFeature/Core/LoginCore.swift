@@ -38,7 +38,7 @@ public struct Login: Reducer {
             case let .success(authorization):
                 return .run { send in
                     do {
-                        let user = try await authenticationClient.login(.apple(authorization))
+                        let user = try await authenticationClient.appleLogin(authorization)
                         print("apple success", user)
                         await send(.loginResponse(.success(user)))
                     } catch {
@@ -53,7 +53,7 @@ public struct Login: Reducer {
         case .kakao:
             return .run { send in
                 do {
-                    let user = try await authenticationClient.login(.kakao)
+                    let user = try await authenticationClient.kakaoLogin()
                     await send(.loginResponse(.success(user)))
                 } catch {
                     await send(.loginResponse(.failure(error)))
@@ -62,12 +62,12 @@ public struct Login: Reducer {
             
         case let .loginResponse(.success(user)):
             print("user", user)
-            return .run { [identifier = user.id, profileImageURL = user.profileImageURL, nickname = user.nickname] send in
+            return .run { [identifier = user.id, profileImageURL = user.profileImageURL, nickname = user.nickname, snsLoginType = user.snsLoginType.rawValue] send in
                 await send(
                     .saveUser(
                         await TaskResult {
                             try await self.loginClient.login(
-                                .init(identifier: identifier, name: nickname, imageURL: profileImageURL ?? "", type: "카카오")
+                                .init(identifier: identifier, name: nickname, imageURL: profileImageURL ?? "", type: snsLoginType)
                             )
                         }
                     )

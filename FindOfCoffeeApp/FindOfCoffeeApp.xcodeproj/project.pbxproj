@@ -92,6 +92,7 @@
 /* Begin PBXFileReference section */
 		2D25C2842A933B3D0058B849 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		2DA8C35C2A8DE30E008A20BC /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		2DAA641D2A95A24C0073B061 /* FindOfCoffeeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FindOfCoffeeApp.entitlements; sourceTree = "<group>"; };
 		3302998C2A8289B100647BEA /* FindOutCoffeePackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FindOutCoffeePackage; path = ../../FindOutCoffeePackage; sourceTree = "<group>"; };
 		93008973259D959600AB7DA5 /* BMJUA_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMJUA_otf.otf; sourceTree = "<group>"; };
 		933488392589A7A200CA3012 /* NoticeFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeFullscreenController.swift; sourceTree = "<group>"; };
@@ -397,6 +398,7 @@
 		933DB0DE257E4B5A00CB6FF8 /* FindOfCoffeeApp */ = {
 			isa = PBXGroup;
 			children = (
+				2DAA641D2A95A24C0073B061 /* FindOfCoffeeApp.entitlements */,
 				3302998C2A8289B100647BEA /* FindOutCoffeePackage */,
 				933488472589B67E00CA3012 /* Helpers */,
 				933DB0F4257E4C6F00CB6FF8 /* Application Delegate */,
@@ -991,6 +993,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FindOfCoffeeApp/FindOfCoffeeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8G43M5CX79;
@@ -1012,6 +1015,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FindOfCoffeeApp/FindOfCoffeeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8G43M5CX79;

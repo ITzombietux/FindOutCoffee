@@ -22,7 +22,7 @@ extension LoginClient: DependencyKey {
         )
         
         UserDefaults.standard.set(request.identifier, forKey: "isLoggedInKey")
-        UserDefaults.standard.set(request.type, forKey: "tpyeKey")
+        UserDefaults.standard.set(request.type, forKey: "typeKey")
         UserDefaults.standard.set(request.name, forKey: "nameKey")
         UserDefaults.standard.set(request.imageURL, forKey: "imageURLKey")
         

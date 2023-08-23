@@ -74,11 +74,13 @@ public struct My: Reducer {
             return .none
             
         case .alert(.presented(.confirmLogout)):
+            guard let snsLoginType = SNSLoginType(rawValue: state.user.type) else { return .none }
             return .run { send in
                 await send(
                     .logoutResponse(
                         await TaskResult {
-                            try await self.loginClient.logout()
+                            guard try await self.authenticationClient.logout(snsLoginType) else { return false }
+                            return try await self.loginClient.logout()
                         }
                     )
                 )

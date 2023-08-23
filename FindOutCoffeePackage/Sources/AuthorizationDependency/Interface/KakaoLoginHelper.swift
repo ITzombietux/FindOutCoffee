@@ -63,8 +63,14 @@ public struct KakaoLoginHelper {
         UserApi.shared.me { user, error in
             let user: User? = User(id: user?.id?.description,
                                    profileImageURL: user?.kakaoAccount?.profile?.profileImageUrl?.absoluteString,
-                                   nickname: user?.kakaoAccount?.profile?.nickname)
+                                   nickname: user?.kakaoAccount?.profile?.nickname, snsLoginType: .kakao)
             completion(user, error)
+        }
+    }
+    
+    public static func logout(completion: @escaping (Bool) -> Void) {
+        UserApi.shared.logout { error in
+            completion(error == nil)
         }
     }
 }
