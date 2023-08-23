@@ -51,14 +51,7 @@ public struct ReviewContent: Reducer {
         case loadDrinks
         case loadPriceFeelings
         case completeLoading
-        case selectStore(Store)
-        case selectBrand(String)
-        case selectCategory(String)
-        case selectDrink(String)
-        case selectSize(Size)
-        case selectIceOrHot(IceOrHot)
-        case selectPriceFeeling(String)
-        case selectRecommendation(Bool)
+        case select(Selection)
         case selectPhoto([Data])
         case editText(String)
         case loadBrandsResponse(TaskResult<CafeNamesResponse>)
@@ -196,40 +189,29 @@ public struct ReviewContent: Reducer {
         case .completeLoading:
             return .none
             
-        case let .selectStore(store):
-            state.store = store
-            if store == .convenienceStore {
-                state.brand = nil
-                state.categories = nil
+        case let .select(selection):
+            switch selection {
+            case let .store(store):
+                state.store = store
+                if store == .convenienceStore {
+                    state.brand = nil
+                    state.categories = nil
+                }
+            case let .brand(brand):
+                state.brand = brand
+            case let .category(category):
+                state.category = category
+            case let .drink(drink):
+                state.drink = drink
+            case let .size(size):
+                state.size = size
+            case let .iceOrHot(iceOrHot):
+                state.iceOrHot = iceOrHot
+            case let .priceFeeling(priceFeeling):
+                state.priceFeeling = priceFeeling
+            case let .recommendation(isRecommend):
+                state.isRecommend = isRecommend
             }
-            return .none
-            
-        case let .selectBrand(brand):
-            state.brand = brand
-            return .none
-            
-        case let .selectCategory(category):
-            state.category = category
-            return .none
-            
-        case let .selectDrink(drink):
-            state.drink = drink
-            return .none
-            
-        case let .selectSize(size):
-            state.size = size
-            return .none
-            
-        case let .selectIceOrHot(iceOrHot):
-            state.iceOrHot = iceOrHot
-            return .none
-            
-        case let .selectPriceFeeling(priceFeeling):
-            state.priceFeeling = priceFeeling
-            return .none
-            
-        case let .selectRecommendation(isRecommend):
-            state.isRecommend = isRecommend
             return .none
             
         case let .selectPhoto(photo):

@@ -29,7 +29,10 @@ public struct ReviewView: View {
             }
             
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                ReviewButton(step: viewStore.state.steps[viewStore.state.currentStep]) {
+                ReviewButton(
+                    isEnabled: viewStore.state.nextButtonIsEnabled,
+                    step: viewStore.state.steps[viewStore.state.currentStep]
+                ) {
                     viewStore.send(.nextButtonTapped)
                 }
             }

@@ -13,11 +13,13 @@ public struct Review: Reducer {
     public struct State: Equatable {
         public var steps: [Step]
         public var currentStep: Int
+        public var nextButtonIsEnabled: Bool
         public var content: ReviewContent.State
         
-        public init(steps: [Step] = Step.cafeSteps, currentStep: Int = 0, content: ReviewContent.State = ReviewContent.State()) {
+        public init(steps: [Step] = Step.cafeSteps, currentStep: Int = 0, nextButtonIsEnabled: Bool = false, content: ReviewContent.State = ReviewContent.State()) {
             self.steps = steps
             self.currentStep = currentStep
+            self.nextButtonIsEnabled = nextButtonIsEnabled
             self.content = content
         }
     }
@@ -25,6 +27,7 @@ public struct Review: Reducer {
     public enum Action {
         case backButtonTapped
         case nextButtonTapped
+        case checkNextButtonIsEnabled
         case saveReview
         case content(ReviewContent.Action)
     }
@@ -37,7 +40,7 @@ public struct Review: Reducer {
             case .backButtonTapped:
                 if state.currentStep > 0 {
                     state.currentStep -= 1
-                    return .none
+                    return .send(.checkNextButtonIsEnabled)
                 }
                 
                 NotificationCenter.default.post(name: Notification.Name.dismissReviewView, object: nil)
@@ -64,13 +67,45 @@ public struct Review: Reducer {
                 case .writing:
                     break
                 }
-                return .send(.content(.load(state.steps[state.currentStep + 1])))
+                
+                let nextStep = state.steps[state.currentStep + 1]
+                return .run { send in
+                    await send(.content(.load(nextStep)))
+                    await send(.checkNextButtonIsEnabled)
+                }
+                
+            case .checkNextButtonIsEnabled:
+                print("checkNextButtonIsEnabled", state.steps[state.currentStep])
+                switch state.steps[state.currentStep] {
+                case .store:
+                    state.nextButtonIsEnabled = state.content.store != nil
+                case .brand:
+                    state.nextButtonIsEnabled = state.content.brand != nil
+                case .category:
+                    state.nextButtonIsEnabled = state.content.category != nil
+                case .drink:
+                    state.nextButtonIsEnabled = state.content.drink != nil
+                case .options:
+                    state.nextButtonIsEnabled = state.content.size != nil && state.content.iceOrHot != nil
+                case .price:
+                    state.nextButtonIsEnabled = state.content.isRecommend != nil && state.content.priceFeeling != nil
+                case .writing:
+                    break
+                }
+                return .none
                 
             case .saveReview:
                 // TODO: 서버 통신
                 return .none
                 
-            case let .content(.selectStore(store)):
+            case .content(.completeLoading):
+                state.currentStep += 1
+                return .none
+                
+            case .content(.select):
+                return .send(.checkNextButtonIsEnabled)
+                
+            case let .content(.select(.store(store))):
                 switch store {
                 case .convenienceStore:
                     state.steps = Step.convenienceStoreSteps
@@ -78,10 +113,6 @@ public struct Review: Reducer {
                 case .cafe:
                     state.steps = Step.cafeSteps
                 }
-                return .none
-                
-            case .content(.completeLoading):
-                state.currentStep += 1
                 return .none
                 
             case .content:

@@ -30,7 +30,7 @@ extension ReviewContentView {
                     }
                 }
                 
-                Text("추천👍 / 비추천👎")
+                Text("추천 / 비추천")
                     .font(.system(size: 20, weight: .bold))
                 
                 HStack(spacing: 20) {
