@@ -11,7 +11,6 @@ import XCTestDynamicOverlay
 
 public struct SubmitReviewRequest: Codable, Identifiable {
     public var id = UUID()
-    var userIdentifier: String
     var coffee: Coffee
     var selectedTitle: String
 }
@@ -19,10 +18,12 @@ public struct SubmitReviewRequest: Codable, Identifiable {
 public struct SubmitImagesRequest: Codable {
     let menuIdentifier: String
     let userIdentifier: String
+    let selectedTitle: String
     let photosData: [Data]
 }
 
 public struct Coffee: Codable {
+    var userIdentifier: String
     var nickname: String
     var title: String
     var size: String
@@ -33,9 +34,10 @@ public struct Coffee: Codable {
     var date: String
     var feeling: String
     var isRecommend: Bool
-    var isPublic = false
+    var isPublic: Bool
     
-    init(nickname: String, title: String, size: String, isHot: String, text: String, address: String, category: String, date: String, feeling: String, isRecommend: Bool) {
+    init(userIdentifier: String, nickname: String, title: String, size: String, isHot: String, text: String, address: String, category: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool = false) {
+        self.userIdentifier = userIdentifier
         self.nickname = nickname
         self.title = title
         self.size = size
@@ -46,6 +48,7 @@ public struct Coffee: Codable {
         self.date = date
         self.feeling = feeling
         self.isRecommend = isRecommend
+        self.isPublic = isPublic
     }
 }
 

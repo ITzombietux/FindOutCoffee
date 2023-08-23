@@ -17,8 +17,9 @@ extension ReviewClient: DependencyKey {
         submit: { request in
             let db = Firestore.firestore()
             
-            db.collection(request.selectedTitle).document("\(request.userIdentifier)").setData(
-                ["id" : "\(request.id)",
+            db.collection(request.selectedTitle).document(request.id.uuidString).setData(
+                ["id" : request.id.uuidString,
+                 "userIdentifier" : request.coffee.userIdentifier,
                  "nickname" : request.coffee.nickname,
                  "title" : request.coffee.title,
                  "category" : request.coffee.category,
@@ -39,7 +40,7 @@ extension ReviewClient: DependencyKey {
             }
             
             return SubmitReviewResponse(menuIdentifier: request.id.uuidString,
-                                        userIdentifier: request.userIdentifier)
+                                        userIdentifier: request.coffee.userIdentifier)
         },
         uploadImages: { request in
             let storageRef = Storage.storage().reference()
@@ -54,7 +55,7 @@ extension ReviewClient: DependencyKey {
             images.forEach { image in
                 let imageData = image.jpegData(compressionQuality: 0.8)!
                 let imageName = NSUUID().uuidString + ".jpg"
-                let imageRef = storageRef.child("images").child(imageName)
+                let imageRef = storageRef.child(request.selectedTitle).child(imageName)
                 
                 imageRef.putData(imageData, metadata: nil) { (metadata, error) in
                     if error == nil {

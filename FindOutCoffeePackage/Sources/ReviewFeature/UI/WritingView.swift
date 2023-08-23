@@ -123,35 +123,25 @@ extension ReviewContentView {
         
         private func textView() -> some View {
             ZStack(alignment: .topLeading) {
-                if !isFocused, text == nil {
-                    Text(placeholder)
-                        .font(.system(size: 15))
-                        .foregroundColor(.secondary)
-                }
-                
-                TextEditor(text:
+                TextField("후기를 적어주세요", text:
                             Binding(
                                 get: { return text ?? "" },
                                 set: { self.text = $0 }
-                            )
+                            ), axis: .vertical
                 )
+                .textFieldStyle(.roundedBorder)
+                .lineLimit(10, reservesSpace: true)
                 .font(.system(size: 15))
                 .focused($isFocused)
                 .toolbar {
-                    ToolbarItem(placement: .keyboard) {
+                    ToolbarItemGroup(placement: .keyboard) {
                         Button("완료") {
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                         }
                     }
                 }
             }
-            .padding(10)
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke()
-                    .foregroundColor(.gray)
-            )
-            .frame(height: (UIScreen.main.bounds.width - 40) * 3 / 4)
+            .frame(maxHeight: (UIScreen.main.bounds.width - 40) * 3 / 6)
         }
     }
 }

@@ -29,6 +29,7 @@ public struct Review: Reducer {
         case alert(PresentationAction<Alert>)
         case backButtonTapped
         case nextButtonTapped
+        case submitButtonTapped
         case checkNextButtonIsEnabled
         case content(ReviewContent.Action)
         
@@ -70,7 +71,9 @@ public struct Review: Reducer {
                           state.content.priceFeeling != nil
                     else { return .none }
                 case .writing:
-                    break
+                    return .run { send in
+                        await send(.submitButtonTapped)
+                    }
                 }
                 
                 let nextStep = state.steps[state.currentStep + 1]
@@ -120,6 +123,10 @@ public struct Review: Reducer {
             case .content:
                 return .none
                 
+            case .submitButtonTapped:
+                state.alert = .submit()
+                return .none
+                
             case .alert(.presented(.confirmSubmit)):
                 return .run { send in
                     await send(.content(.delegate(.saveReview)))
@@ -142,11 +149,11 @@ extension AlertState where Action == Review.Action.Alert {
         Self {
             TextState("리뷰를 등록하시겠습니까?")
         } actions: {
-            ButtonState(role: .cancel) {
+            ButtonState(role: .destructive) {
                 TextState("취소")
             }
             
-            ButtonState(role: .destructive, action: .confirmSubmit) {
+            ButtonState(role: .cancel, action: .confirmSubmit) {
                 TextState("등록하기")
             }
         } message: {

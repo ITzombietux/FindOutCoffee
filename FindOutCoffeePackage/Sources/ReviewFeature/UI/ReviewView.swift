@@ -37,6 +37,7 @@ public struct ReviewView: View {
                 }
             }
         }
+        .alert(store: self.store.scope(state: \.$alert, action: { .alert($0) }))
         .padding(.horizontal, 20)
     }
     

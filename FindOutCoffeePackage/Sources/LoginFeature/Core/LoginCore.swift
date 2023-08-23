@@ -61,7 +61,6 @@ public struct Login: Reducer {
             }
             
         case let .loginResponse(.success(user)):
-            print("user", user)
             return .run { [identifier = user.id, profileImageURL = user.profileImageURL, nickname = user.nickname, snsLoginType = user.snsLoginType.rawValue] send in
                 await send(
                     .saveUser(

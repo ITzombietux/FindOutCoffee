@@ -232,6 +232,8 @@ public struct ReviewContent: Reducer {
             
         case .delegate(.saveReview):
             guard let store = state.store else { return .none }
+            guard let userIdentifier = UserDefaults.standard.string(forKey: "isLoggedInKey") else { return .none }
+            guard let nickname = UserDefaults.standard.string(forKey: "nameKey") else { return .none }
             guard let title = state.drink else { return .none }
             guard let size = state.size else { return .none }
             guard let iceOrHot = state.iceOrHot else { return .none }
@@ -247,8 +249,8 @@ public struct ReviewContent: Reducer {
                         await TaskResult {
                             try await self.reviewClient.submit(
                                 SubmitReviewRequest(
-                                    userIdentifier: UserDefaults.standard.string(forKey: "isLoggedinKey") ?? "",
-                                    coffee: Coffee(nickname: UserDefaults.standard.string(forKey: "nameKey") ?? "",
+                                    coffee: Coffee(userIdentifier: userIdentifier,
+                                                   nickname: nickname,
                                                    title: title,
                                                    size: size.rawValue,
                                                    isHot: iceOrHot.rawValue,
@@ -268,7 +270,8 @@ public struct ReviewContent: Reducer {
             }
         
         case let .saveReviewResponse(.success(response)):
-            guard let photoDatas = state.photo else { return .none }
+            let photoDatas = state.photo ?? []
+            guard let store = state.store else { return .none }
             
             return .run { send in
                 await send(
@@ -277,6 +280,7 @@ public struct ReviewContent: Reducer {
                             try await self.reviewClient.uploadImages(
                                 SubmitImagesRequest(menuIdentifier: response.menuIdentifier,
                                                     userIdentifier: response.userIdentifier,
+                                                    selectedTitle: store == .cafe ? "CafeReview" : "CSReview",
                                                     photosData: photoDatas)
                             )
                         }
