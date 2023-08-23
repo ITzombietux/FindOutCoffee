@@ -53,11 +53,9 @@ class MainTabBarController: UITabBarController {
         loginViewController.willMove(toParent: nil)
         loginViewController.view.removeFromSuperview()
         loginViewController.removeFromParent()
-        removeDismissNotification()
     }
     
     @objc func showingLoginView() {
         configureLoginView()
-        removeShowingNotification()
     }
 }

@@ -12,7 +12,7 @@ import AuthorizationDependency
 
 public struct Login: Reducer {
     public struct State: Equatable {
-        public var isLoggedIn: Bool = false
+        public var loggedInFlag: Bool = false
         
         public init() {}
     }
@@ -79,7 +79,7 @@ public struct Login: Reducer {
             return .none
             
         case let .saveUser(.success(response)):
-            state.isLoggedIn = true
+            state.loggedInFlag.toggle()
             
             return .run { _ in
                 UserDefaults.standard.setValue(response.identifier, forKey: "isLoggedInKey")

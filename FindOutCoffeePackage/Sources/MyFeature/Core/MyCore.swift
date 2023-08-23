@@ -15,7 +15,7 @@ import LoginFeature
 public struct My: Reducer {
     public struct State: Equatable {
         @PresentationState var alert: AlertState<Action.Alert>?
-        public var isLoggedOut: Bool = false
+        public var loggedInFlag: Bool = false
         public var login: Login.State?
         public var user: LoginApiEntity = .mock
         
@@ -87,7 +87,7 @@ public struct My: Reducer {
             }
             
         case let .logoutResponse(.success(isLoggedOut)):
-            state.isLoggedOut = isLoggedOut
+            state.loggedInFlag.toggle()
             return .none
             
         case let .logoutResponse(.failure(error)):
@@ -105,7 +105,7 @@ public struct My: Reducer {
             }
             
         case let .withdrawalResponse(.success(isLoggedOut)):
-            state.isLoggedOut = isLoggedOut
+            state.loggedInFlag.toggle()
             return .none
             
         case let .withdrawalResponse(.failure(error)):
