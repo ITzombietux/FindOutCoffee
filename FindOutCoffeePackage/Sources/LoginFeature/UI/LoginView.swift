@@ -42,10 +42,8 @@ public struct LoginView: View {
                 .padding(.bottom, 40)
             }
             .padding(.horizontal, 20)
-            .onChange(of: viewStore.isLoggedIn) { newValue in
-                if newValue {
-                    NotificationCenter.default.post(name: Notification.Name.dismissLoginView, object: nil)
-                }
+            .onChange(of: viewStore.loggedInFlag) { _ in
+                NotificationCenter.default.post(name: Notification.Name.dismissLoginView, object: nil)
             }
         }
     }
