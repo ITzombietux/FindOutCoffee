@@ -85,6 +85,7 @@ class ReviewListViewController: UIViewController {
         
     @objc func writeReview(tapGestureRecognizer: UITapGestureRecognizer) {
         self.addNotification()
+        self.hostingController.rootView = ReviewView()
         self.hostingController.modalPresentationStyle = .fullScreen
         self.present(self.hostingController, animated: true)
     }

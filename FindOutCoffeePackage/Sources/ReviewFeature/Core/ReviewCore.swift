@@ -71,7 +71,7 @@ public struct Review: Reducer {
                 let nextStep = state.steps[state.currentStep + 1]
                 return .run { send in
                     await send(.content(.load(nextStep)))
-                    await send(.checkNextButtonIsEnabled)
+//                    await send(.checkNextButtonIsEnabled)
                 }
                 
             case .checkNextButtonIsEnabled:
@@ -100,7 +100,9 @@ public struct Review: Reducer {
                 
             case .content(.completeLoading):
                 state.currentStep += 1
-                return .none
+                return .run { send in
+                    await send(.checkNextButtonIsEnabled)
+                }
                 
             case .content(.select):
                 return .send(.checkNextButtonIsEnabled)
