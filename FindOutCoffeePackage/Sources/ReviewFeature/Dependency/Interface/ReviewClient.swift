@@ -64,6 +64,10 @@ public struct CafeMenusResponse {
     var names: [String]
 }
 
+public struct ConvenienceStoreBrandsResponse {
+    var names: [String]
+}
+
 public struct ConvenienceStoreMenusResponse {
     var names: [String]
 }
@@ -74,7 +78,8 @@ public struct ReviewClient {
     public var cafeNames: @Sendable () async throws -> CafeNamesResponse
     public var cafeMenus: @Sendable (String, String) async throws -> CafeMenusResponse
     public var cafeCategores: @Sendable (String) async throws -> CafeCategoresResponse
-    public var convenienceStoreMenus: @Sendable () async throws -> ConvenienceStoreMenusResponse
+    public var convenienceStoreBrands: @Sendable () async throws -> ConvenienceStoreBrandsResponse
+    public var convenienceStoreMenus: @Sendable (String) async throws -> ConvenienceStoreMenusResponse
 }
 
 extension ReviewClient: TestDependencyKey {
@@ -84,6 +89,7 @@ extension ReviewClient: TestDependencyKey {
         cafeNames: unimplemented("\(Self.self).cafeNames"),
         cafeMenus: unimplemented("\(Self.self).cafeMenus"),
         cafeCategores: unimplemented("\(Self.self).cafeCategores"),
+        convenienceStoreBrands: unimplemented("\(Self.self).convenienceStoreBrands"),
         convenienceStoreMenus: unimplemented("\(Self.self).convenienceStoreMenus")
     )
 }

@@ -64,6 +64,7 @@ public struct ReviewContent: Reducer {
         case loadBrandsResponse(TaskResult<CafeNamesResponse>)
         case loadCafeDrinksResponse(TaskResult<CafeMenusResponse>)
         case loadConvenienceStoreDrinksResponse(TaskResult<ConvenienceStoreMenusResponse>)
+        case loadConvenienceStoreBrandsResponse(TaskResult<ConvenienceStoreBrandsResponse>)
         case loadCategoriesResponse(TaskResult<CafeCategoresResponse>)
     }
     
@@ -88,14 +89,28 @@ public struct ReviewContent: Reducer {
             }
             
         case .loadBrands:
-            return .run { send in
-                await send(
-                    .loadBrandsResponse(
-                        await TaskResult {
-                            try await self.reviewClient.cafeNames()
-                        }
+            guard let store = state.store else { return .none }
+            switch store {
+            case .cafe:
+                return .run { send in
+                    await send(
+                        .loadBrandsResponse(
+                            await TaskResult {
+                                try await self.reviewClient.cafeNames()
+                            }
+                        )
                     )
-                )
+                }
+            case .convenienceStore:
+                return .run { send in
+                    await send(
+                        .loadConvenienceStoreBrandsResponse(
+                            await TaskResult {
+                                try await self.reviewClient.convenienceStoreBrands()
+                            }
+                        )
+                    )
+                }
             }
             
         case .loadBrandsResponse(.success(let response)):
@@ -141,11 +156,12 @@ public struct ReviewContent: Reducer {
                     )
                 }
             case .convenienceStore:
+                guard let brand = state.brand else { return .none }
                 return .run { send in
                     await send(
                         .loadConvenienceStoreDrinksResponse(
                             await TaskResult {
-                                try await self.reviewClient.convenienceStoreMenus()
+                                try await self.reviewClient.convenienceStoreMenus(brand)
                             }
                         )
                     )
@@ -157,6 +173,13 @@ public struct ReviewContent: Reducer {
             return .send(.completeLoading)
             
         case .loadCafeDrinksResponse(.failure(let error)):
+            return .none
+            
+        case .loadConvenienceStoreBrandsResponse(.success(let response)):
+            state.brands = response.names
+            return .send(.completeLoading)
+            
+        case .loadConvenienceStoreBrandsResponse(.failure(let error)):
             return .none
             
         case .loadConvenienceStoreDrinksResponse(.success(let response)):
