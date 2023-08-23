@@ -88,6 +88,7 @@ public struct My: Reducer {
             
         case let .logoutResponse(.success(isLoggedOut)):
             state.loggedInFlag.toggle()
+            state.user = .mock
             return .none
             
         case let .logoutResponse(.failure(error)):
@@ -106,6 +107,7 @@ public struct My: Reducer {
             
         case let .withdrawalResponse(.success(isLoggedOut)):
             state.loggedInFlag.toggle()
+            state.user = .mock
             return .none
             
         case let .withdrawalResponse(.failure(error)):

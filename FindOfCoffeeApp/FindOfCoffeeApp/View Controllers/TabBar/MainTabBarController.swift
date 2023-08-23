@@ -53,6 +53,7 @@ class MainTabBarController: UITabBarController {
         loginViewController.willMove(toParent: nil)
         loginViewController.view.removeFromSuperview()
         loginViewController.removeFromParent()
+        selectedIndex = 0
     }
     
     @objc func showingLoginView() {
