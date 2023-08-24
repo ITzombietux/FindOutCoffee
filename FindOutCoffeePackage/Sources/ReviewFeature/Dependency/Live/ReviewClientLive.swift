@@ -53,17 +53,15 @@ extension ReviewClient: DependencyKey {
             }
             
             images.forEach { image in
-                let imageData = image.jpegData(compressionQuality: 0.8)!
+                let imageData = image.jpegData(compressionQuality: 0.6)!
                 let imageName = NSUUID().uuidString + ".jpg"
-                let imageRef = storageRef.child(request.selectedTitle).child(imageName)
+                let imageRef = storageRef.child("\(request.selectedTitle)").child(imageName)
                 
                 imageRef.putData(imageData, metadata: nil) { (metadata, error) in
                     if error == nil {
                         // The image was stored successfully
-                        print("Image stored successfully")
                     } else {
                         // An error occurred
-                        print(error!)
                     }
                 }
             }

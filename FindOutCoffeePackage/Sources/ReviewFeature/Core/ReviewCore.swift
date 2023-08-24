@@ -120,9 +120,6 @@ public struct Review: Reducer {
                     await send(.checkNextButtonIsEnabled)
                 }
                 
-            case .content:
-                return .none
-                
             case .submitButtonTapped:
                 state.alert = .submit()
                 return .none
@@ -131,6 +128,9 @@ public struct Review: Reducer {
                 return .run { send in
                     await send(.content(.delegate(.saveReview)))
                 }
+                
+            case .content:
+                return .none
                 
             case .alert:
                 return .none
@@ -159,7 +159,7 @@ extension AlertState where Action == Review.Action.Alert {
         } message: {
             TextState(
               """
-              1일 내에 관리자 검수를 거쳐 정상적으로 리뷰가 등록됩니다!!!
+              1일 내에 관리자 검수를 거쳐\n정상적으로 리뷰가 등록됩니다!!!
               """
             )
         }

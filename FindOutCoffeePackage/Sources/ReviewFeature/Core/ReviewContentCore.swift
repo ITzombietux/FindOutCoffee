@@ -61,6 +61,7 @@ public struct ReviewContent: Reducer {
         case loadCategoriesResponse(TaskResult<CafeCategoresResponse>)
         case saveReviewResponse(TaskResult<SubmitReviewResponse>)
         case uploadImagesResponse(TaskResult<SubmitImagesResponse>)
+        case dismiss
         case delegate(Delegate)
         
         public enum Delegate {
@@ -257,7 +258,7 @@ public struct ReviewContent: Reducer {
                                                    text: text,
                                                    address: brand,
                                                    category: category,
-                                                   date: self.now.description,
+                                                   date:  self.now.description,
                                                    feeling: feeling,
                                                    isRecommend: isRecommend
                                                   ),
@@ -271,7 +272,14 @@ public struct ReviewContent: Reducer {
         
         case let .saveReviewResponse(.success(response)):
             let photoDatas = state.photo ?? []
+            let isExistPhoto = !photoDatas.isEmpty
             guard let store = state.store else { return .none }
+            
+            guard isExistPhoto else {
+                return .run { send in
+                    await send(.dismiss)
+                }
+            }
             
             return .run { send in
                 await send(
@@ -292,10 +300,15 @@ public struct ReviewContent: Reducer {
             return .none
             
         case let .uploadImagesResponse(.success(response)):
-            //TODO: - 성공했다는 Alert 확인 누르면 뷰 닫기
-            return .none
+            return .run { send in
+                await send(.dismiss)
+            }
             
         case let .uploadImagesResponse(.failure(error)):
+            return .none
+            
+        case .dismiss:
+            NotificationCenter.default.post(name: Notification.Name.dismissReviewView, object: nil)
             return .none
             
         case .delegate:
