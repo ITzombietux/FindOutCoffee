@@ -94,6 +94,7 @@ extension ReviewContentView {
             Rectangle()
                 .foregroundColor(.imagePlaceholderColor)
                 .frame(width: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4, height: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4)
+                .cornerRadius(12)
         }
         
         private func photosPicker() -> some View {
@@ -104,9 +105,9 @@ extension ReviewContentView {
                          photoLibrary: .shared())
             {
                 ZStack {
-                    Rectangle()
+                    RoundedRectangle(cornerRadius: 12)
                         .stroke()
-                        .foregroundColor(.gray)
+                        .foregroundColor(.imagePlckerBorderColor)
                     
                     VStack {
                         Image(systemName: "camera.fill")
