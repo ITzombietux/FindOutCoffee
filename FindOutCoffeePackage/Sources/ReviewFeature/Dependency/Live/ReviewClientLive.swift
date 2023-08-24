@@ -55,7 +55,7 @@ extension ReviewClient: DependencyKey {
             images.forEach { image in
                 let imageData = image.jpegData(compressionQuality: 0.6)!
                 let imageName = NSUUID().uuidString + ".jpg"
-                let imageRef = storageRef.child("\(request.selectedTitle)").child(imageName)
+                let imageRef = storageRef.child("\(request.menuIdentifier)").child(imageName)
                 
                 imageRef.putData(imageData, metadata: nil) { (metadata, error) in
                     if error == nil {

@@ -238,10 +238,10 @@ public struct ReviewContent: Reducer {
             guard let title = state.drink else { return .none }
             guard let size = state.size else { return .none }
             guard let iceOrHot = state.iceOrHot else { return .none }
-            guard let category = state.category else { return .none }
             guard let brand = state.brand else { return .none }
             guard let feeling = state.priceFeeling else { return .none }
             guard let isRecommend = state.isRecommend else { return .none }
+            let category = state.category ?? ""
             let text = state.text ?? ""
             
             return .run { send in
@@ -258,9 +258,10 @@ public struct ReviewContent: Reducer {
                                                    text: text,
                                                    address: brand,
                                                    category: category,
-                                                   date:  self.now.description,
+                                                   date:  self.now.formatted(to: "yyyy-MM-dd"),
                                                    feeling: feeling,
-                                                   isRecommend: isRecommend
+                                                   isRecommend: isRecommend,
+                                                   isPublic: false
                                                   ),
                                     selectedTitle: store == .cafe ? "CafeReview" : "CSReview"
                                 )
@@ -314,5 +315,13 @@ public struct ReviewContent: Reducer {
         case .delegate:
             return .none
         }
+    }
+}
+
+extension Date {
+    func formatted(to: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = to
+        return dateFormatter.string(from: self)
     }
 }
