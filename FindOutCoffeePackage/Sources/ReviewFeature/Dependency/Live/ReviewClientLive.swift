@@ -29,7 +29,8 @@ extension ReviewClient: DependencyKey {
                  "address" : request.coffee.address,
                  "date" : request.coffee.date,
                  "feeling" : request.coffee.feeling,
-                 "isRecommend" : request.coffee.isRecommend
+                 "isRecommend" : request.coffee.isRecommend,
+                 "isPublic" : request.coffee.isPublic
                 ]
             ) { error in
                 if error == nil {
