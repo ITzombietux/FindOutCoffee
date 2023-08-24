@@ -9,7 +9,7 @@ import UIKit
 import NMapsMap
 
 class MapInfoContainerView: UIViewController {
-
+    
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var kmInfoLabel: UILabel!
     
@@ -17,7 +17,7 @@ class MapInfoContainerView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = UIColor.systemGray5.withAlphaComponent(0.85)
         
         locationManager.requestWhenInUseAuthorization()
@@ -40,16 +40,20 @@ class MapInfoContainerView: UIViewController {
         
         ceo.reverseGeocodeLocation(loc, completionHandler:
                                     {(placemarks, error) in
-                                        if (error != nil) {
-                                            print("reverse geodcode fail: \(error!.localizedDescription)")
-                                        }
-                                        let pm = placemarks! as [CLPlacemark]
-                                        
-                                        if pm.count > 0 {
-                                            let pm = placemarks![0]
-                                            self.addressLabel.text = "\(pm.administrativeArea ?? "") \(pm.locality ?? "") \(pm.subLocality ?? "")"
-                                        }
-                                    })
+            if (error != nil) {
+                print("reverse geodcode fail: \(error!.localizedDescription)")
+            }
+            let pm = placemarks! as [CLPlacemark]
+            
+            if pm.count > 0 {
+                let pm = placemarks![0]
+                self.addressLabel.text = "\(pm.administrativeArea ?? "") \(pm.locality ?? "") \(pm.subLocality ?? "")"
+            }
+        })
+    }
+    
+    func getLocationUsagePermission() {
+        self.locationManager.requestWhenInUseAuthorization()
     }
 }
 
@@ -61,5 +65,20 @@ extension MapInfoContainerView: CLLocationManagerDelegate {
         }
         
         locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("GPS 권한 설정됨")
+        case .restricted, .notDetermined:
+            print("GPS 권한 설정되지 않음")
+            self.locationManager.requestWhenInUseAuthorization()
+        case .denied:
+            print("GPS 권한 요청 거부됨")
+            self.locationManager.requestWhenInUseAuthorization()
+        default:
+            print("GPS: Default")
+        }
     }
 }
