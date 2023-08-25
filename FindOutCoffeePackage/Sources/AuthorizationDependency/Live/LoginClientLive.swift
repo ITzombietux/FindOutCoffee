@@ -37,9 +37,11 @@ extension LoginClient: DependencyKey {
         
         db.collection("Users").document(identifier).getDocument { (snapshot, error) in
             guard let name = snapshot?.data()?["nickname"] as? String else { return }
-            guard let imageURL = snapshot?.data()?["imageURL"] as? String else { return }
+            guard var imageURL = snapshot?.data()?["imageURL"] as? String else { return }
             guard let type = snapshot?.data()?["type"] as? String else { return }
             
+            if imageURL.isEmpty { imageURL = "default" }
+                
             response = LoginApiEntity(identifier: identifier, name: name, imageURL: imageURL, type: type)
         }
         

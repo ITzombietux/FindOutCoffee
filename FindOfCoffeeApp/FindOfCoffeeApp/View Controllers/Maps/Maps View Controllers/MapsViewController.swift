@@ -28,7 +28,7 @@ class MapsViewController: UIViewController {
             self.getCafeMarker()
         })
         
-        mapDataLoader.fetch()
+        mapDataLoader.fetch(x: currentLocation().0, y: currentLocation().1)
         
         mapView = NMFMapView(frame: view.frame)
         mapView.touchDelegate = self
@@ -41,6 +41,34 @@ class MapsViewController: UIViewController {
         
         containerView.layer.cornerRadius = 8
         containerView.layer.masksToBounds = true
+        addNotification()
+    }
+    
+    private func currentLocation() -> (Double, Double) {
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.pausesLocationUpdatesAutomatically = false
+
+        let longitude = Double(locationManager.location?.coordinate.longitude ?? 0.0)
+        let latitude = Double(locationManager.location?.coordinate.latitude ?? 0.0)
+        
+        return (longitude, latitude)
+    }
+                            
+    private func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLocation), name: Notification.Name.locationUpdate, object: nil)
+    }
+    
+    @objc func updateLocation() {
+        print("흠흠흠11")
+        mapDataLoader.fetch(x: currentLocation().0, y: currentLocation().1)
+        
+        mapDataLoader = MapDataLoader(changeHandler: { cafeInfos in
+            self.cafeInfos = cafeInfos
+            self.getCafeMarker()
+        })
+        
+        mapView.positionMode = .direction
     }
     
     private func getCafeMarker() {
@@ -93,4 +121,8 @@ extension MapsViewController: CLLocationManagerDelegate {
 extension MapsViewController: NMFMapViewTouchDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
     }
+}
+
+public extension Notification.Name {
+    static let locationUpdate = Notification.Name("locationUpdate")
 }

@@ -12,6 +12,7 @@ import SwiftUI
 public struct AppleLoginButton: View {
     public typealias AuthorizationCompletion = (AppleLoginHelper.AuthorizationResult) -> Void
     
+    @Environment(\.colorScheme) var currentScheme
     private let action: AuthorizationCompletion
     
     public init(action: @escaping AuthorizationCompletion) {
@@ -24,16 +25,13 @@ public struct AppleLoginButton: View {
         } onCompletion: { result in
             switch result {
             case let .success(authorization):
-                print("onCompletion credential", authorization.credential as? ASAuthorizationAppleIDCredential)
                 guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
-                print("onCompletion user", credential.user) 
-                print("onCompletion fullName", credential.fullName)
-                print("onCompletion identityToken", String(data: credential.identityToken!, encoding: .utf8))
                 action(.success(authorization))
             case let .failure(error):
                 break
             }
         }
+        .signInWithAppleButtonStyle(currentScheme == .light ? .black : .white)
     }
 }
 

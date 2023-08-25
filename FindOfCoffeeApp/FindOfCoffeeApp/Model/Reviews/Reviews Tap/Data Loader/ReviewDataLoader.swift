@@ -16,12 +16,6 @@ class ReviewDataLoader {
     private let storage = Storage.storage()
 
     var notices: [Notice] = [
-        Notice(id: "공지1",
-               title: "꼭 읽어야 할 공지",
-               secondaryTitle: "필독",
-               subtitle: "후기를 적는 방법을 알아보세요!🙋",
-               thumbnail: "공지8",
-               text: "커피를 찾아서 후기를 적는 방법은?!\n후기를 어떻게 적고 사용자님들께 보여드리면 최고의 정보를 드릴 수 있을지 고민하다, 올바른 프로세스가 정립이 될 때 까지는 인생 커피를 찾은 사용자님들의 소중한 후기를 개발자인 제가 받아 확인 후 올리기로 했습니다.\n\n앞으로 사용자님들께서 사용하기 편한 앱을 만들기 위해 최선을 다하겠습니다. 귀엽게 봐주시고 새해 복 많이 받으세요!🙇‍♂🙇‍♂🙇‍♂"),
         Notice(id: "공지2",
                title: "이벤트 참여하고 쿠폰 받기",
                secondaryTitle: "이벤트",

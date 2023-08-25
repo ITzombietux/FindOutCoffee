@@ -44,7 +44,7 @@ class CafeReviewListViewController: UIViewController {
         let cafeReviewListsCellRegistration = UICollectionView.CellRegistration<CafeReviewCell, CafeReview> { cell, indexPath, cafeReview in
             
             cell.titleLabel.text = cafeReview.title
-            cell.subtitleLabel.text = "#\(cafeReview.taste) #\(cafeReview.price)원 #\(cafeReview.size) #\(cafeReview.isHot)"
+            cell.subtitleLabel.text = "#\(cafeReview.category) #\(cafeReview.feeling) #\(cafeReview.size) #\(cafeReview.isHot)"
             cell.nameLabel.text = "작성자: \(cafeReview.nickname)"
             let url = URL(string: cafeReview.thumbnail.first!)
             cell.imageView.kf.setImage(with: url)

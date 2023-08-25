@@ -48,7 +48,21 @@ class ConvenienceStoreDataLoader {
             
             self.getConvienienceStoresImage(forder: data["id"] as! String) { imgs in
                 dispatchGroup.leave()
-                let convienienceStore = ConvenienceStore(id: data["id"] as! String, nickname: data["nickname"] as! String, title: data["title"] as! String, price: data["price"] as! Int, taste: data["taste"] as! String, size: data["size"] as! String, isHot: data["isHot"] as! String, text: data["text"] as! String, address: data["address"] as! String, date: data["date"] as! String, feeling: data["feeling"] as! String, isRecommend: data["isRecommend"] as! Bool, isPublic: data["isPublic"] as! Bool, thumbnail: imgs)
+                let convienienceStore = ConvenienceStore(
+                    menuIdentifier: data["id"] as? String ?? "",
+                    userIdentifier: data["userIdentifier"] as? String ?? "",
+                    nickname: data["nickname"] as? String ?? "",
+                    title: data["title"] as? String ?? "",
+                    category: data["category"] as? String ?? "",
+                    size: data["size"] as? String ?? "",
+                    isHot: data["isHot"] as? String ?? "",
+                    text: data["text"] as? String ?? "",
+                    address: data["address"] as? String ?? "",
+                    date: data["date"] as? String ?? "",
+                    feeling: data["feeling"] as? String ?? "",
+                    isRecommend: data["isRecommend"] as? Bool ?? true,
+                    isPublic: data["isPublic"] as? Bool ?? false,
+                    thumbnail: imgs)
                 
                 if convienienceStore.isPublic {
                     convienienceStores.append(convienienceStore)
@@ -71,10 +85,11 @@ class ConvenienceStoreDataLoader {
             dispatchGroup.enter()
             let imagesRef = storageRef.child("CSReview").child(forder).child("\(forder)-\(count).jpeg").downloadURL { (url, error) in
                 dispatchGroup.leave()
-                if error != nil {
-                    print(error?.localizedDescription)
-                    return
-                }
+//                if error != nil {
+//                    print(error?.localizedDescription)
+//                    return
+//                    completion([])
+//                }
 
                 if let urlString = url {
                     let urlStr = urlString.absoluteString

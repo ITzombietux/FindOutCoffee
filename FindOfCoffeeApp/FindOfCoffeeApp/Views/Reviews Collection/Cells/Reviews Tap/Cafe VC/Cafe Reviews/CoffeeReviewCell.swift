@@ -14,7 +14,7 @@ class CoffeeReviewCell: UICollectionViewCell {
     var cafeReviewDetail: CafeReview! {
         didSet {
             titleLabel.text = cafeReviewDetail.title
-            subtitleLabel.text = "#\(cafeReviewDetail?.taste ?? "")#\(cafeReviewDetail?.size ?? "")#\(cafeReviewDetail?.price ?? 0)#\(cafeReviewDetail?.isHot ?? "")"
+            subtitleLabel.text = "#\(cafeReviewDetail?.category ?? "")#\(cafeReviewDetail?.size ?? "")#\(cafeReviewDetail?.feeling ?? "")#\(cafeReviewDetail?.isHot ?? "")"
             nameLabel.text = "작성자: \(cafeReviewDetail?.nickname ?? "")"
             let url = URL(string: cafeReviewDetail.thumbnail.first ?? "")
             thumbnailImageView.kf.setImage(with: url)

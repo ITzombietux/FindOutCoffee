@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MapListsViewController: UIViewController {
     
@@ -22,6 +23,7 @@ class MapListsViewController: UIViewController {
     private var mapListsCellRegistration: UICollectionView.CellRegistration<MapCell, CafeInfo>!
     
     var mapDataLoader: MapDataLoader!
+    private let locationManager = CLLocationManager()
     private var cafeInfos = [CafeInfo]()
     
     override func viewDidLoad() {
@@ -35,10 +37,31 @@ class MapListsViewController: UIViewController {
             }
         })
         
-        mapDataLoader.fetch()
+        mapDataLoader.fetch(x: currentLocation().0, y: currentLocation().1)
         
         configureCollectionView()
         fetchData()
+        addNotification()
+    }
+    
+    private func currentLocation() -> (Double, Double) {
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.pausesLocationUpdatesAutomatically = false
+
+        let longitude = Double(locationManager.location?.coordinate.longitude ?? 0.0)
+        let latitude = Double(locationManager.location?.coordinate.latitude ?? 0.0)
+        
+        return (longitude, latitude)
+    }
+    
+    private func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLocation), name: Notification.Name.locationUpdate, object: nil)
+    }
+    
+    @objc func updateLocation() {
+        print("흠흠흠22")
+        mapDataLoader.fetch(x: currentLocation().0, y: currentLocation().1)
     }
     
     private func configureCollectionView() {

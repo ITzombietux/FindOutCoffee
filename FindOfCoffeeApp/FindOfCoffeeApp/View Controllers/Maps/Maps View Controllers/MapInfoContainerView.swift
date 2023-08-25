@@ -30,9 +30,7 @@ class MapInfoContainerView: UIViewController {
     private func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
         var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
         let lat: Double = Double("\(pdblLatitude)")!
-        //21.228124
         let lon: Double = Double("\(pdblLongitude)")!
-        //72.833770
         let ceo: CLGeocoder = CLGeocoder()
         center.latitude = lat
         center.longitude = lon
@@ -55,6 +53,52 @@ class MapInfoContainerView: UIViewController {
     func getLocationUsagePermission() {
         self.locationManager.requestWhenInUseAuthorization()
     }
+    
+    func locationPermissionDeniedHandler() {
+        let requestLocationServiceAlert = UIAlertController(title: "위치 정보 이용", message: "위치 서비스를 사용할 수 없습니다.\n디바이스의 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요.", preferredStyle: .alert)
+        let goSetting = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
+            if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSetting)
+            }
+        }
+        let cancel = UIAlertAction(title: "취소", style: .destructive) { [weak self] _ in
+            
+        }
+        requestLocationServiceAlert.addAction(cancel)
+        requestLocationServiceAlert.addAction(goSetting)
+        
+        present(requestLocationServiceAlert, animated: true)
+    }
+    
+    func checkUserDeviceLocationServiceAuthorization() {
+        guard CLLocationManager.locationServicesEnabled() else {
+            locationPermissionDeniedHandler()
+            return
+        }
+            
+        let authorizationStatus: CLAuthorizationStatus
+        authorizationStatus = locationManager.authorizationStatus
+            
+        checkUserCurrentLocationAuthorization(authorizationStatus)
+        NotificationCenter.default.post(name: Notification.Name.locationUpdate, object: nil)
+    }
+    
+    func checkUserCurrentLocationAuthorization(_ status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+                
+        case .denied, .restricted:
+            locationPermissionDeniedHandler()
+            
+        case .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+            
+        default:
+            print("Default")
+        }
+    }
 }
 
 extension MapInfoContainerView: CLLocationManagerDelegate {
@@ -70,15 +114,19 @@ extension MapInfoContainerView: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
+            self.locationManager.requestWhenInUseAuthorization()
             print("GPS 권한 설정됨")
         case .restricted, .notDetermined:
             print("GPS 권한 설정되지 않음")
-            self.locationManager.requestWhenInUseAuthorization()
         case .denied:
             print("GPS 권한 요청 거부됨")
-            self.locationManager.requestWhenInUseAuthorization()
+            locationPermissionDeniedHandler()
         default:
             print("GPS: Default")
         }
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkUserDeviceLocationServiceAuthorization()
     }
 }

@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct ConvenienceStore: Codable, Hashable, Equatable {
-    var id: String
+struct ConvenienceStore: Codable, Hashable, Equatable, Identifiable {
+    var id: UUID
+    var menuIdentifier: String
+    var userIdentifier: String
     var nickname: String
     var title: String
-    var price: Int
-    var taste: String
+    var category: String
     var size: String
     var isHot: String
     var text: String
@@ -23,12 +24,13 @@ struct ConvenienceStore: Codable, Hashable, Equatable {
     let isPublic: Bool
     var thumbnail: [String]
     
-    init(id: String, nickname: String, title: String, price: Int, taste: String, size: String, isHot: String, text: String, address: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool, thumbnail: [String]) {
+    init(id: UUID = UUID(), menuIdentifier: String, userIdentifier: String, nickname: String, title: String, category: String, size: String, isHot: String, text: String, address: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool, thumbnail: [String]) {
         self.id = id
+        self.menuIdentifier = menuIdentifier
+        self.userIdentifier = userIdentifier
         self.nickname = nickname
         self.title = title
-        self.price = price
-        self.taste = taste
+        self.category = category
         self.size = size
         self.isHot = isHot
         self.text = text

@@ -14,7 +14,7 @@ class CSReviewCell: UICollectionViewCell {
     var cSReviewDetail: ConvenienceStore! {
         didSet {
             titleLabel.text = cSReviewDetail?.title
-            subtitleLabel.text = "#\(cSReviewDetail?.taste ?? "")#\(cSReviewDetail?.size ?? "")#\(cSReviewDetail?.price ?? 0)#\(cSReviewDetail?.isHot ?? "")"
+            subtitleLabel.text = "#\(cSReviewDetail?.category ?? "")#\(cSReviewDetail?.size ?? "")#\(cSReviewDetail?.feeling ?? "")#\(cSReviewDetail?.isHot ?? "")"
             nameLabel.text = "작성자: \(cSReviewDetail?.nickname ?? "")"
             let url = URL(string: cSReviewDetail.thumbnail.first ?? "")
             thumbnailImageView.kf.setImage(with: url)

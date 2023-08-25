@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct CafeReview: Codable, Hashable, Equatable {
-    let id: String
+struct CafeReview: Codable, Hashable, Equatable, Identifiable {
+    let id: UUID = UUID()
+    let menuIdentifier: String
+    let userIdentifier: String
     let nickname: String
     let title: String
-    let price: Int
-    let taste: String
+    let category: String
     let size: String
     let isHot: String
     let text: String

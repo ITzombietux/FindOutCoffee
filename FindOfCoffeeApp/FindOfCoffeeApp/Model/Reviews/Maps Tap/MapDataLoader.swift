@@ -57,24 +57,10 @@ class MapDataLoader {
         self.changeHandler = changeHandler
     }
     
-    private func getCurrentLocation() -> (Double, Double) {
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-        locationManager.pausesLocationUpdatesAutomatically = false
-
-        let longitude = Double(locationManager.location?.coordinate.longitude ?? 0.0)
-        let latitude = Double(locationManager.location?.coordinate.latitude ?? 0.0)
-        
-        return (longitude, latitude)
-    }
-    
-    func fetch() {
+    func fetch(x: Double, y: Double) {
         var allMapsResult = [NetworkManager.Map]()
         var cafeInfos = [CafeInfo]()
         let dispatchGroup = DispatchGroup()
-        
-        let x = getCurrentLocation().0
-        let y = getCurrentLocation().1
         
         pages.forEach { page in
             dispatchGroup.enter()

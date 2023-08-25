@@ -18,8 +18,22 @@ struct KakaoLoginButton: View {
         Button {
             action()
         } label: {
-            Image("kakao_login", bundle: Bundle.module)
-                .resizable()
+            HStack(alignment: .center, spacing: 8) {
+                Spacer()
+                
+                Image("카카오로고")
+                    .resizable()
+                    .frame(width: 16, height: 16)
+                
+                Text("카카오로 시작하기")
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(.kakaoTitleColor)
+                
+                Spacer()
+            }
+            .frame(height: 50)
+            .background(Color.kakaoBackgroundColor)
+            .cornerRadius(8)
         }
     }
 }
