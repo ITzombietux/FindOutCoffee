@@ -52,6 +52,8 @@ class CafeReviewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
+        imageView.backgroundColor = .lightGray
+        imageView.image = UIImage(named: "noimage")
         
         let horizontalStack = UIStackView(arrangedSubviews: [imageView, cellStack])
         horizontalStack.axis = .horizontal

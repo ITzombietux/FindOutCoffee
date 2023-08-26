@@ -13,7 +13,7 @@ class ConvenienceStoreCell: UICollectionViewCell {
     var convenienceStore: ConvenienceStore! {
         didSet {
             titleLabel.text = convenienceStore.title
-            subtitleLabel.text = convenienceStore.category
+            subtitleLabel.text = convenienceStore.address
             let url = URL(string: convenienceStore.thumbnail.first!)
             imageView.kf.setImage(with: url)
         }

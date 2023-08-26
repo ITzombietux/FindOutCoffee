@@ -14,7 +14,7 @@ class CSReviewCell: UICollectionViewCell {
     var cSReviewDetail: ConvenienceStore! {
         didSet {
             titleLabel.text = cSReviewDetail?.title
-            subtitleLabel.text = "#\(cSReviewDetail?.category ?? "")#\(cSReviewDetail?.size ?? "")#\(cSReviewDetail?.feeling ?? "")#\(cSReviewDetail?.isHot ?? "")"
+            subtitleLabel.text = "#\(cSReviewDetail?.size ?? "")#\(cSReviewDetail?.feeling ?? "")#\(cSReviewDetail?.isHot ?? "")"
             nameLabel.text = "작성자: \(cSReviewDetail?.nickname ?? "")"
             let url = URL(string: cSReviewDetail.thumbnail.first ?? "")
             thumbnailImageView.kf.setImage(with: url)
@@ -40,8 +40,7 @@ class CSReviewCell: UICollectionViewCell {
     }
     
     private func configure() {
-        
-        thumbnailImageView.backgroundColor = .red
+        thumbnailImageView.image = UIImage(named: "noimaage")
         thumbnailImageView.constrainWidth(constant: 114)
         thumbnailImageView.constrainHeight(constant: 114)
         

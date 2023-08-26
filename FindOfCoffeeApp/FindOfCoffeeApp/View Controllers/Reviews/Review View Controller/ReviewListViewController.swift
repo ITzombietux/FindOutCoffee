@@ -278,7 +278,7 @@ extension ReviewListViewController {
             let navController = UINavigationController(rootViewController: cafeReviewListVC)
             navController.modalPresentationStyle = .fullScreen
             cafeReviewListVC.navTitle = dataLoader.tastes[indexPath.row].title
-            cafeReviewListVC.kind = "taste"
+            cafeReviewListVC.kind = "category"
             
             present(navController, animated: false) { }
         }

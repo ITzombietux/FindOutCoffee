@@ -16,9 +16,13 @@ class CoffeeReviewCell: UICollectionViewCell {
             titleLabel.text = cafeReviewDetail.title
             subtitleLabel.text = "#\(cafeReviewDetail?.category ?? "")#\(cafeReviewDetail?.size ?? "")#\(cafeReviewDetail?.feeling ?? "")#\(cafeReviewDetail?.isHot ?? "")"
             nameLabel.text = "작성자: \(cafeReviewDetail?.nickname ?? "")"
-            let url = URL(string: cafeReviewDetail.thumbnail.first ?? "")
-            thumbnailImageView.kf.setImage(with: url)
-//            thumbnailImageView.image = UIImage(named: cafeReviewDetail.thumbnail.first ?? "")
+            let thumbnail = cafeReviewDetail.thumbnail.first ?? ""
+            if thumbnail.isEmpty {
+                thumbnailImageView.image = UIImage(named: "noimage")
+            } else {
+                let url = URL(string: thumbnail)
+                thumbnailImageView.kf.setImage(with: url)
+            }
             dateLabel.text = "작성일: \(cafeReviewDetail?.date ?? "")"
             textLabel.text = cafeReviewDetail?.text
         }
@@ -41,8 +45,6 @@ class CoffeeReviewCell: UICollectionViewCell {
     }
     
     private func configure() {
-        
-        thumbnailImageView.backgroundColor = .red
         thumbnailImageView.constrainWidth(constant: 114)
         thumbnailImageView.constrainHeight(constant: 114)
         

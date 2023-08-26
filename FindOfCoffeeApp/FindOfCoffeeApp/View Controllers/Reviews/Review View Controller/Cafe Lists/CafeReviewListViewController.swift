@@ -46,7 +46,8 @@ class CafeReviewListViewController: UIViewController {
             cell.titleLabel.text = cafeReview.title
             cell.subtitleLabel.text = "#\(cafeReview.category) #\(cafeReview.feeling) #\(cafeReview.size) #\(cafeReview.isHot)"
             cell.nameLabel.text = "작성자: \(cafeReview.nickname)"
-            let url = URL(string: cafeReview.thumbnail.first!)
+            guard let thumbnail = cafeReview.thumbnail.first else { return }
+            let url = URL(string: thumbnail)
             cell.imageView.kf.setImage(with: url)
         }
         
