@@ -26,8 +26,6 @@ public struct Coffee: Codable {
     var userIdentifier: String
     var nickname: String
     var title: String
-    var size: String
-    var isHot: String
     var text: String
     var address: String
     var category: String
@@ -36,12 +34,10 @@ public struct Coffee: Codable {
     var isRecommend: Bool
     var isPublic: Bool
     
-    init(userIdentifier: String, nickname: String, title: String, size: String, isHot: String, text: String, address: String, category: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool = false) {
+    init(userIdentifier: String, nickname: String, title: String, text: String, address: String, category: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool = false) {
         self.userIdentifier = userIdentifier
         self.nickname = nickname
         self.title = title
-        self.size = size
-        self.isHot = isHot
         self.text = text
         self.address = address
         self.category = category

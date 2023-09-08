@@ -8,15 +8,13 @@
 import SwiftUI
 
 extension ReviewContentView {
-    struct PriceSelectionView: View {
+    struct PriceFeelingSelectionView: View {
         private let priceFeelings: [String]
         @Binding var selectedFeeling: String?
-        @Binding var isRecommend: Bool?
         
-        init(priceFeelings: [String], selectedFeeling: Binding<String?>, isRecommend: Binding<Bool?>) {
+        init(priceFeelings: [String], selectedFeeling: Binding<String?>) {
             self.priceFeelings = priceFeelings
             self._selectedFeeling = selectedFeeling
-            self._isRecommend = isRecommend
         }
         
         var body: some View {
@@ -30,19 +28,6 @@ extension ReviewContentView {
                     }
                 }
                 
-                Text("추천 / 비추천")
-                    .font(.system(size: 20, weight: .bold))
-                
-                HStack(spacing: 20) {
-                    SelectionCell(title: "추천👍", isSelected: isRecommend ?? false) {
-                        self.isRecommend = true
-                    }
-                    
-                    SelectionCell(title: "비추천👎", isSelected: !(isRecommend ?? true)) {
-                        self.isRecommend = false
-                    }
-                }
-                
                 Spacer()
             }
         }
@@ -51,6 +36,6 @@ extension ReviewContentView {
 
 struct PriceSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewContentView.PriceSelectionView(priceFeelings: ["너무 비싸요", "비싸지만 맛있어요"], selectedFeeling: .constant(nil), isRecommend: .constant(nil))
+        ReviewContentView.PriceFeelingSelectionView(priceFeelings: ["너무 비싸요", "비싸지만 맛있어요"], selectedFeeling: .constant(nil))
     }
 }

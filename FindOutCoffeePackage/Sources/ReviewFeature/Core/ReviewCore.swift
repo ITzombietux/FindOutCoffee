@@ -62,14 +62,10 @@ public struct Review: Reducer {
                     guard state.content.category != nil else { return .none }
                 case .drink:
                     guard state.content.drink != nil else { return .none }
-                case .options:
-                    guard state.content.size != nil,
-                          state.content.iceOrHot != nil
-                    else { return .none }
-                case .price:
-                    guard state.content.isRecommend != nil,
-                          state.content.priceFeeling != nil
-                    else { return .none }
+                case .priceFeeling:
+                    guard state.content.priceFeeling != nil else { return .none }
+                case .recommendation:
+                    guard state.content.isRecommend != nil else { return .none }
                 case .writing:
                     return .run { send in
                         await send(.submitButtonTapped)
@@ -91,10 +87,10 @@ public struct Review: Reducer {
                     state.nextButtonIsEnabled = state.content.category != nil
                 case .drink:
                     state.nextButtonIsEnabled = state.content.drink != nil
-                case .options:
-                    state.nextButtonIsEnabled = state.content.size != nil && state.content.iceOrHot != nil
-                case .price:
-                    state.nextButtonIsEnabled = state.content.isRecommend != nil && state.content.priceFeeling != nil
+                case .priceFeeling:
+                    state.nextButtonIsEnabled = state.content.priceFeeling != nil
+                case .recommendation:
+                    state.nextButtonIsEnabled = state.content.isRecommend != nil
                 case .writing:
                     break
                 }

@@ -19,14 +19,12 @@ public struct ReviewContent: Reducer {
         public var brand: String?
         public var category: String?
         public var drink: String?
-        public var size: Size?
-        public var iceOrHot: IceOrHot?
         public var priceFeeling: String?
         public var isRecommend: Bool?
         public var photo: [Data]?
         public var text: String?
         
-        public init(brands: [String]? = nil, categories: [String]? = nil, drinks: [String]? = nil, priceFeelings: [String]? = nil, store: Store? = nil, brand: String? = nil, category: String? = nil, drink: String? = nil, size: Size? = nil, iceOrHot: IceOrHot? = nil, priceFeeling: String? = nil, isRecommend: Bool? = nil, photo: [Data]? = nil, text: String? = nil) {
+        public init(brands: [String]? = nil, categories: [String]? = nil, drinks: [String]? = nil, priceFeelings: [String]? = nil, store: Store? = nil, brand: String? = nil, category: String? = nil, drink: String? = nil, priceFeeling: String? = nil, isRecommend: Bool? = nil, photo: [Data]? = nil, text: String? = nil) {
             self.brands = brands
             self.categories = categories
             self.drinks = drinks
@@ -35,9 +33,6 @@ public struct ReviewContent: Reducer {
             self.brand = brand
             self.category = category
             self.drink = drink
-            self.size = size
-            self.iceOrHot = iceOrHot
-            self.priceFeeling = priceFeeling
             self.isRecommend = isRecommend
             self.photo = photo
             self.text = text
@@ -84,7 +79,7 @@ public struct ReviewContent: Reducer {
                 return .send(.loadCategories)
             case .drink:
                 return .send(.loadDrinks)
-            case .price:
+            case .priceFeeling:
                 return .send(.loadPriceFeelings)
             default:
                 return .send(.completeLoading)
@@ -212,10 +207,6 @@ public struct ReviewContent: Reducer {
                 state.category = category
             case let .drink(drink):
                 state.drink = drink
-            case let .size(size):
-                state.size = size
-            case let .iceOrHot(iceOrHot):
-                state.iceOrHot = iceOrHot
             case let .priceFeeling(priceFeeling):
                 state.priceFeeling = priceFeeling
             case let .recommendation(isRecommend):
@@ -236,8 +227,6 @@ public struct ReviewContent: Reducer {
             guard let userIdentifier = UserDefaults.standard.string(forKey: "isLoggedInKey") else { return .none }
             guard let nickname = UserDefaults.standard.string(forKey: "nameKey") else { return .none }
             guard let title = state.drink else { return .none }
-            guard let size = state.size else { return .none }
-            guard let iceOrHot = state.iceOrHot else { return .none }
             guard let brand = state.brand else { return .none }
             guard let feeling = state.priceFeeling else { return .none }
             guard let isRecommend = state.isRecommend else { return .none }
@@ -253,8 +242,6 @@ public struct ReviewContent: Reducer {
                                     coffee: Coffee(userIdentifier: userIdentifier,
                                                    nickname: nickname,
                                                    title: title,
-                                                   size: size.rawValue,
-                                                   isHot: iceOrHot.rawValue,
                                                    text: text,
                                                    address: brand,
                                                    category: category,

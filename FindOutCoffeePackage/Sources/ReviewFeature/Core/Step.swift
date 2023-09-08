@@ -11,11 +11,11 @@ public extension Review {
         case brand
         case category
         case drink
-        case options
-        case price
+        case priceFeeling
+        case recommendation
         case writing
         
-        public static let convenienceStoreSteps: [Self] = [.store, .brand, .drink, .options, .price, .writing]
-        public static let cafeSteps: [Self] = [.store, .brand, .category, .drink, .options, .price, .writing]
+        public static let convenienceStoreSteps: [Self] = [.store, .brand, .drink, .priceFeeling, .recommendation, .writing]
+        public static let cafeSteps: [Self] = [.store, .brand, .category, .drink, .priceFeeling, .recommendation, .writing]
     }
 }

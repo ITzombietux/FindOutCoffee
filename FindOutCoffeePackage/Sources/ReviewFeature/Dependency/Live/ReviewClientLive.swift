@@ -23,8 +23,6 @@ extension ReviewClient: DependencyKey {
                  "nickname" : request.coffee.nickname,
                  "title" : request.coffee.title,
                  "category" : request.coffee.category,
-                 "size" : request.coffee.size,
-                 "isHot" : request.coffee.isHot,
                  "text" : request.coffee.text,
                  "address" : request.coffee.address,
                  "date" : request.coffee.date,
