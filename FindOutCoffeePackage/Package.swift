@@ -18,8 +18,8 @@ let package = Package(
             targets: ["LoginFeature"]
         ),
         .library(
-            name: "ReviewFeature",
-            targets: ["ReviewFeature"]
+            name: "WriteReviewFeature",
+            targets: ["WriteReviewFeature"]
         ),
         .library(
             name: "KakaoLoginDependency",
@@ -65,7 +65,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "ReviewFeature",
+            name: "WriteReviewFeature",
             dependencies: [
                 "FirebaseDependency",
                 "UserDefaultsDependency",

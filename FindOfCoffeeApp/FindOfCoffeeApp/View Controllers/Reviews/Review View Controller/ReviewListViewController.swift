@@ -5,7 +5,7 @@
 //  Created by zombietux on 2020/12/09.
 //
 
-import ReviewFeature
+import WriteReviewFeature
 import SwiftUI
 import UIKit
 import Kingfisher
