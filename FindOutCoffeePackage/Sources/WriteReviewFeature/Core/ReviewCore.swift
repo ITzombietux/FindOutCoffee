@@ -64,6 +64,8 @@ public struct Review: Reducer {
                     guard state.content.category != nil else { return .none }
                 case .drink:
                     guard state.content.drink != nil else { return .none }
+                case .onBoarding:
+                    return .none
                 case .priceFeeling:
                     guard state.content.priceFeeling != nil else { return .none }
                 case .recommendation:
@@ -93,6 +95,8 @@ public struct Review: Reducer {
                     state.nextButtonIsEnabled = state.content.category != nil
                 case .drink:
                     state.nextButtonIsEnabled = state.content.drink != nil
+                case .onBoarding:
+                    state.nextButtonIsEnabled = true
                 case .priceFeeling:
                     state.nextButtonIsEnabled = state.content.priceFeeling != nil
                 case .recommendation:
