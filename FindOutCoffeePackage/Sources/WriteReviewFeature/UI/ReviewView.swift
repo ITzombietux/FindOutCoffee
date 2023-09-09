@@ -22,7 +22,7 @@ public struct ReviewView: View {
             navigationBar()
             
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                ProgressView(totalStep: viewStore.state.steps.count, currentStep: viewStore.state.currentStep + 1)
+                StepProgressView(totalStep: viewStore.state.steps.count, currentStep: viewStore.state.currentStep + 1)
                     .tint(Color.mainColor)
             }
             
