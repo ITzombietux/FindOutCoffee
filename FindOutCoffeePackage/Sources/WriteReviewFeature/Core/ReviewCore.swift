@@ -15,12 +15,14 @@ public struct Review: Reducer {
         public var steps: [Step]
         public var currentStep: Int
         public var nextButtonIsEnabled: Bool
+        public var isLoading: Bool
         public var content: ReviewContent.State
         
         public init(steps: [Step] = Step.cafeSteps, currentStep: Int = 0, nextButtonIsEnabled: Bool = false, content: ReviewContent.State = ReviewContent.State()) {
             self.steps = steps
             self.currentStep = currentStep
             self.nextButtonIsEnabled = nextButtonIsEnabled
+            self.isLoading = false
             self.content = content
         }
     }
@@ -72,9 +74,13 @@ public struct Review: Reducer {
                     }
                 }
                 
-                let nextStep = state.steps[state.currentStep + 1]
+                state.currentStep += 1
+                state.isLoading = true
+                
+                let currentStep = state.steps[state.currentStep]
                 return .run { send in
-                    await send(.content(.load(nextStep)))
+                    await send(.content(.load(currentStep)))
+                    await send(.checkNextButtonIsEnabled)
                 }
                 
             case .checkNextButtonIsEnabled:
@@ -97,10 +103,8 @@ public struct Review: Reducer {
                 return .none
                 
             case .content(.completeLoading):
-                state.currentStep += 1
-                return .run { send in
-                    await send(.checkNextButtonIsEnabled)
-                }
+                state.isLoading = false
+                return .none
             
             case let .content(.select(selection)):
                 if case let .store(store) = selection {
