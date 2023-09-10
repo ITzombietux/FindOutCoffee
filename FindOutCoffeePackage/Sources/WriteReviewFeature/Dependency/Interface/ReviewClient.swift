@@ -36,7 +36,7 @@ public struct Coffee: Codable {
     var countOfLike: Int
     var peopleWhoLiked: [String]
     
-    init(userIdentifier: String, nickname: String, title: String, size: String, isHot: String, text: String, address: String, category: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool = false, countOfLike: Int = 0, peopleWhoLiked: [String] = []) {
+    init(userIdentifier: String, nickname: String, title: String, text: String, address: String, category: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool = false, countOfLike: Int = 0, peopleWhoLiked: [String] = []) {
 
         self.userIdentifier = userIdentifier
         self.nickname = nickname
