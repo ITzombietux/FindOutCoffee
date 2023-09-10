@@ -10,38 +10,40 @@ import SwiftUI
 import ComposableArchitecture
 
 public struct ReviewDetailView: View {
+    private let store: StoreOf<ReviewDetail>
     
-    
-    public init() {
-        
+    public init(store: StoreOf<ReviewDetail>) {
+        self.store = store
     }
     
     public var body: some View {
-        VStack(spacing: 10) {
-            navigationBar()
-            
-            ScrollView(.vertical, showsIndicators: true) {
-                VStack(spacing: 20) {
-                    imageSection()
-                    
-                    tagSection()
-                    
-                    textSection()
-                    
-                    Spacer()
+        WithViewStore(self.store, observe: \.review) { viewStore in
+            VStack(spacing: 10) {
+                navigationBar(coffeeName: viewStore.coffeeName)
+                
+                ScrollView(.vertical, showsIndicators: true) {
+                    VStack(spacing: 20) {
+                        imageSection(urls: viewStore.imageURLs, category: viewStore.category, isRecommend: viewStore.isRecommend)
+                        
+                        tagSection(tags: viewStore.tags)
+                        
+                        textSection(text: viewStore.text, writer: viewStore.writer, date: viewStore.date)
+                        
+                        Spacer()
+                    }
                 }
+                
+                likeButton()
             }
-            
-            likeButton()
         }
     }
     
-    private func navigationBar() -> some View {
+    private func navigationBar(coffeeName: String) -> some View {
         ZStack {
             HStack(spacing: 0) {
                 Spacer()
                 
-                Text("음료 이름")
+                Text(coffeeName)
                     .font(.system(size: 20, weight: .bold))
                 
                 Spacer()
@@ -72,16 +74,16 @@ public struct ReviewDetailView: View {
         }
     }
     
-    private func imageSection() -> some View {
+    private func imageSection(urls: [String], category: String, isRecommend: Bool) -> some View {
         ZStack(alignment: .bottomTrailing) {
             TabView() {
-                ForEach(0..<3) { _ in
-                    imageCell(url: "")
+                ForEach(urls, id: \.self) { url in
+                    imageCell(url: url)
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
             
-            imageTagList()
+            imageTagList(category: category, isRecommend: isRecommend)
                 .padding(10)
         }
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 2 / 3)
@@ -98,7 +100,7 @@ public struct ReviewDetailView: View {
             )
     }
     
-    private func tagSection() -> some View {
+    private func tagSection(tags: [String]) -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 10) {
                 Text("이 음료는 ____ 해요.")
@@ -106,8 +108,8 @@ public struct ReviewDetailView: View {
                     .foregroundColor(.gray)
                 
                 HStack(spacing: 10) {
-                    ForEach(0..<2) { index in
-                        tagCell(title: "🔖 태그\(index)")
+                    ForEach(tags, id: \.self) { tag in
+                        tagCell(title: tag)
                     }
                 }
             }
@@ -135,26 +137,26 @@ public struct ReviewDetailView: View {
         )
     }
     
-    private func imageTagList() -> some View {
+    private func imageTagList(category: String, isRecommend: Bool) -> some View {
         HStack(spacing: 10) {
-            imageTagCell(imageName: "category", title: "카테고리")
+            imageTagCell(imageName: "category", title: category)
             
-            imageTagCell(imageName: "recommend", title: "추천")
+            imageTagCell(imageName: "recommend", title: isRecommend ? "추천" : "비추천")
         }
     }
     
-    private func textSection() -> some View {
+    private func textSection(text: String, writer: String, date: String) -> some View {
         VStack(spacing: 20) {
-            Text("직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다.")
+            Text(text)
                 .font(.system(size: 15, weight: .medium))
             
             HStack {
-                Text("작성자: 리뷰어")
+                Text("작성자: \(writer)")
                     .font(.system(size: 12, weight: .medium))
                 
                 Spacer()
                 
-                Text("2023.01.01")
+                Text(date)
                     .font(.system(size: 12, weight: .medium))
             }
             .foregroundColor(.gray)
@@ -183,6 +185,6 @@ public struct ReviewDetailView: View {
 
 struct ReviewDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewDetailView()
+        ReviewDetailView(store: Store(initialState: ReviewDetail.State(), reducer: { ReviewDetail() }))
     }
 }
