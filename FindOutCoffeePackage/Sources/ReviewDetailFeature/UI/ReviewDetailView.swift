@@ -144,9 +144,22 @@ public struct ReviewDetailView: View {
     }
     
     private func textSection() -> some View {
-        Text("직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다.")
-            .font(.system(size: 15, weight: .medium))
-            .padding(.horizontal, 20)
+        VStack(spacing: 20) {
+            Text("직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다.")
+                .font(.system(size: 15, weight: .medium))
+            
+            HStack {
+                Text("작성자: 리뷰어")
+                    .font(.system(size: 12, weight: .medium))
+                
+                Spacer()
+                
+                Text("2023.01.01")
+                    .font(.system(size: 12, weight: .medium))
+            }
+            .foregroundColor(.gray)
+        }
+        .padding(.horizontal, 20)
     }
     
     private func likeButton() -> some View {
