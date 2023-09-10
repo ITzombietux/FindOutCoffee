@@ -86,7 +86,6 @@ public struct likeMenuRequest {
     let writerId: String
     let reviewerId: String
     let countOfReviewLike: Int
-    let countOfWriterLike: Int
 }
 
 public struct CheckRecordLikeRequest {
@@ -104,7 +103,7 @@ public struct ReviewClient {
     public var convenienceStoreBrands: @Sendable () async throws -> ConvenienceStoreBrandsResponse
     public var convenienceStoreMenus: @Sendable (String) async throws -> ConvenienceStoreMenusResponse
     public var like: @Sendable (likeMenuRequest) async throws -> Bool
-    public var checkRecordLike: @Sendable (CheckRecordLikeRequest) async throws -> Bool
+    public var isRecordLike: @Sendable (CheckRecordLikeRequest) async throws -> Bool
 }
 
 extension ReviewClient: TestDependencyKey {
@@ -117,7 +116,7 @@ extension ReviewClient: TestDependencyKey {
         convenienceStoreBrands: unimplemented("\(Self.self).convenienceStoreBrands"),
         convenienceStoreMenus: unimplemented("\(Self.self).convenienceStoreMenus"),
         like: unimplemented("\(Self.self).like"),
-        checkRecordLike: unimplemented("\(Self.self).checkRecordLike")
+        isRecordLike: unimplemented("\(Self.self).checkRecordLike")
     )
 }
 

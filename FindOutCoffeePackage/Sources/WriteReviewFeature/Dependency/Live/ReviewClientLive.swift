@@ -161,7 +161,7 @@ extension ReviewClient: DependencyKey {
             var isSuccess: Bool = false
             
             try await db.collection(request.type).document(request.menuId).updateData([
-                "countOfLike": request.countOfReviewLike + 1,
+                "countOfLike": request.countOfReviewLike,
                 "peopleWhoLiked" : FieldValue.arrayUnion([request.reviewerId])
             ]) { error in
                 if let error = error {
@@ -181,16 +181,24 @@ extension ReviewClient: DependencyKey {
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
             return isSuccess
         },
-        checkRecordLike: { request in
+        isRecordLike: { request in
             let db = Firestore.firestore()
                 .collection(request.type)
                 .document(request.menuId)
             
+            var isRecordLike: Bool = false
+            
             try await db.getDocument { (document, error) in
-                guard let ids = document?.data()?["peopleWhoLiked"] as? [String] else { return }
+                guard let peopleWhoLikedIds = document?.data()?["peopleWhoLiked"] as? [String] else { return }
+                
+                peopleWhoLikedIds.forEach { peopleWhoLikedId in
+                    if peopleWhoLikedId == request.reviewerId {
+                        isRecordLike = true
+                    }
+                }
             }
 
-            return true
+            return isRecordLike 
         }
     )
 }
