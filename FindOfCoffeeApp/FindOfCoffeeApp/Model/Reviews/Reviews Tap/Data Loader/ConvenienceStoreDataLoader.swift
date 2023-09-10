@@ -62,7 +62,9 @@ class ConvenienceStoreDataLoader {
                     feeling: data["feeling"] as? String ?? "",
                     isRecommend: data["isRecommend"] as? Bool ?? true,
                     isPublic: data["isPublic"] as? Bool ?? false,
-                    thumbnail: imgs)
+                    thumbnail: imgs,
+                    countOfLike: data["countOfLike"] as? Int ?? 0,
+                    peopleWhoLiked: data["peopleWhoLiked"] as? [String] ?? [])
                 
                 if convienienceStore.isPublic {
                     convienienceStores.append(convienienceStore)

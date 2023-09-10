@@ -44,6 +44,16 @@ class MapsViewController: UIViewController {
         addNotification()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mapDataLoader = MapDataLoader(changeHandler: { cafeInfos in
+            self.cafeInfos = cafeInfos
+            self.getCafeMarker()
+        })
+        
+        mapDataLoader.fetch(x: currentLocation().0, y: currentLocation().1)
+    }
+    
     private func currentLocation() -> (Double, Double) {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()

@@ -35,8 +35,10 @@ public struct Coffee: Codable {
     var feeling: String
     var isRecommend: Bool
     var isPublic: Bool
+    var countOfLike: Int
+    var peopleWhoLiked: [String]
     
-    init(userIdentifier: String, nickname: String, title: String, size: String, isHot: String, text: String, address: String, category: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool = false) {
+    init(userIdentifier: String, nickname: String, title: String, size: String, isHot: String, text: String, address: String, category: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool = false, countOfLike: Int = 0, peopleWhoLiked: [String] = []) {
         self.userIdentifier = userIdentifier
         self.nickname = nickname
         self.title = title
@@ -49,6 +51,8 @@ public struct Coffee: Codable {
         self.feeling = feeling
         self.isRecommend = isRecommend
         self.isPublic = isPublic
+        self.countOfLike = countOfLike
+        self.peopleWhoLiked = peopleWhoLiked
     }
 }
 
@@ -79,6 +83,21 @@ public struct ConvenienceStoreMenusResponse {
     var names: [String]
 }
 
+public struct likeMenuRequest {
+    let type: String
+    let menuId: String
+    let writerId: String
+    let reviewerId: String
+    let countOfReviewLike: Int
+    let countOfWriterLike: Int
+}
+
+public struct CheckRecordLikeRequest {
+    let type: String
+    let menuId: String
+    let reviewerId: String
+}
+
 public struct ReviewClient {
     public var submit: @Sendable (SubmitReviewRequest) async throws -> SubmitReviewResponse
     public var uploadImages: @Sendable (SubmitImagesRequest) async throws -> SubmitImagesResponse
@@ -87,6 +106,8 @@ public struct ReviewClient {
     public var cafeCategores: @Sendable (String) async throws -> CafeCategoresResponse
     public var convenienceStoreBrands: @Sendable () async throws -> ConvenienceStoreBrandsResponse
     public var convenienceStoreMenus: @Sendable (String) async throws -> ConvenienceStoreMenusResponse
+    public var like: @Sendable (likeMenuRequest) async throws -> Bool
+    public var checkRecordLike: @Sendable (CheckRecordLikeRequest) async throws -> Bool
 }
 
 extension ReviewClient: TestDependencyKey {
@@ -97,7 +118,9 @@ extension ReviewClient: TestDependencyKey {
         cafeMenus: unimplemented("\(Self.self).cafeMenus"),
         cafeCategores: unimplemented("\(Self.self).cafeCategores"),
         convenienceStoreBrands: unimplemented("\(Self.self).convenienceStoreBrands"),
-        convenienceStoreMenus: unimplemented("\(Self.self).convenienceStoreMenus")
+        convenienceStoreMenus: unimplemented("\(Self.self).convenienceStoreMenus"),
+        like: unimplemented("\(Self.self).like"),
+        checkRecordLike: unimplemented("\(Self.self).checkRecordLike")
     )
 }
 

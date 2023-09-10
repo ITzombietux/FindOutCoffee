@@ -71,7 +71,6 @@ class MapDataLoader {
                 print(error.localizedDescription)
                     
                 case .success(let mapsResult):
-                    print("--> #\(page)")
                     mapsResult.documents.forEach { map in
                         self.availableCafes.forEach { placeName in
                             if map.placeName.contains(placeName.0) {
@@ -84,7 +83,6 @@ class MapDataLoader {
         }
         
         dispatchGroup.notify(queue: .main) {
-            print("update maps")
             self.mapsResult = self.removeDuplication(in: allMapsResult)
             
             self.mapsResult.forEach { mapResult in

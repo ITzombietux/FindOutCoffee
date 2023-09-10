@@ -23,4 +23,6 @@ struct CafeReview: Codable, Hashable, Equatable, Identifiable {
     let isRecommend: Bool
     let isPublic: Bool
     let thumbnail: [String]
+    let countOfLike: Int
+    let peopleWhoLiked: [String]
 }

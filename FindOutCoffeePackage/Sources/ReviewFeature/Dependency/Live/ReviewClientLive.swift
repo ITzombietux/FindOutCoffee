@@ -30,7 +30,9 @@ extension ReviewClient: DependencyKey {
                  "date" : request.coffee.date,
                  "feeling" : request.coffee.feeling,
                  "isRecommend" : request.coffee.isRecommend,
-                 "isPublic" : request.coffee.isPublic
+                 "isPublic" : request.coffee.isPublic,
+                 "countOfLike" : request.coffee.countOfLike,
+                 "peopleWhoLiked" : request.coffee.peopleWhoLiked
                 ]
             ) { error in
                 if error == nil {
@@ -79,6 +81,10 @@ extension ReviewClient: DependencyKey {
                 }
             }
             
+            response.names.sort(by: { a, b in
+                return a.compare(b) == .orderedAscending
+            })
+            
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
             return response
         },
@@ -93,6 +99,9 @@ extension ReviewClient: DependencyKey {
                 
                 response.names = menus
             }
+            response.names.sort(by: { a, b in
+                return a.compare(b) == .orderedAscending
+            })
             
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
             return response
@@ -107,6 +116,9 @@ extension ReviewClient: DependencyKey {
                     response.names.append(categoryName)
                 }
             }
+            response.names.sort(by: { a, b in
+                return a.compare(b) == .orderedAscending
+            })
             
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
             return response
@@ -122,6 +134,9 @@ extension ReviewClient: DependencyKey {
                     }
                 }
             }
+            response.names.sort(by: { a, b in
+                return a.compare(b) == .orderedAscending
+            })
             
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
             return response
@@ -136,9 +151,48 @@ extension ReviewClient: DependencyKey {
                     response.names = menus
                 }
             }
+            response.names.sort(by: { a, b in
+                return a.compare(b) == .orderedAscending
+            })
             
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
             return response
+        },
+        like: { request in
+            let db = Firestore.firestore()
+            var isSuccess: Bool = false
+            
+            try await db.collection(request.type).document(request.menuId).updateData([
+                "countOfLike": request.countOfReviewLike + 1,
+                "peopleWhoLiked" : FieldValue.arrayUnion([request.reviewerId])
+            ]) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    isSuccess = true
+                    print("Array field updated successfully!")
+                }
+            }
+            
+//            try await db.collection("Users").document(request.writerId).updateData([
+//                "like" : [ "menuId" : request.menuId,
+//                           "type" : request.type],
+//                "countOfLike" : request.countOfWriterLike + 1
+//            ])
+            
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC)
+            return isSuccess
+        },
+        checkRecordLike: { request in
+            let db = Firestore.firestore()
+                .collection(request.type)
+                .document(request.menuId)
+            
+            try await db.getDocument { (document, error) in
+                guard let ids = document?.data()?["peopleWhoLiked"] as? [String] else { return }
+            }
+
+            return true
         }
     )
 }

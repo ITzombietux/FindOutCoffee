@@ -62,7 +62,10 @@ class CafeListDataLoader {
                     feeling: data["feeling"] as! String,
                     isRecommend: data["isRecommend"] as! Bool,
                     isPublic: data["isPublic"] as? Bool ?? true,
-                    thumbnail: imgs)
+                    thumbnail: imgs,
+                    countOfLike: data["countOfLike"] as? Int ?? 0,
+                    peopleWhoLiked: data["peopleWhoLiked"] as? [String] ?? []
+                    )
                 if cafeReview.isPublic {
                     cafeReviews.append(cafeReview)
                 }

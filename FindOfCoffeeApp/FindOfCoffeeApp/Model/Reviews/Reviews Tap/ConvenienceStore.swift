@@ -23,8 +23,10 @@ struct ConvenienceStore: Codable, Hashable, Equatable, Identifiable {
     let isRecommend: Bool
     let isPublic: Bool
     var thumbnail: [String]
+    let countOfLike: Int
+    let peopleWhoLiked: [String]
     
-    init(id: UUID = UUID(), menuIdentifier: String, userIdentifier: String, nickname: String, title: String, category: String, size: String, isHot: String, text: String, address: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool, thumbnail: [String]) {
+    init(id: UUID = UUID(), menuIdentifier: String, userIdentifier: String, nickname: String, title: String, category: String, size: String, isHot: String, text: String, address: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool, thumbnail: [String], countOfLike: Int, peopleWhoLiked: [String]) {
         self.id = id
         self.menuIdentifier = menuIdentifier
         self.userIdentifier = userIdentifier
@@ -40,5 +42,7 @@ struct ConvenienceStore: Codable, Hashable, Equatable, Identifiable {
         self.isRecommend = isRecommend
         self.isPublic = isPublic
         self.thumbnail = thumbnail
+        self.countOfLike = countOfLike
+        self.peopleWhoLiked = peopleWhoLiked
     }
 }
