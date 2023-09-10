@@ -17,16 +17,22 @@ public struct ReviewDetailView: View {
     }
     
     public var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 10) {
             navigationBar()
             
-            imageSection()
+            ScrollView(.vertical, showsIndicators: true) {
+                VStack(spacing: 20) {
+                    imageSection()
+                    
+                    tagSection()
+                    
+                    textSection()
+                    
+                    Spacer()
+                }
+            }
             
-            tagSection()
-            
-            textSection()
-            
-            Spacer()
+            likeButton()
         }
     }
     
@@ -141,6 +147,24 @@ public struct ReviewDetailView: View {
         Text("직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다. 직접 작성한 리뷰입니다.")
             .font(.system(size: 15, weight: .medium))
             .padding(.horizontal, 20)
+    }
+    
+    private func likeButton() -> some View {
+        Button {
+            
+        } label: {
+            ZStack {
+                Capsule()
+                    .foregroundColor(.blue)
+                
+                Text("찾았다, 인생커피!")
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(.vertical, 10)
+            }
+        }
+        .frame(height: 30)
+        .padding(.horizontal, 20)
     }
 }
 

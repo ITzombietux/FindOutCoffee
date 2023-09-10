@@ -18,6 +18,7 @@
 		330299912A829D7A00647BEA /* LoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 330299902A829D7A00647BEA /* LoginFeature */; };
 		330299932A829D7A00647BEA /* ReviewFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 330299922A829D7A00647BEA /* ReviewFeature */; };
 		33B10C6B2A86A45C00C135DB /* KakaoLoginDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 33B10C6A2A86A45C00C135DB /* KakaoLoginDependency */; };
+		33CF09902AADC3C000BDA1EB /* ReviewDetailFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 33CF098F2AADC3C000BDA1EB /* ReviewDetailFeature */; };
 		93008974259D959600AB7DA5 /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93008973259D959600AB7DA5 /* BMJUA_otf.otf */; };
 		93008977259D95EB00AB7DA5 /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93008973259D959600AB7DA5 /* BMJUA_otf.otf */; };
 		9334883A2589A7A200CA3012 /* NoticeFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933488392589A7A200CA3012 /* NoticeFullscreenController.swift */; };
@@ -174,6 +175,7 @@
 				330299912A829D7A00647BEA /* LoginFeature in Frameworks */,
 				2DBE677E2A8076C4004DFBD8 /* Kingfisher in Frameworks */,
 				2DA8C35A2A8D93BD008A20BC /* FirebaseDependency in Frameworks */,
+				33CF09902AADC3C000BDA1EB /* ReviewDetailFeature in Frameworks */,
 				33B10C6B2A86A45C00C135DB /* KakaoLoginDependency in Frameworks */,
 				2DBE67842A8078AF004DFBD8 /* NMapsMap in Frameworks */,
 				330299932A829D7A00647BEA /* ReviewFeature in Frameworks */,
@@ -654,6 +656,7 @@
 				2DA8C3572A8CA5C3008A20BC /* UserDefaultsDependency */,
 				2DA8C3592A8D93BD008A20BC /* FirebaseDependency */,
 				2D25C2862A933BE40058B849 /* MyFeature */,
+				33CF098F2AADC3C000BDA1EB /* ReviewDetailFeature */,
 			);
 			productName = FindOfCoffeeApp;
 			productReference = 933DB0DC257E4B5A00CB6FF8 /* FindOfCoffeeApp.app */;
@@ -1136,6 +1139,10 @@
 		33B10C6A2A86A45C00C135DB /* KakaoLoginDependency */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = KakaoLoginDependency;
+		};
+		33CF098F2AADC3C000BDA1EB /* ReviewDetailFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ReviewDetailFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
