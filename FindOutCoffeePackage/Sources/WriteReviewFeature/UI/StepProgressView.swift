@@ -1,5 +1,5 @@
 //
-//  ProgressView.swift
+//  StepProgressView.swift
 //  
 //
 //  Created by 김혜지 on 2023/08/13.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProgressView: View {
+struct StepProgressView: View {
     private let totalStep: Int
     private let currentStep: Int
     
@@ -40,6 +40,6 @@ struct ProgressView: View {
 
 struct ProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressView(totalStep: 7, currentStep: 3)
+        StepProgressView(totalStep: 7, currentStep: 3)
     }
 }

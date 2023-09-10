@@ -18,8 +18,12 @@ let package = Package(
             targets: ["LoginFeature"]
         ),
         .library(
-            name: "ReviewFeature",
-            targets: ["ReviewFeature"]
+            name: "WriteReviewFeature",
+            targets: ["WriteReviewFeature"]
+        ),
+        .library(
+            name: "ReviewDetailFeature",
+            targets: ["ReviewDetailFeature"]
         ),
         .library(
             name: "KakaoLoginDependency",
@@ -65,7 +69,16 @@ let package = Package(
             ]
         ),
         .target(
-            name: "ReviewFeature",
+            name: "WriteReviewFeature",
+            dependencies: [
+                "FirebaseDependency",
+                "UserDefaultsDependency",
+                "DesignSystem",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ]
+        ),
+        .target(
+            name: "ReviewDetailFeature",
             dependencies: [
                 "FirebaseDependency",
                 "UserDefaultsDependency",

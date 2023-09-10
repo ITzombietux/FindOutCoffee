@@ -22,11 +22,11 @@ public struct ReviewView: View {
             navigationBar()
             
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                ProgressView(totalStep: viewStore.state.steps.count, currentStep: viewStore.state.currentStep + 1)
+                StepProgressView(totalStep: viewStore.state.steps.count, currentStep: viewStore.state.currentStep + 1)
                     .tint(Color.mainColor)
-                
-                ReviewContentView(step: viewStore.state.steps[viewStore.state.currentStep], store: self.store.scope(state: \.content, action: Review.Action.content))
             }
+            
+            reviewContentView()
             
             WithViewStore(self.store, observe: { $0 }) { viewStore in
                 ReviewButton(
@@ -56,6 +56,28 @@ public struct ReviewView: View {
                 Spacer()
             }
             .frame(height: 44)
+        }
+    }
+    
+    @ViewBuilder
+    private func reviewContentView() -> some View {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            if viewStore.state.isLoading {
+                activityIndicator()
+            } else {
+                ReviewContentView(step: viewStore.state.steps[viewStore.state.currentStep], store: self.store.scope(state: \.content, action: Review.Action.content))
+            }
+        }
+    }
+    
+    private func activityIndicator() -> some View {
+        VStack {
+            Spacer()
+            
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: .mainColor))
+            
+            Spacer()
         }
     }
 }

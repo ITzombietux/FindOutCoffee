@@ -41,37 +41,24 @@ struct ReviewContentView: View {
                 DrinkSelectionView(store: viewStore.state.store?.description ?? "", drinks: viewStore.state.drinks ?? [], selection: viewStore.binding(get: \.drink, send: { .select(.drink($0 ?? "")) }))
             }
             
-        case .options:
-            WithViewStore(self.store, observe:  { $0 }) { viewStore in
-                OptionSelectionView(
-                    size:
-                        viewStore.binding(
-                            get: \.size,
-                            send: { .select(.size($0 ?? .small)) }
-                        ),
-                    iceOrHot:
-                        viewStore.binding(
-                            get: \.iceOrHot,
-                            send: { .select(.iceOrHot($0 ?? .ice)) }
-                        )
-                )
-            }
+        case .onBoarding:
+            OnBoardingView()
             
-        case .price:
+        case .priceFeeling:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                PriceSelectionView(
+                PriceFeelingSelectionView(
                     priceFeelings: viewStore.priceFeelings ?? [],
                     selectedFeeling:
                         viewStore.binding(
                             get: \.priceFeeling,
                             send: { .select(.priceFeeling($0 ?? "")) }
-                        ),
-                    isRecommend:
-                        viewStore.binding(
-                            get: \.isRecommend,
-                            send: { .select(.recommendation($0 ?? false)) }
                         )
                 )
+            }
+            
+        case .recommendation:
+            WithViewStore(self.store, observe:  { $0 }) { viewStore in
+                RecommendationView(isRecommend: viewStore.binding(get: \.isRecommend, send: { .select(.recommendation($0 ?? false)) }))
             }
             
         case .writing:

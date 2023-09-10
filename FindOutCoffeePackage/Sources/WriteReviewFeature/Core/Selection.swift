@@ -11,8 +11,6 @@ public extension ReviewContent {
         case brand(String)
         case category(String)
         case drink(String)
-        case size(Size)
-        case iceOrHot(IceOrHot)
         case priceFeeling(String)
         case recommendation(Bool)
     }
