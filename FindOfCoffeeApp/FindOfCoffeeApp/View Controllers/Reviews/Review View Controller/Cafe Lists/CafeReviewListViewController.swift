@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SwiftUI
+import ReviewDetailFeature
 
 class CafeReviewListViewController: UIViewController {
     
@@ -29,6 +31,20 @@ class CafeReviewListViewController: UIViewController {
         configureCollectionView()
         
         fetchData()
+    }
+    
+    private func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(popReviewDetailView), name: .dismissReviewDetailView, object: nil)
+    }
+    
+    @objc private func popReviewDetailView() {
+        navigationController?.popViewController(animated: true)
+        navigationController?.isNavigationBarHidden = false
+        self.removeNotification()
+    }
+    
+    private func removeNotification() {
+        NotificationCenter.default.removeObserver(self, name: .dismissReviewDetailView, object: nil)
     }
     
     private func configureCollectionView() {
@@ -95,9 +111,11 @@ class CafeReviewListViewController: UIViewController {
 extension CafeReviewListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let reviewItem = dataLoader.cafeReviews[indexPath.row]
-        let cafeReviewDetailC = CafeReviewDetailViewController()
-        cafeReviewDetailC.navigationItem.title = reviewItem.title
-        cafeReviewDetailC.cafeReviewDetail = reviewItem
-        navigationController?.pushViewController(cafeReviewDetailC, animated: true)
+        let reviewDetailView = ReviewDetailView(review: CafeReviewMapper.map(cafeReview: reviewItem))
+        let hostingController = UIHostingController(rootView: reviewDetailView)
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.pushViewController(hostingController, animated: true)
+        
+        self.addNotification()
     }
 }

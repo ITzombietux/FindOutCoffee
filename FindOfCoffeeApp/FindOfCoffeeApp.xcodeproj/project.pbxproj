@@ -17,6 +17,7 @@
 		2DBE67812A807709004DFBD8 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67802A807709004DFBD8 /* JGProgressHUD */; };
 		2DBE67842A8078AF004DFBD8 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 2DBE67832A8078AF004DFBD8 /* NMapsMap */; };
 		330299912A829D7A00647BEA /* LoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 330299902A829D7A00647BEA /* LoginFeature */; };
+		3338B54D2AAF50FA00A602A8 /* CafeReviewMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3338B54C2AAF50FA00A602A8 /* CafeReviewMapper.swift */; };
 		33B10C6B2A86A45C00C135DB /* KakaoLoginDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 33B10C6A2A86A45C00C135DB /* KakaoLoginDependency */; };
 		33CF09902AADC3C000BDA1EB /* ReviewDetailFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 33CF098F2AADC3C000BDA1EB /* ReviewDetailFeature */; };
 		93008974259D959600AB7DA5 /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 93008973259D959600AB7DA5 /* BMJUA_otf.otf */; };
@@ -95,6 +96,7 @@
 		2DA8C35C2A8DE30E008A20BC /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2DAA641D2A95A24C0073B061 /* FindOfCoffeeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FindOfCoffeeApp.entitlements; sourceTree = "<group>"; };
 		3302998C2A8289B100647BEA /* FindOutCoffeePackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FindOutCoffeePackage; path = ../../FindOutCoffeePackage; sourceTree = "<group>"; };
+		3338B54C2AAF50FA00A602A8 /* CafeReviewMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeReviewMapper.swift; sourceTree = "<group>"; };
 		93008973259D959600AB7DA5 /* BMJUA_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMJUA_otf.otf; sourceTree = "<group>"; };
 		933488392589A7A200CA3012 /* NoticeFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeFullscreenController.swift; sourceTree = "<group>"; };
 		933488482589B69300CA3012 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			children = (
 				93348861258A352300CA3012 /* CafeListDataLoader.swift */,
 				93348864258A355900CA3012 /* CafeReview.swift */,
+				3338B54C2AAF50FA00A602A8 /* CafeReviewMapper.swift */,
 			);
 			path = "Cafe VC";
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				93E241F025888D34003E7156 /* NoticeCell.swift in Sources */,
 				93348A7125973CB100CA3012 /* CafeReviewDetailViewController.swift in Sources */,
 				93E241D9258853B9003E7156 /* Cafe.swift in Sources */,
+				3338B54D2AAF50FA00A602A8 /* CafeReviewMapper.swift in Sources */,
 				2D25C2852A933B3D0058B849 /* MyViewController.swift in Sources */,
 				9334886C258A3F7400CA3012 /* CafeReviewCell.swift in Sources */,
 				9334887F258B4E0900CA3012 /* CSReviewCell.swift in Sources */,
