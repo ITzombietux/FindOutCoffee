@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ReviewDetailFeature
 
 struct CafeReview: Codable, Hashable, Equatable, Identifiable {
     let id: UUID = UUID()

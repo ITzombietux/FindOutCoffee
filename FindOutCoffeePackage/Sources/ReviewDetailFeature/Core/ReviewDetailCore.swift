@@ -5,17 +5,22 @@
 //  Created by Joy on 2023/09/08.
 //
 
+import Foundation
+
 import ComposableArchitecture
 
 public struct ReviewDetail: Reducer {
     public struct State: Equatable {
-        let review: Review = .mock
+        let review: Review
         
-        public init() {}
+        public init(review: Review) {
+            self.review = review
+        }
     }
     
     public enum Action {
         case like
+        case dismiss
     }
     
     public init() {}
@@ -24,10 +29,14 @@ public struct ReviewDetail: Reducer {
         switch action {
         case .like:
             return .none
+            
+        case .dismiss:
+            NotificationCenter.default.post(name: .dismissReviewDetailView, object: nil)
+            return .none
         }
     }
     
-    struct Review: Equatable {
+    public struct Review: Equatable {
         let coffeeName: String
         let imageURLs: [String]
         let tags: [String]
@@ -37,6 +46,18 @@ public struct ReviewDetail: Reducer {
         let writer: String
         let date: String
         let likes: [String]
+        
+        public init(coffeeName: String, imageURLs: [String], tags: [String], category: String, isRecommend: Bool, text: String, writer: String, date: String, likes: [String]) {
+            self.coffeeName = coffeeName
+            self.imageURLs = imageURLs
+            self.tags = tags
+            self.category = category
+            self.isRecommend = isRecommend
+            self.text = text
+            self.writer = writer
+            self.date = date
+            self.likes = likes
+        }
         
         public static let mock: Self = .init(coffeeName: "혱구더블샷",
                                              imageURLs: ["", "", ""],

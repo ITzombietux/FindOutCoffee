@@ -12,8 +12,8 @@ import ComposableArchitecture
 public struct ReviewDetailView: View {
     private let store: StoreOf<ReviewDetail>
     
-    public init(store: StoreOf<ReviewDetail>) {
-        self.store = store
+    public init(review: ReviewDetail.Review) {
+        self.store = Store(initialState: ReviewDetail.State(review: review), reducer: { ReviewDetail() })
     }
     
     public var body: some View {
@@ -39,31 +39,33 @@ public struct ReviewDetailView: View {
     }
     
     private func navigationBar(coffeeName: String) -> some View {
-        ZStack {
-            HStack(spacing: 0) {
-                Spacer()
-                
-                Text(coffeeName)
-                    .font(.system(size: 20, weight: .bold))
-                
-                Spacer()
-            }
-            
-            HStack(spacing: 0) {
-                Button {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            ZStack {
+                HStack(spacing: 0) {
+                    Spacer()
                     
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .resizable()
-                        .frame(width: 20, height: 20)
+                    Text(coffeeName)
+                        .font(.system(size: 20, weight: .bold))
+                    
+                    Spacer()
                 }
-                .foregroundColor(.black)
                 
-                Spacer()
+                HStack(spacing: 0) {
+                    Button {
+                        viewStore.send(.dismiss)
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                    }
+                    .foregroundColor(.black)
+                    
+                    Spacer()
+                }
             }
+            .frame(height: 44)
+            .padding(.horizontal, 20)
         }
-        .frame(height: 44)
-        .padding(.horizontal, 20)
     }
     
     private func imageCell(url: String) -> some View {
@@ -185,6 +187,10 @@ public struct ReviewDetailView: View {
 
 struct ReviewDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewDetailView(store: Store(initialState: ReviewDetail.State(), reducer: { ReviewDetail() }))
+        ReviewDetailView(review: .mock)
     }
+}
+
+public extension Notification.Name {
+    static let dismissReviewDetailView = Notification.Name("dismissReviewDetailView")
 }
