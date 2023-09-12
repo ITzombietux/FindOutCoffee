@@ -7,11 +7,13 @@
 
 import SwiftUI
 
-struct DynamicWidthGrid: View {
+struct DynamicWidthGrid<ElementView: View>: View {
     @State private var elements: [String]
+    private let elementView: (String) -> ElementView
     
-    public init(elements: [String]) {
+    public init(elements: [String], @ViewBuilder elementView: @escaping (String) -> ElementView) {
         self.elements = elements
+        self.elementView = elementView
     }
 
     var body: some View {
@@ -27,7 +29,7 @@ struct DynamicWidthGrid: View {
         return ZStack(alignment: .topLeading) {
             ForEach(self.elements, id: \.self) { element in
                 self.elementView(element)
-                    .padding([.horizontal, .vertical], 4)
+                    .padding([.horizontal, .vertical], 5)
                     .alignmentGuide(.leading, computeValue: { dimension in
                         if (abs(width - dimension.width) > geometry.size.width)
                         {
@@ -52,19 +54,17 @@ struct DynamicWidthGrid: View {
             }
         }
     }
-
-    private func elementView(_ element: String) -> some View {
-        Text(element)
-            .padding(.all, 5)
-            .font(.body)
-            .background(Color.blue)
-            .foregroundColor(Color.white)
-            .cornerRadius(5)
-    }
 }
 
 struct FlexibleGrid_Previews: PreviewProvider {
     static var previews: some View {
-        DynamicWidthGrid(elements: ["하나", "두우우울", "셋", "네에에에에엣", "다아서엇", "여어어어어섯", "일곱", "여더어어얿"])
+        DynamicWidthGrid(elements: ["하나", "두우우울", "셋", "네에에에에엣", "다아서엇", "여어어어어섯", "일곱", "여더어어얿"]) { title in
+            Text(title)
+                .padding(.all, 5)
+                .font(.body)
+                .background(Color.blue)
+                .foregroundColor(Color.white)
+                .cornerRadius(5)
+        }
     }
 }

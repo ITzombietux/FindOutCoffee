@@ -22,7 +22,7 @@ extension ReviewContentView {
                 Text("가격이 적당한 것 같나요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                ForEach(self.priceFeelings, id: \.self) { priceFeeling in
+                DynamicWidthGrid(elements: self.priceFeelings) { priceFeeling in
                     SelectionCell(title: priceFeeling, isSelected: selectedFeeling == priceFeeling) {
                         self.selectedFeeling = priceFeeling
                     }
@@ -36,6 +36,6 @@ extension ReviewContentView {
 
 struct PriceSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewContentView.PriceFeelingSelectionView(priceFeelings: ["너무 비싸요", "비싸지만 맛있어요"], selectedFeeling: .constant(nil))
+        ReviewContentView.PriceFeelingSelectionView(priceFeelings: ["김만구는", "행복에 살텐데", "나", "없이도", "행복하게", "자알", "지내려나"], selectedFeeling: .constant(nil))
     }
 }
