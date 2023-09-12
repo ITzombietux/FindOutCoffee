@@ -46,13 +46,29 @@ public struct Review: Reducer {
         Reduce { state, action in
             switch action {
             case .backButtonTapped:
-                if state.currentStep > 0 {
-                    state.currentStep -= 1
-                    return .send(.checkNextButtonIsEnabled)
+                switch state.steps[state.currentStep] {
+                case .store:
+                    NotificationCenter.default.post(name: Notification.Name.dismissReviewView, object: nil)
+                    return .none
+                case .brand:
+                    state.content.brand = nil
+                case .category:
+                    state.content.category = nil
+                case .drink:
+                    state.content.drink = nil
+                case .onBoarding:
+                    break
+                case .priceFeeling:
+                    state.content.priceFeeling = nil
+                case .recommendation:
+                    state.content.isRecommend = nil
+                case .writing:
+                    state.content.text = nil
+                    state.content.photo = nil
                 }
                 
-                NotificationCenter.default.post(name: Notification.Name.dismissReviewView, object: nil)
-                return .none
+                state.currentStep -= 1
+                return .send(.checkNextButtonIsEnabled)
                 
             case .nextButtonTapped:
                 switch state.steps[state.currentStep] {
@@ -65,7 +81,7 @@ public struct Review: Reducer {
                 case .drink:
                     guard state.content.drink != nil else { return .none }
                 case .onBoarding:
-                    return .none
+                    break
                 case .priceFeeling:
                     guard state.content.priceFeeling != nil else { return .none }
                 case .recommendation:
