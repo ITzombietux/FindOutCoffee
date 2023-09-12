@@ -188,7 +188,7 @@ extension ReviewClient: DependencyKey {
             
             var isRecordLike: Bool = false
             
-            try await db.getDocument { (document, error) in
+            await db.getDocument { (document, error) in
                 guard let peopleWhoLikedIds = document?.data()?["peopleWhoLiked"] as? [String] else { return }
                 
                 peopleWhoLikedIds.forEach { peopleWhoLikedId in
@@ -198,6 +198,7 @@ extension ReviewClient: DependencyKey {
                 }
             }
 
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC)
             return isRecordLike 
         }
     )

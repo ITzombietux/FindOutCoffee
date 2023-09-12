@@ -11,7 +11,7 @@ struct CafeReviewMapper {
     static func map(cafeReview: CafeReview) -> ReviewDetail.Review {
         ReviewDetail.Review(type: "CafeReview",
                             menuId: cafeReview.menuIdentifier,
-                            coffeeName: cafeReview.menuIdentifier,
+                            coffeeName: cafeReview.title,
                             imageURLs: cafeReview.thumbnail,
                             tags: [cafeReview.feeling],
                             category: cafeReview.category,
@@ -28,7 +28,7 @@ struct ConvenienceStoreReviewMapper {
     static func map(_ review: ConvenienceStore) -> ReviewDetail.Review {
         ReviewDetail.Review(type: "CSReview",
                             menuId: review.menuIdentifier,
-                            coffeeName: review.menuIdentifier,
+                            coffeeName: review.title,
                             imageURLs: review.thumbnail,
                             tags: [review.feeling],
                             category: review.category,

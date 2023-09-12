@@ -49,6 +49,9 @@ public struct ReviewDetailView: View {
                 .frame(height: 30)
                 .padding(.horizontal, 20)
             }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
         }
     }
     
