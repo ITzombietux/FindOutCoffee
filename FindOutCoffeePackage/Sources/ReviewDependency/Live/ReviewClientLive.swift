@@ -158,7 +158,6 @@ extension ReviewClient: DependencyKey {
         },
         like: { request in
             let db = Firestore.firestore()
-            var isRecordLike: Bool = false
             let parameter = request.isRecordLiked ? ["countOfLike": request.countOfReviewLike,
                                                       "peopleWhoLiked" : FieldValue.arrayRemove([request.reviewerId])] : ["countOfLike": request.countOfReviewLike,
                                                                                                                           "peopleWhoLiked" : FieldValue.arrayUnion([request.reviewerId])]
@@ -173,7 +172,7 @@ extension ReviewClient: DependencyKey {
             }
             
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
-            return request.isRecordLiked ? true : false
+            return request.isRecordLiked ? false : true
         },
         isRecordLike: { request in
             let db = Firestore.firestore()

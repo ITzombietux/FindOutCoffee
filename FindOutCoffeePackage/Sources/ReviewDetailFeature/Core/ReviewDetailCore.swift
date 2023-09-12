@@ -42,22 +42,27 @@ public struct ReviewDetail: Reducer {
                 guard let reviewerId = UserDefaults.standard.string(forKey: "isLoggedInKey") else { return }
                 let checkRecordLikeRequest = CheckRecordLikeRequest(type: type, menuId: menuId, reviewerId: reviewerId)
                 let isRecordLike = try await self.reviewClient.isRecordLike(checkRecordLikeRequest)
+    
                 await send(.recordLikeHistory(isRecordLike))
             }
             
         case .view(.likeButtonTapped):
             let updatedCountOfLike = state.isRecordLiked ? (state.review.countOfLike - 1) : (state.review.countOfLike + 1)
             update(countOfLike: updatedCountOfLike)
+            let isRecordLiked = state.isRecordLiked
             
-            return .run { [type = state.review.type, menuId = state.review.menuId, writerId = state.review.writerId, isRecordLike = state.isRecordLiked] send in
+            return .run { [type = state.review.type, menuId = state.review.menuId, writerId = state.review.writerId] send in
                 guard let reviewerId = UserDefaults.standard.string(forKey: "isLoggedInKey") else { return }
+                 
                 let likeMenuRequest = LikeMenuRequest(type: type,
                                                       menuId: menuId,
                                                       writerId: writerId,
                                                       reviewerId: reviewerId,
                                                       countOfReviewLike: updatedCountOfLike,
-                                                      isRecordLiked: isRecordLike)
+                                                      isRecordLiked: isRecordLiked)
+                
                 let isRecordLike = try await self.reviewClient.like(likeMenuRequest)
+                
                 await send(.recordLikeHistory(isRecordLike))
             }
             
