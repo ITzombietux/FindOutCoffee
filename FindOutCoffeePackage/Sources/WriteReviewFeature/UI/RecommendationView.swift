@@ -23,10 +23,11 @@ extension ReviewContentView {
                     .font(.system(size: 25, weight: .bold))
                 
                 HStack(spacing: 10) {
-                    selectionCell(imageName: "hand.thumbsup.fill", title: "추천", isSelected: isRecommend ?? false) {
+                    selectionCell(imageName: "hand.thumbsup.fill", title: "추천", isSelected: isRecommend == true) {
                         self.isRecommend = true
                     }
-                    selectionCell(imageName: "hand.thumbsdown.fill", title: "비추천", isSelected: !(isRecommend ?? false)) {
+                    
+                    selectionCell(imageName: "hand.thumbsdown.fill", title: "비추천", isSelected: isRecommend == false) {
                         self.isRecommend = false
                     }
                 }
