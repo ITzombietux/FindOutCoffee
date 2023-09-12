@@ -24,30 +24,33 @@ struct SelectionCell: View {
         Button {
             action()
         } label: {
-            ZStack(alignment: .leading) {
-                if isSelected {
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(Color.mainColor)
-                } else {
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke()
-                        .foregroundColor(.gray)
-                }
-                
-                Text(title)
-                    .font(.system(size: 20, weight: .medium))
-                    .foregroundColor(isSelected ? .white : .black)
-                    .padding(.leading, 10)
-            }
+            Text(title)
+                .font(.system(size: 20, weight: .medium))
+                .foregroundColor(isSelected ? .white : .black)
+                .padding(10)
+                .background(
+                    backgroundForSelection()
+                )
         }
         .frame(height: 40)
+        .padding(.vertical, 2)
+    }
+    
+    @ViewBuilder
+    private func backgroundForSelection() -> some View {
+        if self.isSelected {
+            Capsule()
+                .foregroundColor(Color.mainColor)
+        } else {
+            Capsule()
+                .stroke()
+                .foregroundColor(.gray)
+        }
     }
 }
 
 struct SelectionCell_Previews: PreviewProvider {
     static var previews: some View {
-        SelectionCell(title: "SelectionCell", isSelected: false) {
-            
-        }
+        SelectionCell(title: "SelectionCell", isSelected: false) {}
     }
 }

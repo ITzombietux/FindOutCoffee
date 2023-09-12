@@ -22,17 +22,10 @@ extension ReviewContentView {
                 Text("구매한 음료 종류가 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                ScrollView(.vertical, showsIndicators: true) {
-                    VStack(spacing: 20) {
-                        ForEach(self.categories, id: \.self) { category in
-                            SelectionCell(title: category, isSelected: category == selection) {
-                                self.selection = category
-                            }
-                        }
-                        
-                        Spacer(minLength: 0)
+                DynamicWidthGrid(elements: self.categories) { category in
+                    SelectionCell(title: category, isSelected: category == selection) {
+                        self.selection = category
                     }
-                    .padding(.vertical)
                 }
             }
         }

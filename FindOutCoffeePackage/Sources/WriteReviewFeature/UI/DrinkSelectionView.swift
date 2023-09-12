@@ -24,17 +24,10 @@ extension ReviewContentView {
                 Text("\(store)에서 구매한 음료 이름이 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                ScrollView(.vertical, showsIndicators: true) {
-                    VStack(spacing: 20) {
-                        ForEach(self.drinks, id: \.self) { drink in
-                            SelectionCell(title: drink, isSelected: drink == selection) {
-                                self.selection = drink
-                            }
-                        }
-                        
-                        Spacer(minLength: 0)
+                DynamicWidthGrid(elements: self.drinks) { drink in
+                    SelectionCell(title: drink, isSelected: drink == selection) {
+                        self.selection = drink
                     }
-                    .padding(.vertical)
                 }
             }
         }

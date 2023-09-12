@@ -21,10 +21,7 @@ public struct ReviewView: View {
         VStack(spacing: 20) {
             navigationBar()
             
-            WithViewStore(self.store, observe: { $0 }) { viewStore in
-                StepProgressView(totalStep: viewStore.state.steps.count, currentStep: viewStore.state.currentStep + 1)
-                    .tint(Color.mainColor)
-            }
+            stepProgressView()
             
             reviewContentView()
             
@@ -56,6 +53,16 @@ public struct ReviewView: View {
                 Spacer()
             }
             .frame(height: 44)
+        }
+    }
+    
+    @ViewBuilder
+    private func stepProgressView() -> some View {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            if viewStore.state.steps[viewStore.state.currentStep] != .onBoarding {
+                StepProgressView(totalStep: viewStore.state.steps.count, currentStep: viewStore.state.currentStep + 1)
+                    .tint(Color.mainColor)
+            }
         }
     }
     

@@ -25,20 +25,13 @@ extension ReviewContentView {
                 Text("브랜드 이름이 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                ScrollView(.vertical, showsIndicators: true) {
-                    VStack(spacing: 20) {
-                        ForEach(self.brands, id: \.self) { brand in
-                            SelectionCell(
-                                title: brand,
-                                isSelected: selection == brand
-                            ) {
-                                self.selection = brand
-                            }
-                        }
-                        
-                        Spacer(minLength: 0)
+                DynamicWidthGrid(elements: self.brands) { brand in
+                    SelectionCell(
+                        title: brand,
+                        isSelected: selection == brand
+                    ) {
+                        self.selection = brand
                     }
-                    .padding(.vertical)
                 }
             }
         }
