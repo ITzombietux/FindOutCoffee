@@ -10,6 +10,7 @@ import ReviewDetailFeature
 
 struct CafeReview: Codable, Hashable, Equatable, Identifiable {
     let id: UUID = UUID()
+    let type: String
     let menuIdentifier: String
     let userIdentifier: String
     let nickname: String

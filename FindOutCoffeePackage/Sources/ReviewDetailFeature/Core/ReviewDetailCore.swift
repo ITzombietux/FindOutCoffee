@@ -22,8 +22,8 @@ public struct ReviewDetail: Reducer {
     public enum Action {
         case view(View)
         
-        
         public enum View {
+            case onAppear
             case likeButtonTapped
             case dismissButtonTapped
         }
@@ -31,18 +31,32 @@ public struct ReviewDetail: Reducer {
     
     public init() {}
     
+    @Dependency(\.reviewClient) var reviewClient
+    
     public func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
+        case .view(.onAppear):
+            return .run { [type = state.review.type, menuId = state.review.menuId] _ in
+                guard let reviewerId = UserDefaults.standard.string(forKey: "isLoggedInKey") else { return }
+                let checkRecordLikeRequest = CheckRecordLikeRequest(type: type, menuId: menuId, reviewerId: reviewerId)
+                try await self.reviewClient.isRecordLike(checkRecordLikeRequest)
+            }
+            
         case .view(.likeButtonTapped):
             return .none
             
         case .view(.dismissButtonTapped):
             NotificationCenter.default.post(name: .dismissReviewDetailView, object: nil)
             return .none
+            
+        case .view:
+            return .none
         }
     }
     
     public struct Review: Equatable {
+        let type: String
+        let menuId: String
         let coffeeName: String
         let imageURLs: [String]
         let tags: [String]
@@ -54,7 +68,9 @@ public struct ReviewDetail: Reducer {
         let countOfLike: Int
         let peopleWhoLiked: [String]
         
-        public init(coffeeName: String, imageURLs: [String], tags: [String], category: String, isRecommend: Bool, text: String, writer: String, date: String, countOfLike: Int, peopleWhoLiked: [String]) {
+        public init(type: String, menuId: String, coffeeName: String, imageURLs: [String], tags: [String], category: String, isRecommend: Bool, text: String, writer: String, date: String, countOfLike: Int, peopleWhoLiked: [String]) {
+            self.type = type
+            self.menuId = menuId
             self.coffeeName = coffeeName
             self.imageURLs = imageURLs
             self.tags = tags
@@ -67,7 +83,9 @@ public struct ReviewDetail: Reducer {
             self.peopleWhoLiked = peopleWhoLiked
         }
         
-        public static let mock: Self = .init(coffeeName: "혱구더블샷",
+        public static let mock: Self = .init(type: "CafeReview",
+                                             menuId: "",
+                                             coffeeName: "혱구더블샷",
                                              imageURLs: ["", "", ""],
                                              tags: ["🥰비싸지만 맛있어요", "✨구하기 힘들어요"],
                                              category: "만구꺼",

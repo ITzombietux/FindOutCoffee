@@ -105,6 +105,12 @@ public struct CheckRecordLikeRequest {
     public let type: String
     public let menuId: String
     public let reviewerId: String
+    
+    public init(type: String, menuId: String, reviewerId: String) {
+        self.type = type
+        self.menuId = menuId
+        self.reviewerId = reviewerId
+    }
 }
 
 public struct ReviewClient {

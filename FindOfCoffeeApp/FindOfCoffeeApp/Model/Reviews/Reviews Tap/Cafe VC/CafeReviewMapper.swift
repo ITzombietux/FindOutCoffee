@@ -9,6 +9,17 @@ import ReviewDetailFeature
 
 struct CafeReviewMapper {
     static func map(cafeReview: CafeReview) -> ReviewDetail.Review {
-        ReviewDetail.Review(coffeeName: cafeReview.title, imageURLs: cafeReview.thumbnail, tags: [cafeReview.feeling], category: cafeReview.category, isRecommend: cafeReview.isRecommend, text: cafeReview.text, writer: cafeReview.nickname, date: cafeReview.date, countOfLike: cafeReview.countOfLike, peopleWhoLiked: cafeReview.peopleWhoLiked)
+        ReviewDetail.Review(type: "CafeReview",
+                            menuId: cafeReview.menuIdentifier,
+                            coffeeName: cafeReview.menuIdentifier,
+                            imageURLs: cafeReview.thumbnail,
+                            tags: [cafeReview.feeling],
+                            category: cafeReview.category,
+                            isRecommend: cafeReview.isRecommend,
+                            text: cafeReview.text,
+                            writer: cafeReview.nickname,
+                            date: cafeReview.date,
+                            countOfLike: cafeReview.countOfLike,
+                            peopleWhoLiked: cafeReview.peopleWhoLiked)
     }
 }

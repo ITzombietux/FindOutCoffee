@@ -49,6 +49,7 @@ class CafeListDataLoader {
             self.getCafeReviewsImage(forder: data["id"] as! String) { imgs in
                 dispatchGroup.leave()
                 let cafeReview = CafeReview(
+                    type: "CafeReview",
                     menuIdentifier: data["id"] as! String,
                     userIdentifier: data["userIdentifier"] as! String,
                     nickname: data["nickname"] as! String,
