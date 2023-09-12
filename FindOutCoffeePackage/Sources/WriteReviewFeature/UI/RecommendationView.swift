@@ -22,7 +22,7 @@ extension ReviewContentView {
                 Text("이 음료를 추천하나요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                HStack(spacing: 5) {
+                HStack(spacing: 10) {
                     selectionCell(imageName: "hand.thumbsup.fill", title: "추천", isSelected: isRecommend ?? false) {
                         self.isRecommend = true
                     }
