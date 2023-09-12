@@ -158,28 +158,22 @@ extension ReviewClient: DependencyKey {
         },
         like: { request in
             let db = Firestore.firestore()
-            var isSuccess: Bool = false
+            var isRecordLike: Bool = false
+            let parameter = request.isRecordLiked ? ["countOfLike": request.countOfReviewLike,
+                                                      "peopleWhoLiked" : FieldValue.arrayRemove([request.reviewerId])] : ["countOfLike": request.countOfReviewLike,
+                                                                                                                          "peopleWhoLiked" : FieldValue.arrayUnion([request.reviewerId])]
             
-            try await db.collection(request.type).document(request.menuId).updateData([
-                "countOfLike": request.countOfReviewLike,
-                "peopleWhoLiked" : FieldValue.arrayUnion([request.reviewerId])
-            ]) { error in
+            
+            try await db.collection(request.type).document(request.menuId).updateData(parameter) { error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
-                    isSuccess = true
                     print("Array field updated successfully!")
                 }
             }
             
-//            try await db.collection("Users").document(request.writerId).updateData([
-//                "like" : [ "menuId" : request.menuId,
-//                           "type" : request.type],
-//                "countOfLike" : request.countOfWriterLike + 1
-//            ])
-            
             try await Task.sleep(nanoseconds: NSEC_PER_SEC)
-            return isSuccess
+            return request.isRecordLiked ? true : false
         },
         isRecordLike: { request in
             let db = Firestore.firestore()

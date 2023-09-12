@@ -93,12 +93,22 @@ public struct ConvenienceStoreMenusResponse {
     public var names: [String]
 }
 
-public struct likeMenuRequest {
+public struct LikeMenuRequest {
     public let type: String
     public let menuId: String
     public let writerId: String
     public let reviewerId: String
     public let countOfReviewLike: Int
+    public let isRecordLiked: Bool
+    
+    public init(type: String, menuId: String, writerId: String, reviewerId: String, countOfReviewLike: Int, isRecordLiked: Bool) {
+        self.type = type
+        self.menuId = menuId
+        self.writerId = writerId
+        self.reviewerId = reviewerId
+        self.countOfReviewLike = countOfReviewLike
+        self.isRecordLiked = isRecordLiked
+    }
 }
 
 public struct CheckRecordLikeRequest {
@@ -121,7 +131,7 @@ public struct ReviewClient {
     public var cafeCategores: @Sendable (String) async throws -> CafeCategoresResponse
     public var convenienceStoreBrands: @Sendable () async throws -> ConvenienceStoreBrandsResponse
     public var convenienceStoreMenus: @Sendable (String) async throws -> ConvenienceStoreMenusResponse
-    public var like: @Sendable (likeMenuRequest) async throws -> Bool
+    public var like: @Sendable (LikeMenuRequest) async throws -> Bool
     public var isRecordLike: @Sendable (CheckRecordLikeRequest) async throws -> Bool
 //    public var reviewDetail: @Sendable (likeMenuRequest) async throws -> Bool
 }

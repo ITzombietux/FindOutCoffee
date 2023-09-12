@@ -12,7 +12,7 @@ import ReviewDependency
 
 public struct ReviewDetail: Reducer {
     public struct State: Equatable {
-        let review: Review
+        public var review: Review
         public var isRecordLiked: Bool = false
         
         public init(review: Review) {
@@ -46,7 +46,20 @@ public struct ReviewDetail: Reducer {
             }
             
         case .view(.likeButtonTapped):
-            return .none
+            let updatedCountOfLike = state.isRecordLiked ? (state.review.countOfLike - 1) : (state.review.countOfLike + 1)
+            update(countOfLike: updatedCountOfLike)
+            
+            return .run { [type = state.review.type, menuId = state.review.menuId, writerId = state.review.writerId, isRecordLike = state.isRecordLiked] send in
+                guard let reviewerId = UserDefaults.standard.string(forKey: "isLoggedInKey") else { return }
+                let likeMenuRequest = LikeMenuRequest(type: type,
+                                                      menuId: menuId,
+                                                      writerId: writerId,
+                                                      reviewerId: reviewerId,
+                                                      countOfReviewLike: updatedCountOfLike,
+                                                      isRecordLiked: isRecordLike)
+                let isRecordLike = try await self.reviewClient.like(likeMenuRequest)
+                await send(.recordLikeHistory(isRecordLike))
+            }
             
         case .view(.dismissButtonTapped):
             NotificationCenter.default.post(name: .dismissReviewDetailView, object: nil)
@@ -59,11 +72,16 @@ public struct ReviewDetail: Reducer {
             state.isRecordLiked = isRecordLike
             return .none
         }
+        
+        func update(countOfLike: Int) {
+            state.review.update(countOfLike: countOfLike)
+        }
     }
     
     public struct Review: Equatable {
         let type: String
         let menuId: String
+        let writerId: String
         let coffeeName: String
         let imageURLs: [String]
         let tags: [String]
@@ -72,12 +90,13 @@ public struct ReviewDetail: Reducer {
         let text: String
         let writer: String
         let date: String
-        let countOfLike: Int
+        private (set) var countOfLike: Int
         let peopleWhoLiked: [String]
         
-        public init(type: String, menuId: String, coffeeName: String, imageURLs: [String], tags: [String], category: String, isRecommend: Bool, text: String, writer: String, date: String, countOfLike: Int, peopleWhoLiked: [String]) {
+        public init(type: String, menuId: String, writerId: String, coffeeName: String, imageURLs: [String], tags: [String], category: String, isRecommend: Bool, text: String, writer: String, date: String, countOfLike: Int, peopleWhoLiked: [String]) {
             self.type = type
             self.menuId = menuId
+            self.writerId = writerId
             self.coffeeName = coffeeName
             self.imageURLs = imageURLs
             self.tags = tags
@@ -90,8 +109,13 @@ public struct ReviewDetail: Reducer {
             self.peopleWhoLiked = peopleWhoLiked
         }
         
+        public mutating func update(countOfLike: Int) {
+            self.countOfLike = countOfLike
+        }
+        
         public static let mock: Self = .init(type: "CafeReview",
                                              menuId: "",
+                                             writerId: "",
                                              coffeeName: "혱구더블샷",
                                              imageURLs: ["", "", ""],
                                              tags: ["🥰비싸지만 맛있어요", "✨구하기 힘들어요"],
