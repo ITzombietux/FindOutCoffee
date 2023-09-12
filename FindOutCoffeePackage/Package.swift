@@ -44,6 +44,10 @@ let package = Package(
         .library(
             name: "DesignSystem",
             targets: ["DesignSystem"]
+        ),
+        .library(
+            name: "ReviewDependency",
+            targets: ["ReviewDependency"]
         )
     ],
     dependencies: [
@@ -71,17 +75,23 @@ let package = Package(
         .target(
             name: "WriteReviewFeature",
             dependencies: [
+                "ReviewDependency",
+                "DesignSystem",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ]
+        ),
+        .target(
+            name: "ReviewDependency",
+            dependencies: [
                 "FirebaseDependency",
                 "UserDefaultsDependency",
-                "DesignSystem",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
         .target(
             name: "ReviewDetailFeature",
             dependencies: [
-                "FirebaseDependency",
-                "UserDefaultsDependency",
+                "ReviewDependency",
                 "DesignSystem",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]

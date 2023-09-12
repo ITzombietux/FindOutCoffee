@@ -9,6 +9,7 @@ import Foundation
 
 struct ConvenienceStore: Codable, Hashable, Equatable, Identifiable {
     var id: UUID
+    var type: String
     var menuIdentifier: String
     var userIdentifier: String
     var nickname: String
@@ -26,8 +27,9 @@ struct ConvenienceStore: Codable, Hashable, Equatable, Identifiable {
     let countOfLike: Int
     let peopleWhoLiked: [String]
     
-    init(id: UUID = UUID(), menuIdentifier: String, userIdentifier: String, nickname: String, title: String, category: String, size: String, isHot: String, text: String, address: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool, thumbnail: [String], countOfLike: Int, peopleWhoLiked: [String]) {
+    init(id: UUID = UUID(), type: String, menuIdentifier: String, userIdentifier: String, nickname: String, title: String, category: String, size: String, isHot: String, text: String, address: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool, thumbnail: [String], countOfLike: Int, peopleWhoLiked: [String]) {
         self.id = id
+        self.type = type
         self.menuIdentifier = menuIdentifier
         self.userIdentifier = userIdentifier
         self.nickname = nickname

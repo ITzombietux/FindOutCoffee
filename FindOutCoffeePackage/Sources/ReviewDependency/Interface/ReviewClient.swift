@@ -11,32 +11,45 @@ import XCTestDynamicOverlay
 
 public struct SubmitReviewRequest: Codable, Identifiable {
     public var id = UUID()
-    var coffee: Coffee
-    var selectedTitle: String
+    public let coffee: Coffee
+    public let selectedTitle: String
+    
+    public init(id: UUID = UUID(), coffee: Coffee, selectedTitle: String) {
+        self.id = id
+        self.coffee = coffee
+        self.selectedTitle = selectedTitle
+    }
 }
 
 public struct SubmitImagesRequest: Codable {
-    let menuIdentifier: String
-    let userIdentifier: String
-    let selectedTitle: String
-    let photosData: [Data]
+    public let menuIdentifier: String
+    public let userIdentifier: String
+    public let selectedTitle: String
+    public let photosData: [Data]
+    
+    public init(menuIdentifier: String, userIdentifier: String, selectedTitle: String, photosData: [Data]) {
+        self.menuIdentifier = menuIdentifier
+        self.userIdentifier = userIdentifier
+        self.selectedTitle = selectedTitle
+        self.photosData = photosData
+    }
 }
 
 public struct Coffee: Codable {
-    var userIdentifier: String
-    var nickname: String
-    var title: String
-    var text: String
-    var address: String
-    var category: String
-    var date: String
-    var feeling: String
-    var isRecommend: Bool
-    var isPublic: Bool
-    var countOfLike: Int
-    var peopleWhoLiked: [String]
+    public let userIdentifier: String
+    public let nickname: String
+    public let title: String
+    public let text: String
+    public let address: String
+    public let category: String
+    public let date: String
+    public let feeling: String
+    public let isRecommend: Bool
+    public let isPublic: Bool
+    public let countOfLike: Int
+    public let peopleWhoLiked: [String]
     
-    init(userIdentifier: String, nickname: String, title: String, text: String, address: String, category: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool = false, countOfLike: Int = 0, peopleWhoLiked: [String] = []) {
+    public init(userIdentifier: String, nickname: String, title: String, text: String, address: String, category: String, date: String, feeling: String, isRecommend: Bool, isPublic: Bool = false, countOfLike: Int = 0, peopleWhoLiked: [String] = []) {
 
         self.userIdentifier = userIdentifier
         self.nickname = nickname
@@ -54,44 +67,50 @@ public struct Coffee: Codable {
 }
 
 public struct SubmitReviewResponse: Codable {
-    let menuIdentifier: String
-    let userIdentifier: String
+    public let menuIdentifier: String
+    public let userIdentifier: String
 }
 
 public struct SubmitImagesResponse: Codable {}
 
 public struct CafeNamesResponse {
-    var names: [String]
+    public var names: [String]
 }
 
 public struct CafeCategoresResponse {
-    var names: [String]
+    public var names: [String]
 }
 
 public struct CafeMenusResponse {
-    var names: [String]
+    public var names: [String]
 }
 
 public struct ConvenienceStoreBrandsResponse {
-    var names: [String]
+    public var names: [String]
 }
 
 public struct ConvenienceStoreMenusResponse {
-    var names: [String]
+    public var names: [String]
 }
 
 public struct likeMenuRequest {
-    let type: String
-    let menuId: String
-    let writerId: String
-    let reviewerId: String
-    let countOfReviewLike: Int
+    public let type: String
+    public let menuId: String
+    public let writerId: String
+    public let reviewerId: String
+    public let countOfReviewLike: Int
 }
 
 public struct CheckRecordLikeRequest {
-    let type: String
-    let menuId: String
-    let reviewerId: String
+    public let type: String
+    public let menuId: String
+    public let reviewerId: String
+    
+    public init(type: String, menuId: String, reviewerId: String) {
+        self.type = type
+        self.menuId = menuId
+        self.reviewerId = reviewerId
+    }
 }
 
 public struct ReviewClient {
@@ -104,6 +123,7 @@ public struct ReviewClient {
     public var convenienceStoreMenus: @Sendable (String) async throws -> ConvenienceStoreMenusResponse
     public var like: @Sendable (likeMenuRequest) async throws -> Bool
     public var isRecordLike: @Sendable (CheckRecordLikeRequest) async throws -> Bool
+//    public var reviewDetail: @Sendable (likeMenuRequest) async throws -> Bool
 }
 
 extension ReviewClient: TestDependencyKey {
@@ -121,7 +141,7 @@ extension ReviewClient: TestDependencyKey {
 }
 
 extension DependencyValues {
-    var reviewClient: ReviewClient {
+    public var reviewClient: ReviewClient {
         get { self[ReviewClient.self] }
         set { self[ReviewClient.self] = newValue }
     }
