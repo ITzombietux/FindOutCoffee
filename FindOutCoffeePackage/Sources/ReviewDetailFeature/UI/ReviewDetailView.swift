@@ -17,7 +17,7 @@ public struct ReviewDetailView: View {
     }
     
     public var body: some View {
-        WithViewStore(self.store, observe: \.review) { viewStore in
+        WithViewStore(self.store, observe: \.review, send: { .view($0) }) { viewStore in
             VStack(spacing: 10) {
                 navigationBar(coffeeName: viewStore.coffeeName)
                 
@@ -33,7 +33,21 @@ public struct ReviewDetailView: View {
                     }
                 }
                 
-                likeButton()
+                Button {
+                    viewStore.send(.likeButtonTapped)
+                } label: {
+                    ZStack {
+                        Capsule()
+                            .foregroundColor(.blue)
+                        
+                        Text("찾았다, 인생커피!")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(.vertical, 10)
+                    }
+                }
+                .frame(height: 30)
+                .padding(.horizontal, 20)
             }
         }
     }
@@ -52,7 +66,7 @@ public struct ReviewDetailView: View {
                 
                 HStack(spacing: 0) {
                     Button {
-                        viewStore.send(.dismiss)
+                        viewStore.send(.view(.dismissButtonTapped))
                     } label: {
                         Image(systemName: "chevron.left")
                             .resizable()
@@ -163,24 +177,6 @@ public struct ReviewDetailView: View {
             }
             .foregroundColor(.gray)
         }
-        .padding(.horizontal, 20)
-    }
-    
-    private func likeButton() -> some View {
-        Button {
-            
-        } label: {
-            ZStack {
-                Capsule()
-                    .foregroundColor(.blue)
-                
-                Text("찾았다, 인생커피!")
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(.vertical, 10)
-            }
-        }
-        .frame(height: 30)
         .padding(.horizontal, 20)
     }
 }

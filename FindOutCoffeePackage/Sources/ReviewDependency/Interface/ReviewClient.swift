@@ -117,6 +117,7 @@ public struct ReviewClient {
     public var convenienceStoreMenus: @Sendable (String) async throws -> ConvenienceStoreMenusResponse
     public var like: @Sendable (likeMenuRequest) async throws -> Bool
     public var isRecordLike: @Sendable (CheckRecordLikeRequest) async throws -> Bool
+//    public var reviewDetail: @Sendable (likeMenuRequest) async throws -> Bool
 }
 
 extension ReviewClient: TestDependencyKey {
