@@ -49,6 +49,7 @@ class ConvenienceStoreDataLoader {
             self.getConvienienceStoresImage(forder: data["id"] as! String) { imgs in
                 dispatchGroup.leave()
                 let convienienceStore = ConvenienceStore(
+                    type: "CSReview",
                     menuIdentifier: data["id"] as? String ?? "",
                     userIdentifier: data["userIdentifier"] as? String ?? "",
                     nickname: data["nickname"] as? String ?? "",

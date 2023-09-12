@@ -23,3 +23,20 @@ struct CafeReviewMapper {
                             peopleWhoLiked: cafeReview.peopleWhoLiked)
     }
 }
+
+struct ConvenienceStoreReviewMapper {
+    static func map(_ review: ConvenienceStore) -> ReviewDetail.Review {
+        ReviewDetail.Review(type: "CSReview",
+                            menuId: review.menuIdentifier,
+                            coffeeName: review.menuIdentifier,
+                            imageURLs: review.thumbnail,
+                            tags: [review.feeling],
+                            category: review.category,
+                            isRecommend: review.isRecommend,
+                            text: review.text,
+                            writer: review.nickname,
+                            date: review.date,
+                            countOfLike: review.countOfLike,
+                            peopleWhoLiked: review.peopleWhoLiked)
+    }
+}
