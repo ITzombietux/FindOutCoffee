@@ -16,6 +16,7 @@ public struct Review: Reducer {
         public var currentStep: Int
         public var nextButtonIsEnabled: Bool
         public var isLoading: Bool
+        public var showOnBoardingView: Bool
         public var content: ReviewContent.State
         
         public init(steps: [Step] = Step.cafeSteps, currentStep: Int = 0, nextButtonIsEnabled: Bool = false, content: ReviewContent.State = ReviewContent.State()) {
@@ -23,6 +24,7 @@ public struct Review: Reducer {
             self.currentStep = currentStep
             self.nextButtonIsEnabled = nextButtonIsEnabled
             self.isLoading = false
+            self.showOnBoardingView = false
             self.content = content
         }
     }
@@ -56,8 +58,6 @@ public struct Review: Reducer {
                     state.content.category = nil
                 case .drink:
                     state.content.drink = nil
-                case .onBoarding:
-                    break
                 case .priceFeeling:
                     state.content.priceFeeling = nil
                 case .recommendation:
@@ -71,6 +71,13 @@ public struct Review: Reducer {
                 return .send(.checkNextButtonIsEnabled)
                 
             case .nextButtonTapped:
+                if state.showOnBoardingView {
+                    state.showOnBoardingView = false
+                    return .run { send in
+                        await send(.checkNextButtonIsEnabled)
+                    }
+                }
+                
                 switch state.steps[state.currentStep] {
                 case .store:
                     guard state.content.store != nil else { return .none }
@@ -80,8 +87,7 @@ public struct Review: Reducer {
                     guard state.content.category != nil else { return .none }
                 case .drink:
                     guard state.content.drink != nil else { return .none }
-                case .onBoarding:
-                    break
+                    state.showOnBoardingView = true
                 case .priceFeeling:
                     guard state.content.priceFeeling != nil else { return .none }
                 case .recommendation:
@@ -102,6 +108,11 @@ public struct Review: Reducer {
                 }
                 
             case .checkNextButtonIsEnabled:
+                if state.showOnBoardingView {
+                    state.nextButtonIsEnabled = true
+                    return .none
+                }
+                
                 switch state.steps[state.currentStep] {
                 case .store:
                     state.nextButtonIsEnabled = state.content.store != nil
@@ -111,8 +122,6 @@ public struct Review: Reducer {
                     state.nextButtonIsEnabled = state.content.category != nil
                 case .drink:
                     state.nextButtonIsEnabled = state.content.drink != nil
-                case .onBoarding:
-                    state.nextButtonIsEnabled = true
                 case .priceFeeling:
                     state.nextButtonIsEnabled = state.content.priceFeeling != nil
                 case .recommendation:

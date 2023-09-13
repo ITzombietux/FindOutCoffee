@@ -41,9 +41,6 @@ struct ReviewContentView: View {
                 DrinkSelectionView(store: viewStore.state.store?.description ?? "", drinks: viewStore.state.drinks ?? [], selection: viewStore.binding(get: \.drink, send: { .select(.drink($0 ?? "")) }))
             }
             
-        case .onBoarding:
-            OnBoardingView()
-            
         case .priceFeeling:
             WithViewStore(self.store, observe: { $0 }) { viewStore in
                 PriceFeelingSelectionView(
