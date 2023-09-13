@@ -25,14 +25,13 @@ struct SelectionCell: View {
             action()
         } label: {
             Text(title)
-                .font(.system(size: 20, weight: .medium))
+                .font(.system(size: 15, weight: .medium))
                 .foregroundColor(isSelected ? .white : .black)
-                .padding(10)
+                .padding(8)
                 .background(
                     backgroundForSelection()
                 )
         }
-        .frame(height: 40)
         .padding(.vertical, 2)
     }
     
