@@ -15,6 +15,7 @@ extension ReviewContentView {
     struct WritingView: View {
         private let columns: [GridItem] = Array(repeating: GridItem(), count: 2)
         private let placeholder: String = "직접 후기를 입력해주세요!"
+        private let photoCountRange: ClosedRange = ClosedRange(0..<3)
         
         @FocusState var isFocused: Bool
         @State private var items: [PhotosPickerItem] = []
@@ -33,21 +34,9 @@ extension ReviewContentView {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 20) {
-                        HStack(spacing: 10) {
-                            photosPicker()
-                            
-                            ForEach(0..<3) { index in
-                                if let data = self.photo?[index] {
-                                    photoCell(data: data) {
-                                        self.items.remove(at: index)
-                                    }
-                                } else {
-                                    emptyCell()
-                                }
-                            }
-                        }
+                        photoSection()
                         
-                        textView()
+                        textSection()
                         
                         Spacer()
                     }
@@ -65,36 +54,58 @@ extension ReviewContentView {
             }
         }
         
+        private func photoSection() -> some View {
+            HStack(spacing: 10) {
+                photosPicker()
+                
+                ForEach(self.photoCountRange, id: \.self) { index in
+                    photoCell(for: index)
+                }
+            }
+        }
+        
         @ViewBuilder
-        private func photoCell(data: Data, completion: @escaping () -> Void) -> some View {
+        private func photoCell(for index: Int) -> some View {
+            if let photo = self.photo, photo.count > index {
+                imageCell(data: photo[index]) {
+                    self.items.remove(at: index)
+                }
+            } else {
+                emptyCell()
+            }
+        }
+        
+        @ViewBuilder
+        private func imageCell(data: Data, action: @escaping () -> Void) -> some View {
             if let uiImage = UIImage(data: data) {
                 ZStack(alignment: .topTrailing) {
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFill()
-                        .clipShape(Rectangle())
                         .frame(width: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4, height: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
                     
                     Button {
-                        completion()
+                        action()
                     } label: {
                         Image(systemName: "multiply")
                             .foregroundColor(.white)
                             .frame(width: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4 / 9, height: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4 / 9)
+                            .padding(6)
                             .background(
                                 Circle()
-                                    .foregroundColor(.gray.opacity(0.7))
+                                    .foregroundColor(.gray)
                             )
                     }
+                    .padding(4)
                 }
             }
         }
         
         private func emptyCell() -> some View {
-            Rectangle()
+            RoundedRectangle(cornerRadius: 12)
                 .foregroundColor(.imagePlaceholderColor)
                 .frame(width: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4, height: (UIScreen.main.bounds.width - (10 * 3) - (20 * 2)) / 4)
-                .cornerRadius(12)
         }
         
         private func photosPicker() -> some View {
@@ -122,7 +133,7 @@ extension ReviewContentView {
             }
         }
         
-        private func textView() -> some View {
+        private func textSection() -> some View {
             ZStack(alignment: .topLeading) {
                 TextField("후기를 적어주세요", text:
                             Binding(
