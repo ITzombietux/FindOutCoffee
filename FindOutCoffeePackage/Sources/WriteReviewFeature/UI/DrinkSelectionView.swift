@@ -11,6 +11,7 @@ extension ReviewContentView {
     struct DrinkSelectionView: View {
         private let store: String
         private let drinks: [String]
+        @State private var input: String = ""
         @Binding var selection: String?
         
         init(store: String, drinks: [String], selection: Binding<String?>) {
@@ -30,6 +31,32 @@ extension ReviewContentView {
                     }
                 }
             }
+        }
+        
+        private func addButtonCell() -> some View {
+            Button {
+                
+            } label: {
+                Text("+")
+                    .font(.system(size: 15, weight: .medium))
+                    .padding(8)
+                    .background(
+                        Capsule()
+                            .stroke()
+                            .foregroundColor(.gray)
+                    )
+            }
+            .padding(.vertical, 2)
+        }
+        
+        private func inputView() -> some View {
+            TextField("음료 이름을 입력해주세요!", text: $input)
+                .padding(5)
+                .background(
+                    Capsule()
+                        .stroke()
+                        .foregroundColor(.gray)
+                )
         }
     }
 }
