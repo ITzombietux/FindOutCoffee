@@ -19,11 +19,7 @@ public struct ReviewView: View {
     
     public var body: some View {
         VStack(spacing: 20) {
-            navigationBar()
-            
-            stepProgressView()
-            
-            reviewContentView()
+            contentView()
             
             WithViewStore(self.store, observe: { $0 }) { viewStore in
                 ReviewButton(
@@ -59,20 +55,24 @@ public struct ReviewView: View {
     @ViewBuilder
     private func stepProgressView() -> some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            if viewStore.state.steps[viewStore.state.currentStep] != .onBoarding {
-                StepProgressView(totalStep: viewStore.state.steps.count, currentStep: viewStore.state.currentStep + 1)
-                    .tint(Color.mainColor)
-            }
+            StepProgressView(totalStep: viewStore.state.steps.count, currentStep: viewStore.state.currentStep + 1)
+                .tint(Color.mainColor)
         }
     }
     
     @ViewBuilder
     private func reviewContentView() -> some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            if viewStore.state.isLoading {
-                activityIndicator()
-            } else {
-                ReviewContentView(step: viewStore.state.steps[viewStore.state.currentStep], store: self.store.scope(state: \.content, action: Review.Action.content))
+            VStack(spacing: 20) {
+                navigationBar()
+                
+                stepProgressView()
+                
+                if viewStore.state.isLoading {
+                    activityIndicator()
+                } else {
+                    ReviewContentView(step: viewStore.state.steps[viewStore.state.currentStep], store: self.store.scope(state: \.content, action: Review.Action.content))
+                }
             }
         }
     }
@@ -85,6 +85,17 @@ public struct ReviewView: View {
                 .progressViewStyle(CircularProgressViewStyle(tint: .mainColor))
             
             Spacer()
+        }
+    }
+    
+    @ViewBuilder
+    private func contentView() -> some View {
+        WithViewStore(self.store, observe: \.showOnBoardingView) { viewStore in
+            if viewStore.state {
+                OnBoardingView()
+            } else {
+                reviewContentView()
+            }
         }
     }
 }
