@@ -16,7 +16,7 @@ public struct BrandSelection: Reducer {
             return self.brands[selectedIndex]
         }
         
-        public init(brands: [String], selectedIndex: Int? = nil) {
+        public init(brands: [String] = [], selectedIndex: Int? = nil) {
             self.brands = brands
             self.selectedIndex = selectedIndex
         }

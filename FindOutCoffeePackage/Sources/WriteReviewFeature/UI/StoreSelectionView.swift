@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 extension ReviewContentView {
     struct StoreSelectionView: View {
-        @Binding var selection: ReviewContent.Store?
+        private let store: StoreOf<StoreSelection>
         
-        init(selection: Binding<ReviewContent.Store?>) {
-            self._selection = selection
+        init(store: StoreOf<StoreSelection>) {
+            self.store = store
         }
         
         var body: some View {
@@ -20,13 +22,23 @@ extension ReviewContentView {
                 Text("이 음료 어디서 샀어요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                HStack(spacing: 10) {
-                    selectionCell(imageName: "hand.thumbsup.fill", title: ReviewContent.Store.cafe.description, isSelected: selection == .cafe) {
-                        self.selection = .cafe
-                    }
-                    
-                    selectionCell(imageName: "hand.thumbsdown.fill", title: ReviewContent.Store.convenienceStore.description, isSelected: selection == .convenienceStore) {
-                        self.selection = .convenienceStore
+                WithViewStore(self.store, observe: \.selectedStore) { viewStore in
+                    HStack(spacing: 10) {
+                        selectionCell(
+                            imageName: "hand.thumbsup.fill",
+                            title: Store.cafe.description,
+                            isSelected: viewStore.state == .cafe
+                        ) {
+                            viewStore.send(.select(.cafe))
+                        }
+                        
+                        selectionCell(
+                            imageName: "hand.thumbsdown.fill",
+                            title: Store.convenienceStore.description,
+                            isSelected: viewStore.state == .convenienceStore
+                        ) {
+                            viewStore.send(.select(.convenienceStore))
+                        }
                     }
                 }
                 
@@ -66,6 +78,6 @@ extension ReviewContentView {
 
 struct StoreSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewContentView.StoreSelectionView(selection: .constant(nil))
+        ReviewContentView.StoreSelectionView(store: Store(initialState: StoreSelection.State(), reducer: { StoreSelection() }))
     }
 }

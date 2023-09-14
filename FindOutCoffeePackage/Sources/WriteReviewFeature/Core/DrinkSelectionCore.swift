@@ -10,6 +10,7 @@ import ComposableArchitecture
 public struct DrinkSelection: Reducer {
     public struct State: Equatable {
         public var isEnabledToAdd: Bool
+        public var writtenDrink: String
         public var drinks: [String]
         public var selectedIndex: Int?
         public var selectedDrink: String? {
@@ -17,8 +18,9 @@ public struct DrinkSelection: Reducer {
             return self.drinks[selectedIndex]
         }
         
-        public init(isEnabledToAdd: Bool = false, drinks: [String] = [], selectedIndex: Int? = nil) {
+        public init(isEnabledToAdd: Bool = false, writeDrink: String = "", drinks: [String] = [], selectedIndex: Int? = nil) {
             self.isEnabledToAdd = isEnabledToAdd
+            self.writtenDrink = writeDrink
             self.drinks = drinks
             self.selectedIndex = selectedIndex
         }
@@ -30,6 +32,7 @@ public struct DrinkSelection: Reducer {
         case loadConvenienceStoreDrinksResponse(TaskResult<ConvenienceStoreMenusResponse>)
         case select(Int)
         case addButtonTapped
+        case writeDrink(String)
     }
     
     @Dependency(\.reviewClient) var reviewClient
@@ -82,6 +85,10 @@ public struct DrinkSelection: Reducer {
             
         case .addButtonTapped:
             state.isEnabledToAdd = true
+            return .none
+            
+        case let .writeDrink(input):
+            state.writtenDrink = input
             return .none
         }
     }

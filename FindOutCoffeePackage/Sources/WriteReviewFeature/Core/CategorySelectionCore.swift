@@ -16,7 +16,7 @@ public struct CategorySelection: Reducer {
             return self.categories[selectedIndex]
         }
         
-        public init(categories: [String], selectedIndex: Int? = nil) {
+        public init(categories: [String] = [], selectedIndex: Int? = nil) {
             self.categories = categories
             self.selectedIndex = selectedIndex
         }

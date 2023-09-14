@@ -7,17 +7,14 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 extension ReviewContentView {
     struct DrinkSelectionView: View {
-        private let store: String
-        private let drinks: [String]
-        @State private var input: String = ""
-        @Binding var selection: String?
+        private let store: StoreOf<DrinkSelection>
         
-        init(store: String, drinks: [String], selection: Binding<String?>) {
+        init(store: StoreOf<DrinkSelection>) {
             self.store = store
-            self.drinks = drinks
-            self._selection = selection
         }
         
         var body: some View {
@@ -25,13 +22,18 @@ extension ReviewContentView {
                 Text("\(store)에서 구매한 음료 이름이 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                DynamicWidthGrid(elementCount: self.drinks.count) { index in
-                    drinkSelectionCell(at: index)
+                WithViewStore(self.store, observe: { $0 }) { viewStore in
+                    DynamicWidthGrid(elementCount: viewStore.state.drinks.count + 1) { index in
+                        drinkSelectionCell(at: index)
+                    }
                 }
             }
         }
         
         private func addButtonCell() -> some View {
+            WithViewStore(self.store, observe: { $0 }) { viewStore in
+                <#code#>
+            }
             Button {
                 
             } label: {
@@ -49,13 +51,15 @@ extension ReviewContentView {
         }
         
         private func inputView() -> some View {
-            TextField("음료 이름을 입력해주세요!", text: $input)
-                .padding(5)
-                .background(
-                    Capsule()
-                        .stroke()
-                        .foregroundColor(.gray)
-                )
+            WithViewStore(self.store, observe: { $0 }) { viewStore in
+                TextField("음료 이름을 입력해주세요!", text: viewStore.binding(get: \.writtenDrink, send: { .writeDrink($0) }))
+                    .padding(5)
+                    .background(
+                        Capsule()
+                            .stroke()
+                            .foregroundColor(.gray)
+                    )
+            }
         }
         
         @ViewBuilder
@@ -63,11 +67,13 @@ extension ReviewContentView {
             if index == 0 {
                 addButtonCell()
             } else {
-                SelectionCell(
-                    title: self.drinks[index - 1],
-                    isSelected: selection == self.drinks[index - 1]
-                ) {
-                    self.selection = self.drinks[index - 1]
+                WithViewStore(self.store, observe: { $0 }) { viewStore in
+                    SelectionCell(
+                        title: viewStore.state.drinks[index - 1],
+                        isSelected: viewStore.state.selectedIndex == index - 1
+                    ) {
+                        viewStore.send(.select(index - 1))
+                    }
                 }
             }
         }

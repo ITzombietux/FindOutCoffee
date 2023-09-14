@@ -7,17 +7,14 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 extension ReviewContentView {
     struct BrandSelectionView: View {
-        private let brands: [String]
-        @Binding var selection: String?
+        private let store: StoreOf<BrandSelection>
         
-        init(
-            brands: [String],
-            selection: Binding<String?>
-        ) {
-            self.brands = brands
-            self._selection = selection
+        init(store: StoreOf<BrandSelection>) {
+            self.store = store
         }
         
         var body: some View {
@@ -25,12 +22,14 @@ extension ReviewContentView {
                 Text("브랜드 이름이 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                DynamicWidthGrid(elementCount: self.brands.count) { index in
-                    SelectionCell(
-                        title: self.brands[index],
-                        isSelected: selection == self.brands[index]
-                    ) {
-                        self.selection = self.brands[index]
+                WithViewStore(self.store, observe: { $0 }) { viewStore in
+                    DynamicWidthGrid(elementCount: viewStore.state.brands.count) { index in
+                        SelectionCell(
+                            title: viewStore.state.brands[index],
+                            isSelected: viewStore.state.selectedIndex == index
+                        ) {
+                            viewStore.send(.select(index))
+                        }
                     }
                 }
             }
@@ -40,7 +39,6 @@ extension ReviewContentView {
 
 struct BrandSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewContentView.BrandSelectionView(
-            brands: ["스타벅스", "투썸플레이스", "이디야", "할리스"], selection: .constant(nil))
+        ReviewContentView.BrandSelectionView(store: Store(initialState: BrandSelection.State(), reducer: { BrandSelection() }))
     }
 }

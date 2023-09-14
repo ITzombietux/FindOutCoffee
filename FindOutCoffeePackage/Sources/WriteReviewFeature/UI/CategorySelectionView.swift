@@ -7,14 +7,14 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 extension ReviewContentView {
     struct CategorySelectionView: View {
-        private let categories: [String]
-        @Binding var selection: String?
+        private let store: StoreOf<CategorySelection>
         
-        init(categories: [String], selection: Binding<String?>) {
-            self.categories = categories
-            self._selection = selection
+        init(store: StoreOf<CategorySelection>) {
+            self.store = store
         }
         
         var body: some View {
@@ -22,12 +22,14 @@ extension ReviewContentView {
                 Text("구매한 음료 종류가 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                DynamicWidthGrid(elementCount: self.categories.count) { index in
-                    SelectionCell(
-                        title: self.categories[index],
-                        isSelected: selection == self.categories[index]
-                    ) {
-                        self.selection = self.categories[index]
+                WithViewStore(self.store, observe: { $0 }) { viewStore in
+                    DynamicWidthGrid(elementCount: viewStore.state.categories.count) { index in
+                        SelectionCell(
+                            title: viewStore.state.categories[index],
+                            isSelected: viewStore.state.selectedIndex == index
+                        ) {
+                            viewStore.send(.select(index))
+                        }
                     }
                 }
             }
@@ -37,8 +39,6 @@ extension ReviewContentView {
 
 struct CategorySelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewContentView.CategorySelectionView(
-            categories: ["에스프레소", "콜드브루", "티바나", "요거트", "주스&에이드", "기타"],
-            selection: .constant(nil))
+        ReviewContentView.CategorySelectionView(store: Store(initialState: CategorySelection.State(), reducer: { CategorySelection() }))
     }
 }
