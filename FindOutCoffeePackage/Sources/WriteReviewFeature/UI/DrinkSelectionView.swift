@@ -25,10 +25,8 @@ extension ReviewContentView {
                 Text("\(store)에서 구매한 음료 이름이 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                DynamicWidthGrid(elements: self.drinks) { drink in
-                    SelectionCell(title: drink, isSelected: drink == selection) {
-                        self.selection = drink
-                    }
+                DynamicWidthGrid(elementCount: self.drinks.count) { index in
+                    drinkSelectionCell(at: index)
                 }
             }
         }
@@ -46,6 +44,7 @@ extension ReviewContentView {
                             .foregroundColor(.gray)
                     )
             }
+            .foregroundColor(.black)
             .padding(.vertical, 2)
         }
         
@@ -57,6 +56,20 @@ extension ReviewContentView {
                         .stroke()
                         .foregroundColor(.gray)
                 )
+        }
+        
+        @ViewBuilder
+        private func drinkSelectionCell(at index: Int) -> some View {
+            if index == 0 {
+                addButtonCell()
+            } else {
+                SelectionCell(
+                    title: self.drinks[index - 1],
+                    isSelected: selection == self.drinks[index - 1]
+                ) {
+                    self.selection = self.drinks[index - 1]
+                }
+            }
         }
     }
 }

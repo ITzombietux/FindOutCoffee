@@ -25,12 +25,12 @@ extension ReviewContentView {
                 Text("브랜드 이름이 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                DynamicWidthGrid(elements: self.brands) { brand in
+                DynamicWidthGrid(elementCount: self.brands.count) { index in
                     SelectionCell(
-                        title: brand,
-                        isSelected: selection == brand
+                        title: self.brands[index],
+                        isSelected: selection == self.brands[index]
                     ) {
-                        self.selection = brand
+                        self.selection = self.brands[index]
                     }
                 }
             }

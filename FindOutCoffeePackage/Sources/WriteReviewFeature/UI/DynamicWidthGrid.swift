@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct DynamicWidthGrid<ElementView: View>: View {
-    @State private var elements: [String]
-    private let elementView: (String) -> ElementView
+    private let elementCount: Int
+    private let elementView: (Int) -> ElementView
     
-    public init(elements: [String], @ViewBuilder elementView: @escaping (String) -> ElementView) {
-        self.elements = elements
+    public init(elementCount: Int, @ViewBuilder elementView: @escaping (Int) -> ElementView) {
+        self.elementCount = elementCount
         self.elementView = elementView
     }
 
@@ -27,8 +27,8 @@ struct DynamicWidthGrid<ElementView: View>: View {
         var height = CGFloat.zero
 
         return ZStack(alignment: .topLeading) {
-            ForEach(self.elements, id: \.self) { element in
-                self.elementView(element)
+            ForEach(0..<self.elementCount, id: \.self) { index in
+                self.elementView(index)
                     .padding([.horizontal, .vertical], 5)
                     .alignmentGuide(.leading, computeValue: { dimension in
                         if (abs(width - dimension.width) > geometry.size.width)
@@ -37,7 +37,7 @@ struct DynamicWidthGrid<ElementView: View>: View {
                             height -= dimension.height
                         }
                         let result = width
-                        if element == self.elements.last! {
+                        if index == self.elementCount - 1 {
                             width = 0
                         } else {
                             width -= dimension.width
@@ -46,7 +46,7 @@ struct DynamicWidthGrid<ElementView: View>: View {
                     })
                     .alignmentGuide(.top, computeValue: { dimension in
                         let result = height
-                        if element == self.elements.last! {
+                        if index == self.elementCount - 1 {
                             height = 0
                         }
                         return result
@@ -58,8 +58,8 @@ struct DynamicWidthGrid<ElementView: View>: View {
 
 struct FlexibleGrid_Previews: PreviewProvider {
     static var previews: some View {
-        DynamicWidthGrid(elements: ["하나", "두우우울", "셋", "네에에에에엣", "다아서엇", "여어어어어섯", "일곱", "여더어어얿"]) { title in
-            Text(title)
+        DynamicWidthGrid(elementCount: 10) { index in
+            Text("index \(index)")
                 .padding(.all, 5)
                 .font(.body)
                 .background(Color.blue)

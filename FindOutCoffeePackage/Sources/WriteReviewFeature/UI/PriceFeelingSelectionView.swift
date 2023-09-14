@@ -22,9 +22,12 @@ extension ReviewContentView {
                 Text("가격이 적당한 것 같나요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                DynamicWidthGrid(elements: self.priceFeelings) { priceFeeling in
-                    SelectionCell(title: priceFeeling, isSelected: selectedFeeling == priceFeeling) {
-                        self.selectedFeeling = priceFeeling
+                DynamicWidthGrid(elementCount: self.priceFeelings.count) { index in
+                    SelectionCell(
+                        title: self.priceFeelings[index],
+                        isSelected: selectedFeeling == self.priceFeelings[index]
+                    ) {
+                        self.selectedFeeling = self.priceFeelings[index]
                     }
                 }
                 

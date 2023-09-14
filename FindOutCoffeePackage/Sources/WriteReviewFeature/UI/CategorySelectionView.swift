@@ -22,9 +22,12 @@ extension ReviewContentView {
                 Text("구매한 음료 종류가 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
                 
-                DynamicWidthGrid(elements: self.categories) { category in
-                    SelectionCell(title: category, isSelected: category == selection) {
-                        self.selection = category
+                DynamicWidthGrid(elementCount: self.categories.count) { index in
+                    SelectionCell(
+                        title: self.categories[index],
+                        isSelected: selection == self.categories[index]
+                    ) {
+                        self.selection = self.categories[index]
                     }
                 }
             }
