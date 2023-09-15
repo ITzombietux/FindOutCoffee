@@ -48,23 +48,9 @@ public struct Review: Reducer {
         Reduce { state, action in
             switch action {
             case .backButtonTapped:
-                switch state.steps[state.currentStep] {
-                case .store:
+                if state.currentStep == 0 {
                     NotificationCenter.default.post(name: Notification.Name.dismissReviewView, object: nil)
                     return .none
-                case .brand:
-                    state.content.brand = nil
-                case .category:
-                    state.content.category = nil
-                case .drink:
-                    state.content.drink = nil
-                case .priceFeeling:
-                    state.content.priceFeeling = nil
-                case .recommendation:
-                    state.content.isRecommend = nil
-                case .writing:
-                    state.content.text = nil
-                    state.content.photo = nil
                 }
                 
                 state.currentStep -= 1
@@ -78,21 +64,7 @@ public struct Review: Reducer {
                     }
                 }
                 
-                switch state.steps[state.currentStep] {
-                case .store:
-                    guard state.content.store != nil else { return .none }
-                case .brand:
-                    guard state.content.brand != nil else { return .none }
-                case .category:
-                    guard state.content.category != nil else { return .none }
-                case .drink:
-                    guard state.content.drink != nil else { return .none }
-                    state.showOnBoardingView = true
-                case .priceFeeling:
-                    guard state.content.priceFeeling != nil else { return .none }
-                case .recommendation:
-                    guard state.content.isRecommend != nil else { return .none }
-                case .writing:
+                if state.steps[state.currentStep] == .writing {
                     return .run { send in
                         await send(.submitButtonTapped)
                     }
@@ -101,9 +73,7 @@ public struct Review: Reducer {
                 state.currentStep += 1
                 state.isLoading = true
                 
-                let currentStep = state.steps[state.currentStep]
                 return .run { send in
-                    await send(.content(.load(currentStep)))
                     await send(.checkNextButtonIsEnabled)
                 }
                 
@@ -115,39 +85,29 @@ public struct Review: Reducer {
                 
                 switch state.steps[state.currentStep] {
                 case .store:
-                    state.nextButtonIsEnabled = state.content.store != nil
+                    state.nextButtonIsEnabled = state.content.store.selectedStore != nil
                 case .brand:
-                    state.nextButtonIsEnabled = state.content.brand != nil
+                    state.nextButtonIsEnabled = state.content.brand?.selectedIndex != nil
                 case .category:
-                    state.nextButtonIsEnabled = state.content.category != nil
+                    state.nextButtonIsEnabled = state.content.category?.selectedIndex != nil
                 case .drink:
-                    state.nextButtonIsEnabled = state.content.drink != nil
+                    state.nextButtonIsEnabled = state.content.drink?.selectedDrink != nil
                 case .priceFeeling:
-                    state.nextButtonIsEnabled = state.content.priceFeeling != nil
+                    state.nextButtonIsEnabled = state.content.keyword?.selectedPriceKeywordIndex != nil && state.content.keyword?.selectedTasteKeywordIndex != nil
                 case .recommendation:
-                    state.nextButtonIsEnabled = state.content.isRecommend != nil
+                    state.nextButtonIsEnabled = state.content.recommendation?.isRecommend != nil
                 case .writing:
-                    break
+                    state.nextButtonIsEnabled = true
                 }
                 return .none
                 
             case .content(.completeLoading):
                 state.isLoading = false
                 return .none
-            
-            case let .content(.select(selection)):
-                if case let .store(store) = selection {
-                    switch store {
-                    case .convenienceStore:
-                        state.steps = Step.convenienceStoreSteps
-                        
-                    case .cafe:
-                        state.steps = Step.cafeSteps
-                    }
-                }
-                return .run { send in
-                    await send(.checkNextButtonIsEnabled)
-                }
+                
+            case .content(.store(.select)):
+                
+                return .none
                 
             case .submitButtonTapped:
                 state.alert = .submit()

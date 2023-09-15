@@ -14,13 +14,20 @@ public struct DrinkSelection: Reducer {
         public var drinks: [String]
         public var selectedIndex: Int?
         public var selectedDrink: String? {
-            guard let selectedIndex = self.selectedIndex else { return nil }
-            return self.drinks[selectedIndex]
+            if let selectedIndex = self.selectedIndex {
+                return self.drinks[selectedIndex]
+            }
+            
+            if self.writtenDrink != "" {
+                return self.writtenDrink
+            }
+            
+            return nil
         }
         
-        public init(isEnabledToAdd: Bool = false, writeDrink: String = "", drinks: [String] = [], selectedIndex: Int? = nil) {
+        public init(isEnabledToAdd: Bool = false, writtenDrink: String = "", drinks: [String] = [], selectedIndex: Int? = nil) {
             self.isEnabledToAdd = isEnabledToAdd
-            self.writtenDrink = writeDrink
+            self.writtenDrink = writtenDrink
             self.drinks = drinks
             self.selectedIndex = selectedIndex
         }

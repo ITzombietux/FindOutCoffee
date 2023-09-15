@@ -19,8 +19,10 @@ extension ReviewContentView {
         
         var body: some View {
             VStack(alignment: .leading, spacing: 20) {
-                Text("\(store)에서 구매한 음료 이름이 뭐에요?")
+                Text("음료 이름이 뭐에요?")
                     .font(.system(size: 25, weight: .bold))
+                
+                inputView()
                 
                 WithViewStore(self.store, observe: { $0 }) { viewStore in
                     DynamicWidthGrid(elementCount: viewStore.state.drinks.count + 1) { index in
@@ -32,33 +34,36 @@ extension ReviewContentView {
         
         private func addButtonCell() -> some View {
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                <#code#>
+                Button {
+                    viewStore.send(.addButtonTapped)
+                } label: {
+                    Text("+")
+                        .font(.system(size: 15, weight: .medium))
+                        .padding(8)
+                        .background(
+                            Capsule()
+                                .stroke()
+                                .foregroundColor(.gray)
+                        )
+                }
+                .foregroundColor(.black)
+                .padding(.vertical, 2)
             }
-            Button {
-                
-            } label: {
-                Text("+")
-                    .font(.system(size: 15, weight: .medium))
-                    .padding(8)
-                    .background(
-                        Capsule()
-                            .stroke()
-                            .foregroundColor(.gray)
-                    )
-            }
-            .foregroundColor(.black)
-            .padding(.vertical, 2)
         }
         
+        @ViewBuilder
         private func inputView() -> some View {
             WithViewStore(self.store, observe: { $0 }) { viewStore in
-                TextField("음료 이름을 입력해주세요!", text: viewStore.binding(get: \.writtenDrink, send: { .writeDrink($0) }))
-                    .padding(5)
-                    .background(
-                        Capsule()
-                            .stroke()
-                            .foregroundColor(.gray)
-                    )
+                if viewStore.isEnabledToAdd {
+                    TextField("음료 이름을 입력해주세요!", text: viewStore.binding(get: \.writtenDrink, send: { .writeDrink($0) }))
+                        .padding(5)
+                        .background(
+                            Capsule()
+                                .stroke()
+                                .foregroundColor(.gray)
+                        )
+                        .frame(width: UIScreen.main.bounds.width - 40)
+                }
             }
         }
         
@@ -82,10 +87,6 @@ extension ReviewContentView {
 
 struct DrinkSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewContentView.DrinkSelectionView(
-            store: ReviewContent.Store.convenienceStore.description,
-            drinks: ["아메리카노", "카페라떼", "바닐라라떼"],
-            selection: .constant(nil)
-        )
+        ReviewContentView.DrinkSelectionView(store: Store(initialState: DrinkSelection.State(), reducer: { DrinkSelection() }))
     }
 }
