@@ -17,15 +17,21 @@ public struct Review: Reducer {
         public var nextButtonIsEnabled: Bool
         public var isLoading: Bool
         public var showOnBoardingView: Bool
-        public var content: ReviewContent.State
+//        public var content: ReviewContent.State
+        public var store: StoreSelection.State
+        public var brand: BrandSelection.State?
+        public var category: CategorySelection.State?
+        public var drink: DrinkSelection.State?
+        public var keyword: KeywordSelection.State?
+        public var recommendation: RecommendationSelection.State?
+        public var writing: Writing.State?
         
-        public init(steps: [Step] = Step.cafeSteps, currentStep: Int = 0, nextButtonIsEnabled: Bool = false, content: ReviewContent.State = ReviewContent.State()) {
+        public init(steps: [Step] = Step.cafeSteps, currentStep: Int = 0, nextButtonIsEnabled: Bool = false) {
             self.steps = steps
             self.currentStep = currentStep
             self.nextButtonIsEnabled = nextButtonIsEnabled
             self.isLoading = false
             self.showOnBoardingView = false
-            self.content = content
         }
     }
     
@@ -35,7 +41,14 @@ public struct Review: Reducer {
         case nextButtonTapped
         case submitButtonTapped
         case checkNextButtonIsEnabled
-        case content(ReviewContent.Action)
+//        case content(ReviewContent.Action)
+        public var store(StoreSelection.Action)
+        public var brand(BrandSelection.Action)
+        public var category(CategorySelection.Action)
+        public var drink(DrinkSelection.Action)
+        public var keyword(KeywordSelection.Action)
+        public var recommendation(RecommendationSelection.Action)
+        public var writing(Writing.Action)
         
         public enum Alert {
             case confirmSubmit
@@ -85,28 +98,20 @@ public struct Review: Reducer {
                 
                 switch state.steps[state.currentStep] {
                 case .store:
-                    state.nextButtonIsEnabled = state.content.store.selectedStore != nil
+                    state.nextButtonIsEnabled = state.store.selectedStore != nil
                 case .brand:
-                    state.nextButtonIsEnabled = state.content.brand?.selectedIndex != nil
+                    state.nextButtonIsEnabled = state.brand?.selectedIndex != nil
                 case .category:
-                    state.nextButtonIsEnabled = state.content.category?.selectedIndex != nil
+                    state.nextButtonIsEnabled = state.category?.selectedIndex != nil
                 case .drink:
-                    state.nextButtonIsEnabled = state.content.drink?.selectedDrink != nil
+                    state.nextButtonIsEnabled = state.drink?.selectedDrink != nil
                 case .priceFeeling:
-                    state.nextButtonIsEnabled = state.content.keyword?.selectedPriceKeywordIndex != nil && state.content.keyword?.selectedTasteKeywordIndex != nil
+                    state.nextButtonIsEnabled = state.keyword?.selectedPriceKeywordIndex != nil && state.keyword?.selectedTasteKeywordIndex != nil
                 case .recommendation:
-                    state.nextButtonIsEnabled = state.content.recommendation?.isRecommend != nil
+                    state.nextButtonIsEnabled = state.recommendation?.isRecommend != nil
                 case .writing:
                     state.nextButtonIsEnabled = true
                 }
-                return .none
-                
-            case .content(.completeLoading):
-                state.isLoading = false
-                return .none
-                
-            case .content(.store(.select)):
-                
                 return .none
                 
             case .submitButtonTapped:
@@ -118,17 +123,57 @@ public struct Review: Reducer {
                     await send(.content(.delegate(.saveReview)))
                 }
                 
-            case .content:
+            case .alert:
                 return .none
                 
-            case .alert:
+            case .store(.select):
+                state.nextButtonIsEnabled = state.store.selectedStore != nil
+                return .none
+                
+            case .store:
+                return .none
+                
+            case .brand:
+                return .none
+                
+            case .category:
+                return .none
+                
+            case .drink:
+                return .none
+                
+            case .keyword:
+                return .none
+                
+            case .recommendation:
+                return .none
+                
+            case .writing:
                 return .none
             }
         }
         .ifLet(\.$alert, action: /Action.alert)
+        .ifLet(\.brand, action: /Action.brand) {
+            BrandSelection()
+        }
+        .ifLet(\.category, action: /Action.category) {
+            CategorySelection()
+        }
+        .ifLet(\.drink, action: /Action.drink) {
+            DrinkSelection()
+        }
+        .ifLet(\.keyword, action: /Action.keyword) {
+            KeywordSelection()
+        }
+        .ifLet(\.recommendation, action: /Action.recommendation) {
+            RecommendationSelection()
+        }
+        .ifLet(\.writing, action: /Action.writing) {
+            Writing()
+        }
         
-        Scope(state: \.content, action: /Action.content) {
-            ReviewContent()
+        Scope(state: \.store, action: /Action.store) {
+            StoreSelection()
         }
     }
 }
